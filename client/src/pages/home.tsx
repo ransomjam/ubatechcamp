@@ -252,46 +252,158 @@ export default function Home() {
             </p>
           </div>
           
+          {/* Facilitators & Leadership */}
+          <div className="mb-12">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Program Leadership</h3>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Award className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-1">Jam Ransom</h4>
+                <p className="text-sm text-blue-600 font-medium mb-1">Founder</p>
+                <p className="text-xs text-gray-600">NAHPI - Mining & Mineral Engineering</p>
+              </Card>
+              
+              <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-1">Abongni Musuh</h4>
+                <p className="text-sm text-green-600 font-medium mb-1">Co-Founder</p>
+                <p className="text-xs text-gray-600">COLTECH - Food & Bioresource Technology</p>
+              </Card>
+              
+              <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <BookOpen className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-1">Geh Desmond Yembi</h4>
+                <p className="text-sm text-purple-600 font-medium mb-1">Tech Volunteer</p>
+                <p className="text-xs text-gray-600">COLTECH - Computer Engineering</p>
+              </Card>
+              
+              <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                <div className="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Handshake className="h-8 w-8 text-white" />
+                </div>
+                <h4 className="font-semibold text-gray-900 mb-1">Anyu Princewill Fon</h4>
+                <p className="text-sm text-orange-600 font-medium mb-1">Finance Volunteer</p>
+                <p className="text-xs text-gray-600">FEMS - Banking & Finance</p>
+              </Card>
+            </div>
+          </div>
+
+          {/* Alumni by Faculty */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
               <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BookOpen className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-3 text-center">Faculty of Science</h3>
+              <div className="text-sm text-gray-600 space-y-2">
+                <div className="flex justify-between">
+                  <span>Ndim Evette Felai</span>
+                  <span className="text-blue-600">Biochemistry</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Fonbah Ryan Ngaberi</span>
+                  <span className="text-blue-600">Math & Computer Science</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Sawai Stephany Tiykenyuy</span>
+                  <span className="text-blue-600">Microbiology</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Neh Precious Chi</span>
+                  <span className="text-blue-600">Biochemistry</span>
+                </div>
+                <p className="text-center text-blue-600 font-medium mt-3">+15 more graduates</p>
+              </div>
+            </Card>
+            
+            <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Mentorship Program</h3>
-              <p className="text-gray-600 text-sm">
-                Connect with experienced alumni for career guidance, technical advice, and professional development.
-              </p>
-            </Card>
-            
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
-              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Handshake className="h-8 w-8 text-white" />
+              <h3 className="font-semibold text-gray-900 mb-3 text-center">FEMS & Business</h3>
+              <div className="text-sm text-gray-600 space-y-2">
+                <div className="flex justify-between">
+                  <span>Kimbi Herodia Fuluni</span>
+                  <span className="text-green-600">Accounting</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Ghansibee Lydean Berinyuy</span>
+                  <span className="text-green-600">Accounting</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Yaradze Shanita Kinyuy</span>
+                  <span className="text-green-600">Marketing</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Feh Blessing</span>
+                  <span className="text-green-600">Finance</span>
+                </div>
+                <p className="text-center text-green-600 font-medium mt-3">+12 more graduates</p>
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Job Referrals</h3>
-              <p className="text-gray-600 text-sm">
-                Access job opportunities through our alumni network at tech companies, startups, and organizations.
-              </p>
             </Card>
             
-            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+            <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
               <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Award className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Success Stories</h3>
-              <p className="text-gray-600 text-sm">
-                Celebrate achievements and learn from the career journeys of our successful graduates.
-              </p>
+              <h3 className="font-semibold text-gray-900 mb-3 text-center">Engineering & Tech</h3>
+              <div className="text-sm text-gray-600 space-y-2">
+                <div className="flex justify-between">
+                  <span>Cynthia Kebote</span>
+                  <span className="text-purple-600">Mining Engineering</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Kakwang Brain Nkemta</span>
+                  <span className="text-purple-600">Biomedical Engineering</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Fienge Godwill Beziegzau</span>
+                  <span className="text-purple-600">Agricultural Engineering</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Soja Cyan Yuma</span>
+                  <span className="text-purple-600">Transport & Logistics</span>
+                </div>
+                <p className="text-center text-purple-600 font-medium mt-3">+8 more graduates</p>
+              </div>
             </Card>
           </div>
           
-          <div className="mt-12 text-center">
-            <Button 
-              onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:opacity-90"
-              size="lg"
-            >
-              Read Alumni Stories
-            </Button>
+          {/* Statistics & CTA */}
+          <div className="mt-12">
+            <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 text-center">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div>
+                  <div className="text-3xl font-bold">42+</div>
+                  <p className="text-sm text-blue-100">Active Participants</p>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold">7</div>
+                  <p className="text-sm text-blue-100">Faculties Represented</p>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold">4</div>
+                  <p className="text-sm text-blue-100">Leadership Team</p>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold">100%</div>
+                  <p className="text-sm text-blue-100">Student Success</p>
+                </div>
+              </div>
+              <Button 
+                onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-white text-blue-600 hover:bg-gray-100"
+                size="lg"
+              >
+                Read Alumni Stories
+              </Button>
+            </Card>
           </div>
         </div>
       </section>
