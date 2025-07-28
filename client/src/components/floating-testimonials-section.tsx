@@ -102,7 +102,37 @@ export default function FloatingTestimonialsSection() {
     createdAt: t.createdAt || t.created_at
   }));
 
+  // Define helper function first
+  const getFilteredTestimonials = (filter: string): Testimonial[] => {
+    // Filter real testimonials based on graduation year and role
+    const filtered = testimonials.filter((testimonial: Testimonial) => {
+      // Check both isApproved and is_approved fields for backward compatibility
+      const isApproved = testimonial.isApproved || (testimonial as any).is_approved;
+      if (!isApproved) return false;
+      
+      // Only show testimonials with actual content (minimum 3 characters)
+      if (!testimonial.testimonialText || testimonial.testimonialText.trim().length < 3) {
+        return false;
+      }
+      
+      if (filter === "recent") {
+        return parseInt(testimonial.graduationYear || "2024") >= 2024;
+      } else if (filter === "career") {
+        return testimonial.currentRole !== "Student" && testimonial.currentRole !== "";
+      } else if (filter === "experience") {
+        return true; // All approved testimonials with content can be shown in experience
+      }
+      
+      return false;
+    });
+    
+    console.log(`Filtered testimonials for ${filter}:`, filtered);
+    return filtered;
+  };
 
+  // Get current category data
+  const currentCategoryData = testimonialCategories[currentCategory];
+  const currentTestimonials = getFilteredTestimonials(currentCategoryData.filter);
 
   const nextCategory = () => {
     const newCategory = (currentCategory + 1) % testimonialCategories.length;
@@ -135,36 +165,6 @@ export default function FloatingTestimonialsSection() {
       nextTestimonial();
     }
   };
-
-  const getFilteredTestimonials = (filter: string): Testimonial[] => {
-    // Filter real testimonials based on graduation year and role
-    const filtered = testimonials.filter((testimonial: Testimonial) => {
-      // Check both isApproved and is_approved fields for backward compatibility
-      const isApproved = testimonial.isApproved || (testimonial as any).is_approved;
-      if (!isApproved) return false;
-      
-      // Only show testimonials with actual content (minimum 3 characters)
-      if (!testimonial.testimonialText || testimonial.testimonialText.trim().length < 3) {
-        return false;
-      }
-      
-      if (filter === "recent") {
-        return parseInt(testimonial.graduationYear || "2024") >= 2024;
-      } else if (filter === "career") {
-        return testimonial.currentRole !== "Student" && testimonial.currentRole !== "";
-      } else if (filter === "experience") {
-        return true; // All approved testimonials with content can be shown in experience
-      }
-      
-      return false;
-    });
-    
-    console.log(`Filtered testimonials for ${filter}:`, filtered);
-    return filtered;
-  };
-
-  const currentCategoryData = testimonialCategories[currentCategory];
-  const currentTestimonials = getFilteredTestimonials(currentCategoryData.filter);
 
   const renderStars = (rating: number) => {
     return Array.from({ length: 5 }, (_, index) => (
