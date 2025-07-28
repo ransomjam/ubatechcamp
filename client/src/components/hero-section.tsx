@@ -91,11 +91,40 @@ export default function HeroSection() {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-gray-900 mb-6">About UBa Tech Camp</h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  UBa Tech Camp is a free, intensive digital skills programme run by the University of Bamenda. 
-                  In its second edition, we bring together motivated young learners from across Cameroon to master 
-                  computer literacy, coding, and data analysis in a collaborative, project-driven environment.
-                </p>
+                <div className="text-left space-y-4 text-gray-600 leading-relaxed">
+                  <p className="text-lg">
+                    UBa Tech Camp is a transformative digital skills programme hosted at the University of Bamenda. 
+                    It is designed to empower students with practical, in-demand tech competencies that are essential 
+                    in today's digital economy. Founded by Jam Ransom, the camp provides free hands-on training in 
+                    areas such as basic computer skills, data analysis, programming, and essential digital tools.
+                  </p>
+                  
+                  <p className="text-lg">
+                    At its core, UBa Tech Camp is about empowerment, innovation, and career readiness. The programme 
+                    welcomes students from all faculties and backgrounds, creating an inclusive environment where they 
+                    can gain critical tech skills, boost their confidence, and apply their knowledge to real-world challenges.
+                  </p>
+                  
+                  <p className="text-lg font-medium text-primary">
+                    UBa Tech Camp is not just a training programme, it is a movement that is shaping the next generation 
+                    of digital leaders in Cameroon and beyond. It inspires students to think big, learn fast, and lead 
+                    change through technology.
+                  </p>
+                </div>
+                
+                <div className="mt-8">
+                  <Button
+                    onClick={() => {
+                      const element = document.getElementById('register');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                    className="bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300"
+                  >
+                    Join the Movement
+                  </Button>
+                </div>
               </div>
             </div>
           </motion.section>
