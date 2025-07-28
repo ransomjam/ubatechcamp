@@ -174,48 +174,6 @@ export default function Home() {
             </p>
           </div>
           
-          {/* Facilitators & Leadership */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Program Leadership</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Award className="h-8 w-8 text-white" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Jam Ransom</h4>
-                <p className="text-sm text-blue-600 font-medium mb-1">Founder</p>
-                <p className="text-xs text-gray-600">NAHPI - Mining & Mineral Engineering</p>
-              </Card>
-              
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8 text-white" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Abongni Musuh</h4>
-                <p className="text-sm text-green-600 font-medium mb-1">Co-Founder</p>
-                <p className="text-xs text-gray-600">COLTECH - Food & Bioresource Technology</p>
-              </Card>
-              
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <BookOpen className="h-8 w-8 text-white" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Geh Desmond Yembi</h4>
-                <p className="text-sm text-purple-600 font-medium mb-1">Tech Volunteer</p>
-                <p className="text-xs text-gray-600">COLTECH - Computer Engineering</p>
-              </Card>
-              
-              <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
-                <div className="w-16 h-16 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Handshake className="h-8 w-8 text-white" />
-                </div>
-                <h4 className="font-semibold text-gray-900 mb-1">Anyu Princewill Fon</h4>
-                <p className="text-sm text-orange-600 font-medium mb-1">Finance Volunteer</p>
-                <p className="text-xs text-gray-600">FEMS - Banking & Finance</p>
-              </Card>
-            </div>
-          </div>
-
           {/* Alumni by Faculty */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="p-6 hover:shadow-lg transition-shadow duration-300">
