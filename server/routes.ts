@@ -1,7 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertRegistrationSchema, insertNewsletterSchema, insertTestimonialSchema } from "@shared/schema";
+import { insertRegistrationSchema, insertNewsletterSchema, insertTestimonialSchema, insertBlogPostSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -94,6 +94,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ success: true, data: testimonial });
     } catch (error) {
       res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  });
+
+  // Blog endpoints
+  app.get("/api/blog", async (req, res) => {
+    try {
+      const blogPosts = await storage.getPublishedBlogPosts();
+      res.json({ success: true, data: blogPosts });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  });
+
+  app.get("/api/blog/:slug", async (req, res) => {
+    try {
+      const { slug } = req.params;
+      const blogPost = await storage.getBlogPostBySlug(slug);
+      if (!blogPost) {
+        res.status(404).json({ success: false, message: "Blog post not found" });
+        return;
+      }
+      res.json({ success: true, data: blogPost });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  });
+
+  app.post("/api/blog", async (req, res) => {
+    try {
+      const validatedData = insertBlogPostSchema.parse(req.body);
+      const blogPost = await storage.createBlogPost(validatedData);
+      res.status(201).json({ success: true, data: blogPost });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ success: false, errors: error.errors });
+      } else {
+        res.status(500).json({ success: false, message: "Internal server error" });
+      }
     }
   });
 

@@ -37,6 +37,22 @@ export const testimonials = pgTable("testimonials", {
   createdAt: timestamp("created_at").defaultNow(),
 });
 
+export const blogPosts = pgTable("blog_posts", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  title: text("title").notNull(),
+  slug: varchar("slug", { length: 255 }).unique().notNull(),
+  excerpt: text("excerpt"),
+  content: text("content").notNull(),
+  featuredImage: text("featured_image"),
+  authorName: text("author_name").notNull(),
+  category: varchar("category", { length: 100 }),
+  tags: text("tags").array(),
+  isPublished: boolean("is_published").default(false),
+  publishedAt: timestamp("published_at"),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow(),
+});
+
 export const insertRegistrationSchema = createInsertSchema(registrations).omit({
   id: true,
   createdAt: true,
@@ -58,6 +74,19 @@ export const insertTestimonialSchema = createInsertSchema(testimonials).omit({
   linkedinUrl: z.string().optional(),
 });
 
+export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+}).extend({
+  excerpt: z.string().optional(),
+  featuredImage: z.string().optional(),
+  category: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  isPublished: z.boolean().optional(),
+  publishedAt: z.date().optional(),
+});
+
 export type InsertRegistration = z.infer<typeof insertRegistrationSchema>;
 export type Registration = typeof registrations.$inferSelect;
 
@@ -66,3 +95,6 @@ export type Newsletter = typeof newsletters.$inferSelect;
 
 export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
 export type Testimonial = typeof testimonials.$inferSelect;
+
+export type InsertBlogPost = z.infer<typeof insertBlogPostSchema>;
+export type BlogPost = typeof blogPosts.$inferSelect;

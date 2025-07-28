@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "wouter";
 import logoImage from "@assets/uba-tech-camp-logo-final.png";
 
 export default function Navigation() {
@@ -74,12 +75,12 @@ export default function Navigation() {
               >
                 Get Involved
               </button>
-              <button 
-                onClick={() => scrollToSection('alumni-network')}
+              <Link 
+                href="/blog"
                 className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
               >
-                Alumni Network
-              </button>
+                Blog
+              </Link>
               <button 
                 onClick={() => scrollToSection('contact')}
                 className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
@@ -153,12 +154,12 @@ export default function Navigation() {
               >
                 Get Involved
               </button>
-              <button 
-                onClick={() => scrollToSection('alumni-network')}
+              <Link 
+                href="/blog"
                 className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
-                Alumni Network
-              </button>
+                Blog
+              </Link>
               <button 
                 onClick={() => scrollToSection('contact')}
                 className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
