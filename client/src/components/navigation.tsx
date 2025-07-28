@@ -22,7 +22,7 @@ export default function Navigation() {
               <img 
                 src={`/attached_assets/uba-tech-camp-logo-final.png`}
                 alt="UBa Tech Camp Logo"
-                className="h-14 w-14 rounded-full border-2 border-white shadow-lg"
+                className="h-12 w-auto max-w-12 object-contain"
               />
               <h1 className="text-xl font-bold text-primary">UBa Tech Camp</h1>
             </div>
