@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import heroImage from "@assets/use on hero_1753673323493.png";
+import heroImage from "@assets/use on hero_1753709100915.png";
 
 export default function HeroSection() {
   const [showDetails, setShowDetails] = useState(false);
