@@ -158,18 +158,18 @@ export default function Home() {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Featured Alumni Cards */}
+            {/* Featured Alumni Cards - Real 2024 Participants */}
             <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">COLTECH Alumni</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Faculty of Science</h3>
               <div className="text-sm text-gray-600 space-y-1">
-                <p>Amina Tanko</p>
-                <p>Paul Biya</p>
-                <p>Grace Mbaku</p>
-                <p>Emmanuel Fonka</p>
-                <p className="text-primary font-medium">+25 more graduates</p>
+                <p>Ndim Evette Felai</p>
+                <p>Fonbah Ryan Ngaberi</p>
+                <p>Sawai Stephany Tiykenyuy</p>
+                <p>Neh Precious Chi</p>
+                <p className="text-primary font-medium">+15 more graduates</p>
               </div>
             </Card>
 
@@ -177,13 +177,13 @@ export default function Home() {
               <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Trophy className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">FHS Alumni</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">FEMS & Business</h3>
               <div className="text-sm text-gray-600 space-y-1">
-                <p>Sarah Ngwa</p>
-                <p>Michel Ashu</p>
-                <p>Blessing Tabe</p>
-                <p>Samuel Njie</p>
-                <p className="text-green-600 font-medium">+30 more graduates</p>
+                <p>Kimbi Herodia Fuluni</p>
+                <p>Ghansibee Lydean Berinyuy</p>
+                <p>Tanyu Chersea Mande</p>
+                <p>Yaradze Shanita Kinyuy</p>
+                <p className="text-green-600 font-medium">+12 more graduates</p>
               </div>
             </Card>
 
@@ -191,13 +191,13 @@ export default function Home() {
               <div className="w-16 h-16 bg-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Star className="h-8 w-8 text-white" />
               </div>
-              <h3 className="font-semibold text-gray-900 mb-2">NAHPI & FEMSSA</h3>
+              <h3 className="font-semibold text-gray-900 mb-2">Engineering & Tech</h3>
               <div className="text-sm text-gray-600 space-y-1">
-                <p>Priscilla Fon</p>
-                <p>David Che</p>
-                <p>Patience Mbe</p>
-                <p>Clinton Awah</p>
-                <p className="text-yellow-600 font-medium">+40 more graduates</p>
+                <p>Cynthia Kebote</p>
+                <p>Kakwang Brain Nkemta</p>
+                <p>Fienge Godwill Beziegzau</p>
+                <p>Budzi Chifu Terence</p>
+                <p className="text-yellow-600 font-medium">+8 more graduates</p>
               </div>
             </Card>
           </div>
