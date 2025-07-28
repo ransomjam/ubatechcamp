@@ -16,6 +16,7 @@ import {
   Award
 } from "lucide-react";
 import founderImage from "@assets/Founder_1753708699510.jpg";
+import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
 
 const teamData = [
   {
@@ -52,7 +53,7 @@ const teamData = [
         role: "University Collaborator",
         description: "Director of Student Affairs, University of Bamenda",
         subtitle: "Department of Biological Sciences, Faculty of Science",
-        image: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        image: profAnongImage,
         social: {
           linkedin: "https://linkedin.com/in/prof-anong-damian",
           email: "anong.damian@uniba.edu.cm"
