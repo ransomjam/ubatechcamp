@@ -242,8 +242,62 @@ export default function Home() {
 
       <RegistrationForm />
 
+      {/* Alumni Network */}
+      <section id="alumni-network" className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Alumni Network</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Join our growing community of tech professionals. Our alumni work at leading companies worldwide and continue to support current students through mentorship and career guidance.
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+              <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Mentorship Program</h3>
+              <p className="text-gray-600 text-sm">
+                Connect with experienced alumni for career guidance, technical advice, and professional development.
+              </p>
+            </Card>
+            
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Handshake className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Job Referrals</h3>
+              <p className="text-gray-600 text-sm">
+                Access job opportunities through our alumni network at tech companies, startups, and organizations.
+              </p>
+            </Card>
+            
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+              <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Award className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Success Stories</h3>
+              <p className="text-gray-600 text-sm">
+                Celebrate achievements and learn from the career journeys of our successful graduates.
+              </p>
+            </Card>
+          </div>
+          
+          <div className="mt-12 text-center">
+            <Button 
+              onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:opacity-90"
+              size="lg"
+            >
+              Read Alumni Stories
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* Get Involved */}
-      <section className="bg-gray-50 py-16">
+      <section id="get-involved" className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Get Involved</h2>

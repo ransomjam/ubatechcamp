@@ -69,6 +69,18 @@ export default function Navigation() {
                 Alumni
               </button>
               <button 
+                onClick={() => scrollToSection('get-involved')}
+                className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
+              >
+                Get Involved
+              </button>
+              <button 
+                onClick={() => scrollToSection('alumni-network')}
+                className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
+              >
+                Alumni Network
+              </button>
+              <button 
                 onClick={() => scrollToSection('contact')}
                 className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
               >
@@ -134,6 +146,18 @@ export default function Navigation() {
                 className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
                 Alumni Voices
+              </button>
+              <button 
+                onClick={() => scrollToSection('get-involved')}
+                className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
+              >
+                Get Involved
+              </button>
+              <button 
+                onClick={() => scrollToSection('alumni-network')}
+                className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
+              >
+                Alumni Network
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
