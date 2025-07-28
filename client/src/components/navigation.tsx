@@ -39,10 +39,10 @@ export default function Navigation() {
                 Home
               </button>
               <button 
-                onClick={() => scrollToSection('learn')}
+                onClick={() => scrollToSection('programs')}
                 className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
               >
-                Learn
+                Programs
               </button>
               <button 
                 onClick={() => scrollToSection('team')}
@@ -106,10 +106,10 @@ export default function Navigation() {
                 Home
               </button>
               <button 
-                onClick={() => scrollToSection('learn')}
+                onClick={() => scrollToSection('programs')}
                 className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
-                What You'll Learn
+                Explore Our Programs
               </button>
               <button 
                 onClick={() => scrollToSection('team')}
