@@ -73,87 +73,7 @@ interface Testimonial {
   photoUrl: string;
 }
 
-// Mock testimonials for demonstration - these would come from the database
-const mockTestimonials: Testimonial[] = [
-  {
-    id: "1",
-    name: "Marie Tabi",
-    position: "Data Analyst",
-    company: "MTN Cameroon",
-    year: "2024",
-    rating: 5,
-    content: "UBa Tech Camp transformed my career. The hands-on training in data analysis and Python programming gave me the skills I needed to land my dream job at MTN.",
-    photoUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b5c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    approved: true,
-    category: "career",
-    skills: ["Python", "Data Analysis", "Excel"]
-  },
-  {
-    id: "2", 
-    name: "Paul Ngwa",
-    position: "Software Developer",
-    company: "Orange Cameroon",
-    year: "2024",
-    rating: 5,
-    content: "The collaborative learning environment and expert instructors made complex concepts easy to understand. I now work as a software developer thanks to the foundation I built here.",
-    photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    approved: true,
-    category: "career",
-    skills: ["Programming", "Web Development", "Teamwork"]
-  },
-  {
-    id: "3",
-    name: "Grace Fon",
-    position: "Student",
-    company: "University of Bamenda",
-    year: "2024",
-    rating: 5,
-    content: "The tech camp was an incredible experience. I learned so much about computer literacy and made lifelong friends. The instructors were patient and supportive throughout.",
-    photoUrl: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    approved: true,
-    category: "experience",
-    skills: ["Computer Literacy", "Networking", "Team Collaboration"]
-  },
-  {
-    id: "4",
-    name: "John Teke",
-    position: "Recent Graduate",
-    company: "Self-employed",
-    year: "2024",
-    rating: 4,
-    content: "Just completed the program and I'm amazed by how much I've learned. The Excel and SPSS training will be invaluable for my research work.",
-    photoUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    approved: true,
-    category: "recent",
-    skills: ["Excel", "SPSS", "Statistical Analysis"]
-  },
-  {
-    id: "5",
-    name: "Linda Asong",
-    position: "Business Analyst", 
-    company: "BICEC Bank",
-    year: "2024",
-    rating: 5,
-    content: "The practical approach to learning and real-world projects prepared me perfectly for my current role. I use the Excel skills I learned here every single day.",
-    photoUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    approved: true,
-    category: "career",
-    skills: ["Excel", "Business Analysis", "Data Visualization"]
-  },
-  {
-    id: "6",
-    name: "Samuel Mbua",
-    position: "Student",
-    company: "University of Bamenda",
-    year: "2024", 
-    rating: 5,
-    content: "Coming into the program with no tech background, I was nervous. But the supportive community and step-by-step approach made me feel confident and capable.",
-    photoUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-    approved: true,
-    category: "experience",
-    skills: ["Computer Literacy", "Confidence Building", "Problem Solving"]
-  }
-];
+
 
 export default function FloatingTestimonialsSection() {
   const [currentCategory, setCurrentCategory] = useState(0);
@@ -166,8 +86,8 @@ export default function FloatingTestimonialsSection() {
     queryKey: ["/api/testimonials"],
   });
 
-  // Combine real data with mock data for demonstration
-  const realTestimonials: Testimonial[] = (apiResponse?.data || []).map((t: any) => ({
+  // Use only real testimonials from the database
+  const testimonials: Testimonial[] = (apiResponse?.data || []).map((t: any) => ({
     id: t.id,
     fullName: t.fullName || t.full_name,
     currentRole: t.currentRole || t.current_role || "Alumni",
@@ -181,8 +101,6 @@ export default function FloatingTestimonialsSection() {
     linkedinUrl: t.linkedinUrl || t.linkedin_url,
     createdAt: t.createdAt || t.created_at
   }));
-
-  const testimonials = [...realTestimonials, ...mockTestimonials];
 
   const nextCategory = () => {
     const newCategory = (currentCategory + 1) % testimonialCategories.length;
@@ -217,20 +135,19 @@ export default function FloatingTestimonialsSection() {
   };
 
   const getFilteredTestimonials = (filter: string): Testimonial[] => {
-    // For real testimonials, we'll categorize based on graduation year and role
+    // Filter real testimonials based on graduation year and role
     return testimonials.filter((testimonial: Testimonial) => {
-      if (!testimonial.isApproved && !testimonial.approved) return false;
+      if (!testimonial.isApproved) return false;
       
       if (filter === "recent") {
-        return parseInt(testimonial.graduationYear || testimonial.year || "2024") >= 2024;
+        return parseInt(testimonial.graduationYear || "2024") >= 2024;
       } else if (filter === "career") {
-        return testimonial.currentRole !== "Student" || testimonial.position !== "Student";
+        return testimonial.currentRole !== "Student";
       } else if (filter === "experience") {
         return true; // All approved testimonials can be shown in experience
       }
       
-      // Fallback for mock data
-      return testimonial.category === filter;
+      return false;
     });
   };
 
@@ -343,41 +260,30 @@ export default function FloatingTestimonialsSection() {
                                 <div className="flex items-center space-x-6">
                                   <img 
                                     src={testimonial.photoUrl}
-                                    alt={testimonial.fullName || testimonial.name || "Alumni"}
+                                    alt={testimonial.fullName || "Alumni"}
                                     className="w-20 h-20 rounded-full object-cover border-4 border-white/20"
                                   />
                                   <div>
-                                    <h4 className="text-2xl font-bold mb-1">{testimonial.fullName || testimonial.name}</h4>
-                                    <p className="text-white/90 text-lg">{testimonial.currentRole || testimonial.position}</p>
+                                    <h4 className="text-2xl font-bold mb-1">{testimonial.fullName}</h4>
+                                    <p className="text-white/90 text-lg">{testimonial.currentRole}</p>
                                     <p className="text-white/70 text-sm">{testimonial.company}</p>
                                   </div>
                                 </div>
                                 <div className="flex items-center justify-between mt-6">
                                   <div className="flex">
-                                    {testimonial.rating ? renderStars(testimonial.rating) : renderStars(5)}
+                                    {renderStars(5)}
                                   </div>
-                                  <span className="text-white/70 text-sm">{testimonial.graduationYear || testimonial.year}</span>
+                                  <span className="text-white/70 text-sm">{testimonial.graduationYear}</span>
                                 </div>
                               </div>
 
                               {/* Card Content */}
                               <div className="p-8">
                                 <p className="text-gray-700 text-lg mb-6 leading-relaxed">
-                                  "{testimonial.testimonialText || testimonial.content}"
+                                  "{testimonial.testimonialText}"
                                 </p>
 
-                                {testimonial.skills && testimonial.skills.length > 0 && (
-                                  <div className="border-t border-gray-200 pt-6 mb-6">
-                                    <h5 className="font-semibold text-gray-900 mb-3">Skills Gained:</h5>
-                                    <div className="flex flex-wrap gap-2">
-                                      {testimonial.skills.map((skill: string) => (
-                                        <span key={skill} className="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
-                                          {skill}
-                                        </span>
-                                      ))}
-                                    </div>
-                                  </div>
-                                )}
+
 
                                 {testimonial.faculty && (
                                   <div className="border-t border-gray-200 pt-6 mb-6">
