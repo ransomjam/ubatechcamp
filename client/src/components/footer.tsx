@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import logoImage from "@assets/new logo.jpg";
 
 export default function Footer() {
   const scrollToSection = (sectionId: string) => {
@@ -13,7 +14,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="col-span-2">
-            <h3 className="text-2xl font-bold mb-4">UBa Tech Camp</h3>
+            <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src={logoImage}
+                alt="UBa Tech Camp Logo"
+                className="h-12 w-12 object-contain rounded-full"
+              />
+              <h3 className="text-2xl font-bold">UBa Tech Camp</h3>
+            </div>
             <p className="text-gray-400 mb-4">
               Empowering youth with digital skills through comprehensive, hands-on training programs.
             </p>
