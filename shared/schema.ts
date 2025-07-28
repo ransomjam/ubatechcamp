@@ -9,6 +9,9 @@ export const registrations = pgTable("registrations", {
   email: text("email").notNull(),
   institution: text("institution").notNull(),
   fieldOfStudy: text("field_of_study").notNull(),
+  attendanceMode: text("attendance_mode").notNull(), // "online" or "on-campus"
+  coursesOfInterest: text("courses_of_interest").array().notNull(),
+  reasonForJoining: text("reason_for_joining").notNull(),
   referralCode: text("referral_code"),
   createdAt: timestamp("created_at").defaultNow(),
 });

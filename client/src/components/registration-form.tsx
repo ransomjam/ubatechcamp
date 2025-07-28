@@ -6,13 +6,26 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { insertRegistrationSchema, type InsertRegistration } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
 
+const courseOptions = [
+  "Computer Literacy",
+  "Python Programming", 
+  "Data Analysis with Excel",
+  "SPSS for Social Science",
+  "Team Collaboration",
+  "Computer Networking"
+];
+
 export default function RegistrationForm() {
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedCourses, setSelectedCourses] = useState<string[]>([]);
 
   const form = useForm<InsertRegistration>({
     resolver: zodResolver(insertRegistrationSchema),
@@ -21,6 +34,9 @@ export default function RegistrationForm() {
       email: "",
       institution: "",
       fieldOfStudy: "",
+      attendanceMode: "",
+      coursesOfInterest: [],
+      reasonForJoining: "",
       referralCode: "",
     },
   });
@@ -37,6 +53,7 @@ export default function RegistrationForm() {
         description: "You'll receive a confirmation email within 3 days.",
       });
       form.reset();
+      setSelectedCourses([]);
     },
     onError: (error: any) => {
       toast({
@@ -48,7 +65,28 @@ export default function RegistrationForm() {
   });
 
   const onSubmit = (data: InsertRegistration) => {
-    registrationMutation.mutate(data);
+    if (selectedCourses.length === 0) {
+      toast({
+        title: "Validation Error",
+        description: "Please select at least one course of interest.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const submissionData = {
+      ...data,
+      coursesOfInterest: selectedCourses,
+    };
+    registrationMutation.mutate(submissionData);
+  };
+
+  const handleCourseChange = (course: string, checked: boolean) => {
+    if (checked) {
+      setSelectedCourses(prev => [...prev, course]);
+    } else {
+      setSelectedCourses(prev => prev.filter(c => c !== course));
+    }
   };
 
   if (isSubmitted) {
@@ -145,6 +183,65 @@ export default function RegistrationForm() {
                   </p>
                 )}
               </div>
+            </div>
+            
+            {/* Attendance Mode */}
+            <div>
+              <Label>Attendance Mode *</Label>
+              <Select onValueChange={(value) => form.setValue("attendanceMode", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select attendance mode" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="on-campus">On Campus</SelectItem>
+                  <SelectItem value="online">Online</SelectItem>
+                </SelectContent>
+              </Select>
+              {form.formState.errors.attendanceMode && (
+                <p className="text-red-500 text-sm mt-1">
+                  {form.formState.errors.attendanceMode.message}
+                </p>
+              )}
+            </div>
+
+            {/* Courses of Interest */}
+            <div>
+              <Label>Courses of Interest * (Select all that apply)</Label>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2">
+                {courseOptions.map((course) => (
+                  <div key={course} className="flex items-center space-x-2">
+                    <Checkbox 
+                      id={course}
+                      checked={selectedCourses.includes(course)}
+                      onCheckedChange={(checked) => handleCourseChange(course, checked as boolean)}
+                    />
+                    <Label htmlFor={course} className="text-sm font-normal cursor-pointer">
+                      {course}
+                    </Label>
+                  </div>
+                ))}
+              </div>
+              {selectedCourses.length === 0 && (
+                <p className="text-red-500 text-sm mt-1">
+                  Please select at least one course
+                </p>
+              )}
+            </div>
+
+            {/* Reason for Joining */}
+            <div>
+              <Label htmlFor="reasonForJoining">Brief Reason for Wanting to Join *</Label>
+              <Textarea
+                id="reasonForJoining"
+                placeholder="Tell us why you want to join UBa Tech Camp and what you hope to achieve..."
+                rows={4}
+                {...form.register("reasonForJoining")}
+              />
+              {form.formState.errors.reasonForJoining && (
+                <p className="text-red-500 text-sm mt-1">
+                  {form.formState.errors.reasonForJoining.message}
+                </p>
+              )}
             </div>
             
             <div>
