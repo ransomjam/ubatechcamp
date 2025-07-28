@@ -18,6 +18,39 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       
+      {/* Welcome Section with Hero Photo */}
+      <section className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="order-2 lg:order-1">
+              <img 
+                src={`/attached_assets/use on hero_1753673323493.png`}
+                alt="UBa Tech Camp participants in active learning session"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+            
+            <div className="order-1 lg:order-2">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Welcome to UBa Tech Camp</h2>
+              <p className="text-lg text-gray-600 mb-4">
+                Join over 100 students who have already transformed their digital skills through our comprehensive training program. 
+                Our hands-on approach ensures you gain practical experience with the latest technology tools.
+              </p>
+              <p className="text-gray-600 mb-6">
+                From computer literacy to advanced programming, we provide the foundation you need to excel in today's digital world. 
+                All training takes place in our state-of-the-art computer labs with expert guidance from experienced instructors.
+              </p>
+              <div className="space-y-2 text-sm text-gray-500">
+                <p>✓ 100+ students trained in our first edition</p>
+                <p>✓ 6 comprehensive technical courses</p>
+                <p>✓ Official University of Bamenda certification</p>
+                <p>✓ Free training with laptop provided</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Partnership Section */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

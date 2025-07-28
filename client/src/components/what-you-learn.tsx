@@ -2,6 +2,12 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Monitor, Code, BarChart, Users, Network, ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import computerLiteracy from "@assets/PXL_20250719_122946061.PORTRAIT_1753673323495.jpg";
+import pythonProgramming from "@assets/PXL_20250719_122942557.PORTRAIT_1753673323496.jpg";
+import excelTraining from "@assets/PXL_20250719_103316291.MP~2_1753673323499.jpg";
+import spssTraining from "@assets/spss_1753673323495.jpg";
+import teamCollaboration from "@assets/Team collaboration_1753673323494.jpg";
+import networkingTraining from "@assets/InShot_20250219_173005437_1753673323503.jpg";
 
 const courses = [
   {
@@ -9,7 +15,7 @@ const courses = [
     title: "Computer Literacy",
     description: "Essential foundational skills for digital proficiency",
     icon: Monitor,
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300",
+    image: computerLiteracy,
     details: [
       "File management systems",
       "Office suite mastery",
@@ -21,7 +27,7 @@ const courses = [
     title: "Python Programming",
     description: "Programming fundamentals with practical applications",
     icon: Code,
-    image: "https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300",
+    image: pythonProgramming,
     details: [
       "Python syntax and basics",
       "Data structures and algorithms",
@@ -33,7 +39,7 @@ const courses = [
     title: "Data Analysis with Excel",
     description: "Advanced Excel skills for data manipulation",
     icon: BarChart,
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300",
+    image: excelTraining,
     details: [
       "Data cleaning techniques",
       "Pivot tables and charts",
@@ -45,7 +51,7 @@ const courses = [
     title: "SPSS for Social Science",
     description: "Statistical analysis for research applications",
     icon: BarChart,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300",
+    image: spssTraining,
     details: [
       "Variable coding and management",
       "Descriptive statistics",
@@ -57,7 +63,7 @@ const courses = [
     title: "Team Collaboration",
     description: "Project-based learning and presentation skills",
     icon: Users,
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300",
+    image: teamCollaboration,
     details: [
       "Group collaboration techniques",
       "Project management basics",
@@ -69,7 +75,7 @@ const courses = [
     title: "Computer Networking",
     description: "Understanding network fundamentals and security",
     icon: Network,
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&h=300",
+    image: networkingTraining,
     details: [
       "Network protocols and architecture",
       "Basic cybersecurity principles",
