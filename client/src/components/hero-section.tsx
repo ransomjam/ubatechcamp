@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar, MapPin, ChevronDown, ChevronUp } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Calendar, MapPin, X } from "lucide-react";
+import { motion } from "framer-motion";
 import heroImage from "@assets/use on hero_1753709100915.png";
 
 export default function HeroSection() {
-  const [showDetails, setShowDetails] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <section id="home" className="relative bg-gradient-to-br from-primary to-blue-800 text-white overflow-hidden">
@@ -62,36 +63,20 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Button
-              onClick={() => setShowDetails(!showDetails)}
-              className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg transition duration-300 transform hover:scale-105"
-              size="lg"
-            >
-              Learn More 
-              {showDetails ? (
-                <ChevronUp className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-              ) : (
-                <ChevronDown className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
-              )}
-            </Button>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Detailed Description */}
-      <AnimatePresence>
-        {showDetails && (
-          <motion.section
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white text-gray-900 py-16 overflow-hidden"
-          >
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">About UBa Tech Camp</h2>
-                <div className="text-left space-y-4 text-gray-600 leading-relaxed">
+            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <DialogTrigger asChild>
+                <Button
+                  className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg transition duration-300 transform hover:scale-105"
+                  size="lg"
+                >
+                  Learn More
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                <DialogHeader>
+                  <DialogTitle className="text-2xl font-bold text-primary mb-4">About UBa Tech Camp</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-4 text-gray-600 leading-relaxed">
                   <p className="text-lg">
                     UBa Tech Camp is a transformative digital skills programme hosted at the University of Bamenda. 
                     It is designed to empower students with practical, in-demand tech competencies that are essential 
@@ -112,24 +97,29 @@ export default function HeroSection() {
                   </p>
                 </div>
                 
-                <div className="mt-8">
+                <div className="mt-8 text-center">
                   <Button
                     onClick={() => {
-                      const element = document.getElementById('register');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
+                      setIsDialogOpen(false);
+                      setTimeout(() => {
+                        const element = document.getElementById('register');
+                        if (element) {
+                          element.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }, 300);
                     }}
                     className="bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition duration-300"
                   >
                     Join the Movement
                   </Button>
                 </div>
-              </div>
-            </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
+              </DialogContent>
+            </Dialog>
+          </motion.div>
+        </div>
+      </div>
+
+
     </section>
   );
 }
