@@ -43,7 +43,7 @@ export default function AdminPage() {
 
   const approveMutation = useMutation({
     mutationFn: async (postId: string) => {
-      return apiRequest(`/api/blog/${postId}/approve`, "POST");
+      return apiRequest("POST", `/api/blog/${postId}/approve`);
     },
     onSuccess: () => {
       toast({

@@ -17,7 +17,7 @@ import { X, Plus, Send, FileText, Upload, Image as ImageIcon, Trash2 } from "luc
 const blogSubmissionSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters"),
   excerpt: z.string().min(20, "Excerpt must be at least 20 characters"),
-  content: z.string().min(100, "Content must be at least 100 characters"),
+  content: z.string().min(1, "Content is required"),
   authorName: z.string().min(2, "Author name is required"),
   category: z.string().min(1, "Please select a category"),
   tags: z.array(z.string()).optional(),
@@ -55,7 +55,7 @@ export default function BlogSubmissionForm() {
 
   const submitBlogMutation = useMutation({
     mutationFn: async (data: BlogSubmissionData & { slug: string }) => {
-      return apiRequest("/api/blog", "POST", data);
+      return apiRequest("POST", "/api/blog", data);
     },
     onSuccess: () => {
       toast({
@@ -100,7 +100,7 @@ export default function BlogSubmissionForm() {
         const reader = new FileReader();
         reader.onload = async () => {
           try {
-            const response = await apiRequest("/api/upload", "POST", {
+            const response = await apiRequest("POST", "/api/upload", {
               file: reader.result,
               filename: file.name,
             });
