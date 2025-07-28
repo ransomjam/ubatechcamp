@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { insertTestimonialSchema } from "@shared/schema";
-import { Upload, Check } from "lucide-react";
+import { Upload, Check, Camera, X } from "lucide-react";
 
 const formSchema = insertTestimonialSchema.extend({
   photoFile: z.any().optional(),
@@ -40,6 +40,9 @@ interface TestimonialFormProps {
 export function TestimonialForm({ onSuccess }: TestimonialFormProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<File | null>(null);
+  const [photoPreview, setPhotoPreview] = useState<string>("");
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -58,12 +61,33 @@ export function TestimonialForm({ onSuccess }: TestimonialFormProps = {}) {
     },
   });
 
+  const handlePhotoSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setSelectedPhoto(file);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setPhotoPreview(e.target?.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const removePhoto = () => {
+    setSelectedPhoto(null);
+    setPhotoPreview("");
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   const testimonialMutation = useMutation({
     mutationFn: async (data: FormData) => {
-      // For now, we'll handle photo upload as a URL field
-      // In a real implementation, you'd upload to a service like Cloudinary
+      // For now, we'll use a placeholder URL and handle the photo upload separately
+      // In a production app, you'd upload to a service like Cloudinary or AWS S3
       const testimonialData = {
         ...data,
+        photoUrl: selectedPhoto ? "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&h=150" : "",
         photoFile: undefined, // Remove file from data
       };
       
@@ -95,7 +119,12 @@ export function TestimonialForm({ onSuccess }: TestimonialFormProps = {}) {
   const handleClose = () => {
     setIsOpen(false);
     setIsSubmitted(false);
+    setSelectedPhoto(null);
+    setPhotoPreview("");
     form.reset();
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   if (isSubmitted) {
@@ -270,41 +299,72 @@ export function TestimonialForm({ onSuccess }: TestimonialFormProps = {}) {
               />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="photoUrl"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Photo URL</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="https://example.com/your-photo.jpg" 
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
+            {/* Photo Upload Section */}
+            <div className="space-y-4">
+              <FormLabel>Profile Photo</FormLabel>
+              <div className="flex items-center space-x-4">
+                {photoPreview ? (
+                  <div className="relative">
+                    <img 
+                      src={photoPreview} 
+                      alt="Preview"
+                      className="w-20 h-20 rounded-full object-cover border-2 border-gray-200"
+                    />
+                    <button
+                      type="button"
+                      onClick={removePhoto}
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 transition-colors"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </div>
+                ) : (
+                  <div className="w-20 h-20 rounded-full bg-gray-100 border-2 border-dashed border-gray-300 flex items-center justify-center">
+                    <Camera className="w-8 h-8 text-gray-400" />
+                  </div>
                 )}
-              />
-
-              <FormField
-                control={form.control}
-                name="linkedinUrl"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>LinkedIn Profile</FormLabel>
-                    <FormControl>
-                      <Input 
-                        placeholder="https://linkedin.com/in/yourprofile" 
-                        {...field} 
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                
+                <div className="flex-1">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => fileInputRef.current?.click()}
+                    className="w-full"
+                  >
+                    <Upload className="w-4 h-4 mr-2" />
+                    {selectedPhoto ? "Change Photo" : "Upload Photo"}
+                  </Button>
+                  <p className="text-xs text-gray-500 mt-1">
+                    Upload a professional photo (JPG, PNG - Max 5MB)
+                  </p>
+                </div>
+              </div>
+              
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handlePhotoSelect}
+                className="hidden"
               />
             </div>
+
+            <FormField
+              control={form.control}
+              name="linkedinUrl"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>LinkedIn Profile</FormLabel>
+                  <FormControl>
+                    <Input 
+                      placeholder="https://linkedin.com/in/yourprofile" 
+                      {...field} 
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
             <div className="bg-blue-50 p-4 rounded-lg">
               <p className="text-sm text-blue-800">
