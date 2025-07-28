@@ -1,10 +1,18 @@
 import type { Express } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { handleFileUpload } from "./upload";
 import { insertRegistrationSchema, insertNewsletterSchema, insertTestimonialSchema, insertBlogPostSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // File upload endpoint
+  app.post("/api/upload", handleFileUpload);
+
+  // Serve uploaded files statically
+  app.use('/uploads', express.static('uploads'));
   
   // Registration endpoint
   app.post("/api/registrations", async (req, res) => {

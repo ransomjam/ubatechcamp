@@ -12,6 +12,7 @@ interface BlogPost {
   excerpt?: string;
   content: string;
   featuredImage?: string;
+  contentImages?: string[];
   authorName: string;
   category?: string;
   tags?: string[];
@@ -161,6 +162,24 @@ export default function BlogPostPage() {
             className="text-gray-700 leading-relaxed"
           />
         </div>
+
+        {/* Content Images */}
+        {blogPost.contentImages && blogPost.contentImages.length > 0 && (
+          <div className="mt-12">
+            <h3 className="text-xl font-semibold mb-6 text-gray-900">Additional Images</h3>
+            <div className="grid md:grid-cols-2 gap-6">
+              {blogPost.contentImages.map((imageUrl, index) => (
+                <div key={index} className="bg-white rounded-lg shadow-md overflow-hidden">
+                  <img 
+                    src={imageUrl} 
+                    alt={`Content image ${index + 1}`}
+                    className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Footer */}
         <footer className="mt-12 pt-8 border-t border-gray-200">

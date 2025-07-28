@@ -44,6 +44,7 @@ export const blogPosts = pgTable("blog_posts", {
   excerpt: text("excerpt"),
   content: text("content").notNull(),
   featuredImage: text("featured_image"),
+  contentImages: text("content_images").array(),
   authorName: text("author_name").notNull(),
   category: varchar("category", { length: 100 }),
   tags: text("tags").array(),
@@ -81,6 +82,7 @@ export const insertBlogPostSchema = createInsertSchema(blogPosts).omit({
 }).extend({
   excerpt: z.string().optional(),
   featuredImage: z.string().optional(),
+  contentImages: z.array(z.string()).optional(),
   category: z.string().optional(),
   tags: z.array(z.string()).optional(),
   isPublished: z.boolean().optional(),

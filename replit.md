@@ -38,7 +38,7 @@ Preferred communication style: Simple, everyday language.
 - **Registrations table**: Stores participant registration data (full name, email, institution, field of study, optional referral code)
 - **Newsletters table**: Stores email subscriptions for marketing
 - **Testimonials table**: Stores alumni testimonials with photos, professional info, and approval system
-- **Blog Posts table**: Stores blog submissions with approval workflow, categorization, and tagging system
+- **Blog Posts table**: Stores blog submissions with approval workflow, categorization, tagging system, and photo upload support (featured images and content images)
 
 ### API Endpoints
 - `POST /api/registrations` - Create new registration
