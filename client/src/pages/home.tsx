@@ -14,7 +14,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Handshake, Tag, Users, Award, ChevronDown, ChevronUp, BookOpen, Trophy, MessageSquare, Star } from "lucide-react";
-import impactImage from "@assets/PXL_20250719_102916588_1753673323501.jpg";
+import impactImage from "@assets/use on hero_1753673323493.png";
 
 const sectionsData = [
   {
@@ -70,7 +70,7 @@ export default function Home() {
             <div className="order-2 lg:order-1">
               <img 
                 src={impactImage}
-                alt="Students engaged in data analysis training"
+                alt="UBa Tech Camp students actively learning in computer lab with laptops and hands-on training"
                 className="w-full h-96 object-cover rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               />
             </div>
