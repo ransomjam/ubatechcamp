@@ -76,24 +76,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
 
-      {/* Partnership Section */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Official Partnership</h2>
-            <Card className="p-8 max-w-2xl mx-auto hover:shadow-lg transition-shadow duration-300">
-              <Handshake className="text-primary text-4xl mb-4 mx-auto" />
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">Directorate of Student Affairs</h3>
-              <p className="text-gray-600">University of Bamenda</p>
-              <p className="text-sm text-gray-500 mt-4">
-                In collaboration with the University's Directorate of Student Affairs, ensuring official recognition and certification for all participants.
-              </p>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Impact Section */}
+      {/* Impact Section - Moved Up */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -109,22 +92,45 @@ export default function Home() {
               />
             </div>
             
-            <div className="order-1 lg:order-2 space-y-6">
-              <Card className="bg-primary text-white p-8 hover:bg-blue-700 transition-colors duration-300">
-                <div className="text-4xl font-bold mb-2">100+</div>
-                <p className="text-lg">Participants trained from UBa Tech Camp, first edition</p>
-              </Card>
-              
-              <Card className="bg-green-600 text-white p-8 hover:bg-green-700 transition-colors duration-300">
-                <div className="text-4xl font-bold mb-2">6</div>
-                <p className="text-lg">Core technical skills taught in each camp session</p>
-              </Card>
-              
-              <Card className="bg-yellow-600 text-white p-8 hover:bg-yellow-700 transition-colors duration-300">
-                <div className="text-4xl font-bold mb-2">5</div>
-                <p className="text-lg">University faculties represented in our participant base</p>
+            <div className="order-1 lg:order-2">
+              <Card className="bg-gradient-to-br from-primary to-blue-800 text-white p-8 hover:shadow-xl transition-all duration-300">
+                <div className="grid grid-cols-2 gap-6 text-center">
+                  <div className="border-r border-blue-300 pr-4">
+                    <div className="text-3xl md:text-4xl font-bold mb-2">200+</div>
+                    <p className="text-sm md:text-base text-blue-100">Participants trained from 1st and 2nd Edition</p>
+                  </div>
+                  <div className="pl-4">
+                    <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
+                    <p className="text-sm md:text-base text-blue-100">Core technical skills taught in each camp</p>
+                  </div>
+                  <div className="border-r border-blue-300 pr-4">
+                    <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
+                    <p className="text-sm md:text-base text-blue-100">Schools participating in the program</p>
+                  </div>
+                  <div className="pl-4">
+                    <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
+                    <p className="text-sm md:text-base text-blue-100">University faculties represented</p>
+                  </div>
+                </div>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partnership Section */}
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Official Partnership</h2>
+            <Card className="p-8 max-w-2xl mx-auto hover:shadow-lg transition-shadow duration-300">
+              <Handshake className="text-primary text-4xl mb-4 mx-auto" />
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">Directorate of Student Affairs</h3>
+              <p className="text-gray-600">University of Bamenda</p>
+              <p className="text-sm text-gray-500 mt-4">
+                In collaboration with the University's Directorate of Student Affairs, ensuring official recognition and certification for all participants.
+              </p>
+            </Card>
           </div>
         </div>
       </section>
