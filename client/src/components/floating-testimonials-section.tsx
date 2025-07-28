@@ -157,7 +157,7 @@ const mockTestimonials: Testimonial[] = [
 
 export default function FloatingTestimonialsSection() {
   const [currentCategory, setCurrentCategory] = useState(0);
-  const [expandedTestimonial, setExpandedTestimonial] = useState<string>(mockTestimonials[0].id);
+  const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
   const [showForm, setShowForm] = useState(false);
   const constraintsRef = useRef(null);
 
@@ -187,24 +187,32 @@ export default function FloatingTestimonialsSection() {
   const nextCategory = () => {
     const newCategory = (currentCategory + 1) % testimonialCategories.length;
     setCurrentCategory(newCategory);
-    const categoryTestimonials = getFilteredTestimonials(testimonialCategories[newCategory].filter);
-    setExpandedTestimonial(categoryTestimonials[0]?.id || '');
+    setCurrentTestimonialIndex(0);
   };
 
   const prevCategory = () => {
     const newCategory = (currentCategory - 1 + testimonialCategories.length) % testimonialCategories.length;
     setCurrentCategory(newCategory);
-    const categoryTestimonials = getFilteredTestimonials(testimonialCategories[newCategory].filter);
-    setExpandedTestimonial(categoryTestimonials[0]?.id || '');
+    setCurrentTestimonialIndex(0);
+  };
+
+  const nextTestimonial = () => {
+    const categoryTestimonials = getFilteredTestimonials(currentCategoryData.filter);
+    setCurrentTestimonialIndex((prev) => (prev + 1) % categoryTestimonials.length);
+  };
+
+  const prevTestimonial = () => {
+    const categoryTestimonials = getFilteredTestimonials(currentCategoryData.filter);
+    setCurrentTestimonialIndex((prev) => (prev - 1 + categoryTestimonials.length) % categoryTestimonials.length);
   };
 
   const handleDragEnd = (event: any, info: PanInfo) => {
     const { offset, velocity } = info;
     
     if (offset.x > 100 || velocity.x > 500) {
-      prevCategory();
+      prevTestimonial();
     } else if (offset.x < -100 || velocity.x < -500) {
-      nextCategory();
+      nextTestimonial();
     }
   };
 
@@ -258,8 +266,7 @@ export default function FloatingTestimonialsSection() {
                 key={category.id}
                 onClick={() => {
                   setCurrentCategory(index);
-                  const categoryTestimonials = getFilteredTestimonials(category.filter);
-                  setExpandedTestimonial(categoryTestimonials[0]?.id || '');
+                  setCurrentTestimonialIndex(0);
                 }}
                 variant={currentCategory === index ? "default" : "ghost"}
                 size="sm"
@@ -308,149 +315,118 @@ export default function FloatingTestimonialsSection() {
                 <p className="text-lg text-gray-600">{currentCategoryData.description}</p>
               </div>
 
-              {/* Floating Testimonial Cards Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {currentTestimonials.map((testimonial, index) => {
-                  const isExpanded = expandedTestimonial === testimonial.id;
-                  
-                  return (
+              {/* Horizontal Swipeable Testimonial Cards */}
+              <div className="relative max-w-4xl mx-auto">
+                <AnimatePresence mode="wait">
+                  {currentTestimonials.length > 0 && (
                     <motion.div
-                      key={testimonial.id}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ 
-                        opacity: 1, 
-                        y: 0,
-                        scale: isExpanded ? 1.05 : 1,
-                        zIndex: isExpanded ? 10 : 1
-                      }}
-                      transition={{ 
-                        duration: 0.3,
-                        delay: index * 0.1,
-                        scale: { duration: 0.2 }
-                      }}
-                      className={`relative ${isExpanded ? 'z-10' : 'z-0'}`}
+                      key={`${currentCategory}-${currentTestimonialIndex}`}
+                      initial={{ opacity: 0, x: 300 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -300 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      drag="x"
+                      dragConstraints={constraintsRef}
+                      onDragEnd={handleDragEnd}
+                      className="cursor-grab active:cursor-grabbing"
                     >
-                      <Card 
-                        className={`cursor-pointer transition-all duration-300 overflow-hidden ${
-                          isExpanded 
-                            ? 'shadow-2xl ring-4 ring-blue-200 transform' 
-                            : 'shadow-lg hover:shadow-xl'
-                        }`}
-                        onClick={() => setExpandedTestimonial(isExpanded ? '' : testimonial.id)}
-                      >
-                        <CardContent className="p-0">
-                          {/* Card Header */}
-                          <div className={`p-6 bg-gradient-to-r ${currentCategoryData.color} text-white relative`}>
-                            <Quote className="absolute top-4 right-4 w-8 h-8 text-white/20" />
-                            <div className="flex items-center space-x-4">
-                              <img 
-                                src={testimonial.photoUrl}
-                                alt={testimonial.fullName || testimonial.name || "Alumni"}
-                                className="w-16 h-16 rounded-full object-cover border-4 border-white/20"
-                              />
-                              <div>
-                                <h4 className="text-lg font-bold">{testimonial.fullName || testimonial.name}</h4>
-                                <p className="text-white/90 text-sm">{testimonial.currentRole || testimonial.position}</p>
-                                <p className="text-white/70 text-xs">{testimonial.company}</p>
-                              </div>
-                            </div>
-                            <div className="flex items-center justify-between mt-4">
-                              <div className="flex">
-                                {testimonial.rating ? renderStars(testimonial.rating) : renderStars(5)}
-                              </div>
-                              <span className="text-white/70 text-xs">{testimonial.graduationYear || testimonial.year}</span>
-                            </div>
-                          </div>
-
-                          {/* Card Content */}
-                          <div className="p-6">
-                            <p className="text-gray-700 text-sm mb-4 leading-relaxed">
-                              "{testimonial.testimonialText || testimonial.content}"
-                            </p>
-
-                            <AnimatePresence>
-                              {isExpanded ? (
-                                <motion.div
-                                  initial={{ opacity: 0, height: 0 }}
-                                  animate={{ opacity: 1, height: "auto" }}
-                                  exit={{ opacity: 0, height: 0 }}
-                                  transition={{ duration: 0.3 }}
-                                  className="space-y-4"
-                                >
-                                  {testimonial.skills && testimonial.skills.length > 0 && (
-                                    <div className="border-t border-gray-200 pt-4">
-                                      <h5 className="font-semibold text-gray-900 mb-3">Skills Gained:</h5>
-                                      <div className="flex flex-wrap gap-2">
-                                        {testimonial.skills.map((skill: string) => (
-                                          <span key={skill} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                                            {skill}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  )}
-                                  {testimonial.faculty && (
-                                    <div className="border-t border-gray-200 pt-4">
-                                      <h5 className="font-semibold text-gray-900 mb-2">Faculty:</h5>
-                                      <span className="text-sm text-gray-700">{testimonial.faculty}</span>
-                                    </div>
-                                  )}
-                                  <div className="pt-4">
-                                    <Button 
-                                      className={`w-full bg-gradient-to-r ${currentCategoryData.color} hover:opacity-90`}
-                                      onClick={(e) => {
-                                        e.stopPropagation();
-                                        setShowForm(true);
-                                      }}
-                                    >
-                                      Share Your Story Too
-                                      <MessageSquare className="w-4 h-4 ml-2" />
-                                    </Button>
+                      {(() => {
+                        const testimonial = currentTestimonials[currentTestimonialIndex];
+                        if (!testimonial) return null;
+                        
+                        return (
+                          <Card className="shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden max-w-2xl mx-auto">
+                            <CardContent className="p-0">
+                              {/* Card Header */}
+                              <div className={`p-8 bg-gradient-to-r ${currentCategoryData.color} text-white relative`}>
+                                <Quote className="absolute top-6 right-6 w-12 h-12 text-white/20" />
+                                <div className="flex items-center space-x-6">
+                                  <img 
+                                    src={testimonial.photoUrl}
+                                    alt={testimonial.fullName || testimonial.name || "Alumni"}
+                                    className="w-20 h-20 rounded-full object-cover border-4 border-white/20"
+                                  />
+                                  <div>
+                                    <h4 className="text-2xl font-bold mb-1">{testimonial.fullName || testimonial.name}</h4>
+                                    <p className="text-white/90 text-lg">{testimonial.currentRole || testimonial.position}</p>
+                                    <p className="text-white/70 text-sm">{testimonial.company}</p>
                                   </div>
-                                </motion.div>
-                              ) : (
-                                <motion.div
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  className="text-center py-4"
-                                >
-                                  <p className="text-gray-500 text-sm mb-4">Click to read full story</p>
-                                  <div className="text-2xl">💬</div>
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </div>
-                        </CardContent>
-                      </Card>
+                                </div>
+                                <div className="flex items-center justify-between mt-6">
+                                  <div className="flex">
+                                    {testimonial.rating ? renderStars(testimonial.rating) : renderStars(5)}
+                                  </div>
+                                  <span className="text-white/70 text-sm">{testimonial.graduationYear || testimonial.year}</span>
+                                </div>
+                              </div>
+
+                              {/* Card Content */}
+                              <div className="p-8">
+                                <p className="text-gray-700 text-lg mb-6 leading-relaxed">
+                                  "{testimonial.testimonialText || testimonial.content}"
+                                </p>
+
+                                {testimonial.skills && testimonial.skills.length > 0 && (
+                                  <div className="border-t border-gray-200 pt-6 mb-6">
+                                    <h5 className="font-semibold text-gray-900 mb-3">Skills Gained:</h5>
+                                    <div className="flex flex-wrap gap-2">
+                                      {testimonial.skills.map((skill: string) => (
+                                        <span key={skill} className="text-sm bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                                          {skill}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {testimonial.faculty && (
+                                  <div className="border-t border-gray-200 pt-6 mb-6">
+                                    <h5 className="font-semibold text-gray-900 mb-2">Faculty:</h5>
+                                    <span className="text-gray-700">{testimonial.faculty}</span>
+                                  </div>
+                                )}
+
+                                <div className="pt-4">
+                                  <Button 
+                                    className={`w-full bg-gradient-to-r ${currentCategoryData.color} hover:opacity-90`}
+                                    onClick={() => setShowForm(true)}
+                                    size="lg"
+                                  >
+                                    Share Your Story Too
+                                    <MessageSquare className="w-5 h-5 ml-2" />
+                                  </Button>
+                                </div>
+                              </div>
+                            </CardContent>
+                          </Card>
+                        );
+                      })()}
                     </motion.div>
-                  );
-                })}
+                  )}
+                </AnimatePresence>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Arrows */}
+          {/* Testimonial Navigation */}
           <div className="flex justify-center items-center mt-12 space-x-6">
             <Button
-              onClick={prevCategory}
+              onClick={prevTestimonial}
               variant="outline"
               size="lg"
               className="rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
+              disabled={currentTestimonials.length <= 1}
             >
               <ArrowLeft className="w-6 h-6" />
             </Button>
             
             <div className="flex space-x-2">
-              {testimonialCategories.map((_, index) => (
+              {currentTestimonials.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => {
-                    setCurrentCategory(index);
-                    const categoryTestimonials = getFilteredTestimonials(testimonialCategories[index].filter);
-                    setExpandedTestimonial(categoryTestimonials[0]?.id || '');
-                  }}
+                  onClick={() => setCurrentTestimonialIndex(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentCategory === index 
+                    currentTestimonialIndex === index 
                       ? 'bg-blue-500 scale-125' 
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
@@ -459,19 +435,60 @@ export default function FloatingTestimonialsSection() {
             </div>
             
             <Button
-              onClick={nextCategory}
+              onClick={nextTestimonial}
               variant="outline"
               size="lg"
               className="rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
+              disabled={currentTestimonials.length <= 1}
             >
               <ArrowRight className="w-6 h-6" />
             </Button>
           </div>
 
+          {/* Category Navigation */}
+          <div className="flex justify-center items-center mt-8 space-x-4">
+            <Button
+              onClick={prevCategory}
+              variant="ghost"
+              size="sm"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              <ChevronLeft className="w-4 h-4 mr-1" />
+              Previous Category
+            </Button>
+            
+            <div className="flex space-x-1">
+              {testimonialCategories.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    setCurrentCategory(index);
+                    setCurrentTestimonialIndex(0);
+                  }}
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                    currentCategory === index 
+                      ? 'bg-blue-500' 
+                      : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                />
+              ))}
+            </div>
+            
+            <Button
+              onClick={nextCategory}
+              variant="ghost"
+              size="sm"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              Next Category
+              <ChevronRight className="w-4 h-4 ml-1" />
+            </Button>
+          </div>
+
           {/* Swipe Indicator */}
-          <div className="text-center mt-8">
+          <div className="text-center mt-6">
             <p className="text-sm text-gray-500">
-              Swipe left or right to explore different testimonial categories
+              Swipe left or right to read different testimonials within this category
             </p>
           </div>
         </div>
