@@ -1,11 +1,12 @@
 import { Card } from "@/components/ui/card";
+import founderImage from "@assets/Founder_1753708699510.jpg";
 
 const leadership = [
   {
     name: "Jam Ransom",
     role: "Founder",
     description: "Visionary leader driving digital education innovation at University of Bamenda",
-    image: "/attached_assets/Founder_1753708699510.jpg"
+    image: founderImage
   },
   {
     name: "Abongni Musu",
