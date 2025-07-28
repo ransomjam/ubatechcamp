@@ -1,0 +1,93 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Calendar, MapPin, ChevronDown, ChevronUp } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+export default function HeroSection() {
+  const [showDetails, setShowDetails] = useState(false);
+
+  return (
+    <section id="home" className="bg-gradient-to-br from-primary to-blue-800 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="text-center">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-6xl font-bold mb-6"
+          >
+            Welcome to UBa Tech Camp 2025
+          </motion.h1>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-xl md:text-2xl mb-8 text-blue-100"
+          >
+            Empowering Youth with Digital Skills
+          </motion.p>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-8 text-lg"
+          >
+            <p className="mb-2 flex items-center justify-center">
+              <Calendar className="mr-2 h-5 w-5" />
+              10 July – 10 August 2025
+            </p>
+            <p className="flex items-center justify-center">
+              <MapPin className="mr-2 h-5 w-5" />
+              University of Bamenda Campus • UBaDEF Hall 3
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <Button
+              onClick={() => setShowDetails(!showDetails)}
+              className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-4 px-8 rounded-lg text-lg transition duration-300 transform hover:scale-105"
+              size="lg"
+            >
+              Learn More 
+              {showDetails ? (
+                <ChevronUp className="ml-2 h-5 w-5" />
+              ) : (
+                <ChevronDown className="ml-2 h-5 w-5" />
+              )}
+            </Button>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Detailed Description */}
+      <AnimatePresence>
+        {showDetails && (
+          <motion.section
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white text-gray-900 py-16 overflow-hidden"
+          >
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold text-gray-900 mb-6">About UBa Tech Camp</h2>
+                <p className="text-lg text-gray-600 leading-relaxed">
+                  UBa Tech Camp is a free, intensive digital skills programme run by the University of Bamenda. 
+                  In its second edition, we bring together motivated young learners from across Cameroon to master 
+                  computer literacy, coding, and data analysis in a collaborative, project-driven environment.
+                </p>
+              </div>
+            </div>
+          </motion.section>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+}

@@ -1,0 +1,59 @@
+import type { Express } from "express";
+import { createServer, type Server } from "http";
+import { storage } from "./storage";
+import { insertRegistrationSchema, insertNewsletterSchema } from "@shared/schema";
+import { z } from "zod";
+
+export async function registerRoutes(app: Express): Promise<Server> {
+  
+  // Registration endpoint
+  app.post("/api/registrations", async (req, res) => {
+    try {
+      const validatedData = insertRegistrationSchema.parse(req.body);
+      const registration = await storage.createRegistration(validatedData);
+      res.status(201).json({ success: true, data: registration });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ success: false, errors: error.errors });
+      } else {
+        res.status(500).json({ success: false, message: "Internal server error" });
+      }
+    }
+  });
+
+  // Get registrations endpoint
+  app.get("/api/registrations", async (req, res) => {
+    try {
+      const registrations = await storage.getRegistrations();
+      res.json({ success: true, data: registrations });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  });
+
+  // Newsletter subscription endpoint
+  app.post("/api/newsletter", async (req, res) => {
+    try {
+      const validatedData = insertNewsletterSchema.parse(req.body);
+      
+      // Check if email already exists
+      const existing = await storage.getNewsletterByEmail(validatedData.email);
+      if (existing) {
+        res.status(409).json({ success: false, message: "Email already subscribed" });
+        return;
+      }
+
+      const newsletter = await storage.createNewsletterSubscription(validatedData);
+      res.status(201).json({ success: true, data: newsletter });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        res.status(400).json({ success: false, errors: error.errors });
+      } else {
+        res.status(500).json({ success: false, message: "Internal server error" });
+      }
+    }
+  });
+
+  const httpServer = createServer(app);
+  return httpServer;
+}
