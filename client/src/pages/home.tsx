@@ -194,43 +194,83 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Participant List */}
-      <section className="bg-white py-16">
+      {/* Alumni Showcase - 2024 Participants */}
+      <section className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">2024 Participants</h2>
-            <p className="text-lg text-gray-600">Meet some of our accomplished graduates</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Alumni Network</h2>
+            <p className="text-lg text-gray-600 mb-2">Celebrating our 2024 graduates who are now making an impact</p>
+            <p className="text-sm text-gray-500">From 6 faculties across the University of Bamenda</p>
           </div>
           
-          <Card className="p-6">
-            <div className="grid md:grid-cols-4 gap-4 text-sm">
-              <div className="space-y-2">
-                <p className="font-medium text-gray-900">Amina Tanko</p>
-                <p className="font-medium text-gray-900">Paul Biya</p>
-                <p className="font-medium text-gray-900">Grace Mbaku</p>
-                <p className="font-medium text-gray-900">Emmanuel Fonka</p>
-                <p className="font-medium text-gray-900">Sarah Ngwa</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Featured Alumni Cards */}
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-white" />
               </div>
-              <div className="space-y-2">
-                <p className="font-medium text-gray-900">Michel Ashu</p>
-                <p className="font-medium text-gray-900">Blessing Tabe</p>
-                <p className="font-medium text-gray-900">Samuel Njie</p>
-                <p className="font-medium text-gray-900">Priscilla Fon</p>
-                <p className="font-medium text-gray-900">David Che</p>
+              <h3 className="font-semibold text-gray-900 mb-2">COLTECH Alumni</h3>
+              <div className="text-sm text-gray-600 space-y-1">
+                <p>Amina Tanko</p>
+                <p>Paul Biya</p>
+                <p>Grace Mbaku</p>
+                <p>Emmanuel Fonka</p>
+                <p className="text-primary font-medium">+25 more graduates</p>
               </div>
-              <div className="space-y-2">
-                <p className="font-medium text-gray-900">Patience Mbe</p>
-                <p className="font-medium text-gray-900">Clinton Awah</p>
-                <p className="font-medium text-gray-900">Joyce Tiku</p>
-                <p className="font-medium text-gray-900">Francis Ndip</p>
-                <p className="font-medium text-gray-900">Mercy Yong</p>
+            </Card>
+
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white">
+              <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Trophy className="h-8 w-8 text-white" />
               </div>
-              <div className="space-y-2">
-                <p className="text-gray-600">And 85+ more...</p>
-                <p className="text-sm text-gray-500 italic">Students from various faculties including FHS, COLTECH, NAHPI, FEMSSA</p>
+              <h3 className="font-semibold text-gray-900 mb-2">FHS Alumni</h3>
+              <div className="text-sm text-gray-600 space-y-1">
+                <p>Sarah Ngwa</p>
+                <p>Michel Ashu</p>
+                <p>Blessing Tabe</p>
+                <p>Samuel Njie</p>
+                <p className="text-green-600 font-medium">+30 more graduates</p>
               </div>
-            </div>
-          </Card>
+            </Card>
+
+            <Card className="p-6 text-center hover:shadow-lg transition-shadow duration-300 bg-white">
+              <div className="w-16 h-16 bg-yellow-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Star className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">NAHPI & FEMSSA</h3>
+              <div className="text-sm text-gray-600 space-y-1">
+                <p>Priscilla Fon</p>
+                <p>David Che</p>
+                <p>Patience Mbe</p>
+                <p>Clinton Awah</p>
+                <p className="text-yellow-600 font-medium">+40 more graduates</p>
+              </div>
+            </Card>
+          </div>
+
+          {/* Summary Stats */}
+          <div className="mt-12 text-center">
+            <Card className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-6 max-w-4xl mx-auto">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div>
+                  <div className="text-2xl font-bold">100+</div>
+                  <p className="text-sm text-blue-100">Total Graduates</p>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold">6</div>
+                  <p className="text-sm text-blue-100">Faculties</p>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold">95%</div>
+                  <p className="text-sm text-blue-100">Completion Rate</p>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold">4.8★</div>
+                  <p className="text-sm text-blue-100">Average Rating</p>
+                </div>
+              </div>
+            </Card>
+          </div>
         </div>
       </section>
 
