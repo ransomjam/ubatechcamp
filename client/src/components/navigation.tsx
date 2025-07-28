@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import logoImage from "@assets/uba-tech-camp-logo-final.png";
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ export default function Navigation() {
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center space-x-3">
               <img 
-                src={`/attached_assets/uba-tech-camp-logo-final.png`}
+                src={logoImage}
                 alt="UBa Tech Camp Logo"
                 className="h-12 w-auto max-w-12 object-contain"
               />
