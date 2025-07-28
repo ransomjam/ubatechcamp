@@ -102,6 +102,8 @@ export default function FloatingTestimonialsSection() {
     createdAt: t.createdAt || t.created_at
   }));
 
+
+
   const nextCategory = () => {
     const newCategory = (currentCategory + 1) % testimonialCategories.length;
     setCurrentCategory(newCategory);
@@ -136,19 +138,29 @@ export default function FloatingTestimonialsSection() {
 
   const getFilteredTestimonials = (filter: string): Testimonial[] => {
     // Filter real testimonials based on graduation year and role
-    return testimonials.filter((testimonial: Testimonial) => {
-      if (!testimonial.isApproved) return false;
+    const filtered = testimonials.filter((testimonial: Testimonial) => {
+      // Check both isApproved and is_approved fields for backward compatibility
+      const isApproved = testimonial.isApproved || (testimonial as any).is_approved;
+      if (!isApproved) return false;
+      
+      // Only show testimonials with actual content (minimum 3 characters)
+      if (!testimonial.testimonialText || testimonial.testimonialText.trim().length < 3) {
+        return false;
+      }
       
       if (filter === "recent") {
         return parseInt(testimonial.graduationYear || "2024") >= 2024;
       } else if (filter === "career") {
-        return testimonial.currentRole !== "Student";
+        return testimonial.currentRole !== "Student" && testimonial.currentRole !== "";
       } else if (filter === "experience") {
-        return true; // All approved testimonials can be shown in experience
+        return true; // All approved testimonials with content can be shown in experience
       }
       
       return false;
     });
+    
+    console.log(`Filtered testimonials for ${filter}:`, filtered);
+    return filtered;
   };
 
   const currentCategoryData = testimonialCategories[currentCategory];
@@ -235,7 +247,7 @@ export default function FloatingTestimonialsSection() {
               {/* Horizontal Swipeable Testimonial Cards */}
               <div className="relative max-w-4xl mx-auto">
                 <AnimatePresence mode="wait">
-                  {currentTestimonials.length > 0 && (
+                  {currentTestimonials.length > 0 ? (
                     <motion.div
                       key={`${currentCategory}-${currentTestimonialIndex}`}
                       initial={{ opacity: 0, x: 300 }}
@@ -283,8 +295,6 @@ export default function FloatingTestimonialsSection() {
                                   "{testimonial.testimonialText}"
                                 </p>
 
-
-
                                 {testimonial.faculty && (
                                   <div className="border-t border-gray-200 pt-6 mb-6">
                                     <h5 className="font-semibold text-gray-900 mb-2">Faculty:</h5>
@@ -308,6 +318,23 @@ export default function FloatingTestimonialsSection() {
                         );
                       })()}
                     </motion.div>
+                  ) : (
+                    <div className="text-center py-12">
+                      <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
+                        <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+                        <h3 className="text-xl font-semibold text-gray-900 mb-2">No Stories Yet</h3>
+                        <p className="text-gray-600 mb-6">
+                          Be the first to share your experience in this category!
+                        </p>
+                        <Button 
+                          onClick={() => setShowForm(true)}
+                          className={`bg-gradient-to-r ${currentCategoryData.color} hover:opacity-90`}
+                        >
+                          Share Your Story
+                          <Plus className="w-4 h-4 ml-2" />
+                        </Button>
+                      </div>
+                    </div>
                   )}
                 </AnimatePresence>
               </div>
