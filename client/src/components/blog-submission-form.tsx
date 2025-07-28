@@ -104,7 +104,8 @@ export default function BlogSubmissionForm() {
               file: reader.result,
               filename: file.name,
             });
-            resolve(response.url);
+            const responseData = await response.json();
+            resolve(responseData.data.url);
           } catch (error) {
             reject(error);
           }
