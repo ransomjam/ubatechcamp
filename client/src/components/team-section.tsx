@@ -5,7 +5,7 @@ const leadership = [
     name: "Jam Ransom",
     role: "Founder",
     description: "Visionary leader driving digital education innovation at University of Bamenda",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300"
+    image: "/attached_assets/Founder_1753708699510.jpg"
   },
   {
     name: "Abongni Musu",
