@@ -14,9 +14,9 @@ export default function HeroSection() {
         <img 
           src={heroImage}
           alt="UBa Tech Camp Students Learning"
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-blue-800/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/70 to-blue-800/70"></div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
