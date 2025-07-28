@@ -2,12 +2,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Monitor, Code, BarChart, Users, Network, ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import computerLiteracy from "@assets/PXL_20250719_122946061.PORTRAIT_1753673323495.jpg";
-import pythonProgramming from "@assets/PXL_20250719_122942557.PORTRAIT_1753673323496.jpg";
-import excelTraining from "@assets/PXL_20250719_103316291.MP~2_1753673323499.jpg";
-import spssTraining from "@assets/spss_1753673323495.jpg";
-import teamCollaboration from "@assets/Team collaboration_1753673323494.jpg";
-import networkingTraining from "@assets/InShot_20250219_173005437_1753673323503.jpg";
+
 
 const courses = [
   {
@@ -15,7 +10,6 @@ const courses = [
     title: "Computer Literacy",
     description: "Essential foundational skills for digital proficiency",
     icon: Monitor,
-    image: computerLiteracy,
     details: [
       "File management systems",
       "Office suite mastery",
@@ -27,7 +21,6 @@ const courses = [
     title: "Python Programming",
     description: "Programming fundamentals with practical applications",
     icon: Code,
-    image: pythonProgramming,
     details: [
       "Python syntax and basics",
       "Data structures and algorithms",
@@ -39,7 +32,6 @@ const courses = [
     title: "Data Analysis with Excel",
     description: "Advanced Excel skills for data manipulation",
     icon: BarChart,
-    image: excelTraining,
     details: [
       "Data cleaning techniques",
       "Pivot tables and charts",
@@ -51,7 +43,6 @@ const courses = [
     title: "SPSS for Social Science",
     description: "Statistical analysis for research applications",
     icon: BarChart,
-    image: spssTraining,
     details: [
       "Variable coding and management",
       "Descriptive statistics",
@@ -63,7 +54,6 @@ const courses = [
     title: "Team Collaboration",
     description: "Project-based learning and presentation skills",
     icon: Users,
-    image: teamCollaboration,
     details: [
       "Group collaboration techniques",
       "Project management basics",
@@ -75,7 +65,6 @@ const courses = [
     title: "Computer Networking",
     description: "Understanding network fundamentals and security",
     icon: Network,
-    image: networkingTraining,
     details: [
       "Network protocols and architecture",
       "Basic cybersecurity principles",
@@ -141,12 +130,6 @@ export default function WhatYouLearn() {
                     )}
                   </AnimatePresence>
                 </div>
-                
-                <img 
-                  src={course.image}
-                  alt={course.title}
-                  className="w-full h-48 object-cover"
-                />
               </Card>
             );
           })}
