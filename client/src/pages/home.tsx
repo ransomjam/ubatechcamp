@@ -13,7 +13,7 @@ import MobileFAB from "@/components/mobile-fab";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { Handshake, Tag, Users, Award, ChevronDown, ChevronUp, BookOpen, Trophy, MessageSquare } from "lucide-react";
+import { Handshake, Tag, Users, Award, ChevronDown, ChevronUp, BookOpen, Trophy, MessageSquare, Star } from "lucide-react";
 import impactImage from "@assets/PXL_20250719_102916588_1753673323501.jpg";
 
 const sectionsData = [
