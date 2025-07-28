@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Calendar, MapPin, X } from "lucide-react";
 import { motion } from "framer-motion";
 import heroImage from "@assets/use on hero_1753709100915.png";
+import computerLiteracyBg from "@assets/computer literacy photo_1753732511543.png";
 
 export default function HeroSection() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -13,11 +14,11 @@ export default function HeroSection() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src={heroImage}
-          alt="UBa Tech Camp Students Learning"
-          className="w-full h-full object-cover opacity-60"
+          src={computerLiteracyBg}
+          alt="UBa Tech Camp Students Learning Computer Literacy"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/70 to-blue-800/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/80 to-blue-800/80"></div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
