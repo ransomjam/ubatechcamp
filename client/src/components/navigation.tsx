@@ -23,42 +23,61 @@ export default function Navigation() {
             </div>
           </div>
           
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          <div className="hidden lg:block">
+            <div className="ml-10 flex items-baseline space-x-2">
               <button 
                 onClick={() => scrollToSection('home')}
-                className="text-primary hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium"
+                className="text-primary hover:text-blue-700 px-2 py-2 rounded-md text-sm font-medium"
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection('learn')}
-                className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
               >
-                What You'll Learn
+                Learn
               </button>
               <button 
                 onClick={() => scrollToSection('team')}
-                className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
               >
                 Team
               </button>
               <button 
+                onClick={() => scrollToSection('gallery')}
+                className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
+              >
+                Gallery
+              </button>
+              <button 
                 onClick={() => scrollToSection('projects')}
-                className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
               >
                 Projects
               </button>
+              <button 
+                onClick={() => scrollToSection('testimonials')}
+                className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
+              >
+                Alumni
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="text-gray-600 hover:text-primary px-2 py-2 rounded-md text-sm font-medium"
+              >
+                Contact
+              </button>
               <Button 
                 onClick={() => scrollToSection('register')}
-                className="bg-primary text-white hover:bg-blue-700"
+                className="bg-primary text-white hover:bg-blue-700 ml-2"
+                size="sm"
               >
                 Register
               </Button>
             </div>
           </div>
           
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <Button
               variant="ghost"
               size="sm"
@@ -71,38 +90,59 @@ export default function Navigation() {
         
         {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t">
+          <div className="lg:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white border-t shadow-lg">
               <button 
                 onClick={() => scrollToSection('home')}
-                className="text-primary hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+                className="text-primary hover:text-blue-700 block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
                 Home
               </button>
               <button 
                 onClick={() => scrollToSection('learn')}
-                className="text-gray-600 hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+                className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
                 What You'll Learn
               </button>
               <button 
                 onClick={() => scrollToSection('team')}
-                className="text-gray-600 hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+                className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
-                Team
+                Our Team
+              </button>
+              <button 
+                onClick={() => scrollToSection('gallery')}
+                className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
+              >
+                Gallery
               </button>
               <button 
                 onClick={() => scrollToSection('projects')}
-                className="text-gray-600 hover:text-primary block px-3 py-2 rounded-md text-base font-medium w-full text-left"
+                className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
                 Projects
               </button>
-              <Button 
-                onClick={() => scrollToSection('register')}
-                className="bg-primary text-white hover:bg-blue-700 w-full mt-2"
+              <button 
+                onClick={() => scrollToSection('testimonials')}
+                className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
-                Register
-              </Button>
+                Alumni Voices
+              </button>
+              <button 
+                onClick={() => scrollToSection('contact')}
+                className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
+              >
+                Contact Us
+              </button>
+              <div className="pt-2">
+                <Button 
+                  onClick={() => scrollToSection('register')}
+                  className="bg-primary text-white hover:bg-blue-700 w-full"
+                  size="lg"
+                >
+                  Register Now
+                </Button>
+              </div>
             </div>
           </div>
         )}

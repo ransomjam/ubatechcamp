@@ -24,14 +24,14 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-gray-50 py-16">
+    <section id="testimonials" className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Alumni Voices</h2>
           <p className="text-lg text-gray-600">Hear from our successful graduates</p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <Card key={index} className="p-6">
               <div className="flex items-center mb-4">

@@ -20,14 +20,14 @@ const galleryItems = [
 
 export default function GallerySection() {
   return (
-    <section className="bg-gray-50 py-16">
+    <section id="gallery" className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Gallery</h2>
           <p className="text-lg text-gray-600">A selection of photos from past camps and hands-on workshops</p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {galleryItems.map((item, index) => (
             <Card key={index} className="overflow-hidden">
               <img 

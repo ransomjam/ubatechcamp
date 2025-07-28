@@ -87,7 +87,7 @@ export default function WhatYouLearn() {
           <p className="text-lg text-gray-600">Comprehensive curriculum designed for practical skills development</p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {courses.map((course) => {
             const IconComponent = course.icon;
             const isExpanded = expandedCourse === course.id;

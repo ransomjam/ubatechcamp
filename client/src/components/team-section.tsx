@@ -63,8 +63,8 @@ export default function TeamSection() {
 
         {/* Leadership Team */}
         <div className="mb-12">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Leadership</h3>
-          <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 text-center">Leadership</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
             {leadership.map((member, index) => (
               <Card key={index} className="p-6 text-center">
                 <img 
@@ -85,8 +85,8 @@ export default function TeamSection() {
 
         {/* Trainers */}
         <div className="mb-12">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Training Team</h3>
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 text-center">Training Team</h3>
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
             {trainers.map((trainer, index) => (
               <Card key={index} className="p-6 text-center">
                 <img 
@@ -104,8 +104,8 @@ export default function TeamSection() {
 
         {/* Student Leaders */}
         <div>
-          <h3 className="text-2xl font-semibold text-gray-900 mb-6 text-center">Student Leadership</h3>
-          <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 text-center">Student Leadership</h3>
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
             {studentLeaders.map((leader, index) => (
               <Card key={index} className="p-6 text-center">
                 <img 

@@ -35,7 +35,7 @@ export default function ProjectsSection() {
           <p className="text-lg text-gray-600">Real-world applications developed by our participants</p>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project, index) => {
             const IconComponent = project.icon;
             
