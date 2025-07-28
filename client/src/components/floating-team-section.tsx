@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import founderImage from "@assets/Founder_1753708699510.jpg";
 import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
+import coFounderImage from "@assets/Co founder_1753673323506.JPG";
 
 const teamData = [
   {
@@ -41,7 +42,7 @@ const teamData = [
         name: "Abongni Musu",
         role: "Co-Founder",
         description: "Strategic partner in building comprehensive tech education programs",
-        image: "https://images.unsplash.com/photo-1494790108755-2616b612b5c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        image: coFounderImage,
         social: {
           linkedin: "https://linkedin.com/in/abongni-musu",
           facebook: "https://facebook.com/abongni.musu",
