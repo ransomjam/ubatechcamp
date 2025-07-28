@@ -49,16 +49,28 @@ const testimonialCategories = [
 
 interface Testimonial {
   id: string;
-  name: string;
-  position: string;
+  // Database fields
+  fullName?: string;
+  currentRole?: string; 
+  graduationYear?: string;
+  testimonialText?: string;
+  isApproved?: boolean;
+  faculty?: string;
+  email?: string;
+  linkedinUrl?: string;
+  createdAt?: string;
+  // Mock data fields
+  name?: string;
+  position?: string;
+  year?: string;
+  rating?: number; 
+  content?: string;
+  approved?: boolean;
+  category?: string;
+  skills?: string[];
+  // Common fields
   company: string;
-  year: string;
-  rating: number;
-  content: string;
   photoUrl: string;
-  approved: boolean;
-  category: string;
-  skills: string[];
 }
 
 // Mock testimonials for demonstration - these would come from the database
@@ -149,11 +161,28 @@ export default function FloatingTestimonialsSection() {
   const [showForm, setShowForm] = useState(false);
   const constraintsRef = useRef(null);
 
-  // In a real app, this would fetch from the API
-  const { data: testimonials = mockTestimonials } = useQuery<Testimonial[]>({
+  // Fetch real testimonials from the database
+  const { data: apiResponse } = useQuery<{data: any[]}>({
     queryKey: ["/api/testimonials"],
-    enabled: false // Using mock data for now
   });
+
+  // Combine real data with mock data for demonstration
+  const realTestimonials: Testimonial[] = (apiResponse?.data || []).map((t: any) => ({
+    id: t.id,
+    fullName: t.fullName || t.full_name,
+    currentRole: t.currentRole || t.current_role || "Alumni",
+    company: t.company || "UBa Tech Camp Graduate",
+    graduationYear: t.graduationYear || t.graduation_year,
+    testimonialText: t.testimonialText || t.testimonial_text,
+    photoUrl: t.photoUrl || t.photo_url || "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+    isApproved: t.isApproved || t.is_approved,
+    faculty: t.faculty,
+    email: t.email,
+    linkedinUrl: t.linkedinUrl || t.linkedin_url,
+    createdAt: t.createdAt || t.created_at
+  }));
+
+  const testimonials = [...realTestimonials, ...mockTestimonials];
 
   const nextCategory = () => {
     const newCategory = (currentCategory + 1) % testimonialCategories.length;
@@ -180,7 +209,21 @@ export default function FloatingTestimonialsSection() {
   };
 
   const getFilteredTestimonials = (filter: string): Testimonial[] => {
-    return testimonials.filter((testimonial: Testimonial) => testimonial.category === filter && testimonial.approved);
+    // For real testimonials, we'll categorize based on graduation year and role
+    return testimonials.filter((testimonial: Testimonial) => {
+      if (!testimonial.isApproved && !testimonial.approved) return false;
+      
+      if (filter === "recent") {
+        return parseInt(testimonial.graduationYear || testimonial.year || "2024") >= 2024;
+      } else if (filter === "career") {
+        return testimonial.currentRole !== "Student" || testimonial.position !== "Student";
+      } else if (filter === "experience") {
+        return true; // All approved testimonials can be shown in experience
+      }
+      
+      // Fallback for mock data
+      return testimonial.category === filter;
+    });
   };
 
   const currentCategoryData = testimonialCategories[currentCategory];
@@ -302,27 +345,27 @@ export default function FloatingTestimonialsSection() {
                             <div className="flex items-center space-x-4">
                               <img 
                                 src={testimonial.photoUrl}
-                                alt={testimonial.name}
+                                alt={testimonial.fullName || testimonial.name || "Alumni"}
                                 className="w-16 h-16 rounded-full object-cover border-4 border-white/20"
                               />
                               <div>
-                                <h4 className="text-lg font-bold">{testimonial.name}</h4>
-                                <p className="text-white/90 text-sm">{testimonial.position}</p>
+                                <h4 className="text-lg font-bold">{testimonial.fullName || testimonial.name}</h4>
+                                <p className="text-white/90 text-sm">{testimonial.currentRole || testimonial.position}</p>
                                 <p className="text-white/70 text-xs">{testimonial.company}</p>
                               </div>
                             </div>
                             <div className="flex items-center justify-between mt-4">
                               <div className="flex">
-                                {renderStars(testimonial.rating)}
+                                {testimonial.rating ? renderStars(testimonial.rating) : renderStars(5)}
                               </div>
-                              <span className="text-white/70 text-xs">{testimonial.year}</span>
+                              <span className="text-white/70 text-xs">{testimonial.graduationYear || testimonial.year}</span>
                             </div>
                           </div>
 
                           {/* Card Content */}
                           <div className="p-6">
                             <p className="text-gray-700 text-sm mb-4 leading-relaxed">
-                              "{testimonial.content}"
+                              "{testimonial.testimonialText || testimonial.content}"
                             </p>
 
                             <AnimatePresence>
@@ -334,16 +377,24 @@ export default function FloatingTestimonialsSection() {
                                   transition={{ duration: 0.3 }}
                                   className="space-y-4"
                                 >
-                                  <div className="border-t border-gray-200 pt-4">
-                                    <h5 className="font-semibold text-gray-900 mb-3">Skills Gained:</h5>
-                                    <div className="flex flex-wrap gap-2">
-                                      {testimonial.skills.map((skill: string) => (
-                                        <span key={skill} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                                          {skill}
-                                        </span>
-                                      ))}
+                                  {testimonial.skills && testimonial.skills.length > 0 && (
+                                    <div className="border-t border-gray-200 pt-4">
+                                      <h5 className="font-semibold text-gray-900 mb-3">Skills Gained:</h5>
+                                      <div className="flex flex-wrap gap-2">
+                                        {testimonial.skills.map((skill: string) => (
+                                          <span key={skill} className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                                            {skill}
+                                          </span>
+                                        ))}
+                                      </div>
                                     </div>
-                                  </div>
+                                  )}
+                                  {testimonial.faculty && (
+                                    <div className="border-t border-gray-200 pt-4">
+                                      <h5 className="font-semibold text-gray-900 mb-2">Faculty:</h5>
+                                      <span className="text-sm text-gray-700">{testimonial.faculty}</span>
+                                    </div>
+                                  )}
                                   <div className="pt-4">
                                     <Button 
                                       className={`w-full bg-gradient-to-r ${currentCategoryData.color} hover:opacity-90`}
