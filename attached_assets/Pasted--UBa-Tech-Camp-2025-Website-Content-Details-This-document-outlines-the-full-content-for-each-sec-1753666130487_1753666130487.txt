@@ -1,0 +1,131 @@
+# UBa Tech Camp 2025 Website Content Details
+
+This document outlines the full content for each section of the UBa Tech Camp website. Use it to implement the site copy.
+
+---
+
+## 1. Who We Are
+
+**Heading:** Welcome to UBa Tech Camp 2025
+**Subheading:** Empowering Youth with Digital Skills
+**Body:** UBa Tech Camp is a free, intensive digital skills programme run by the University of Bamenda. In its second edition, we bring together motivated young learners from across Cameroon to master computer literacy, coding, and data analysis in a collaborative, project-driven environment.
+**Dates & Location:** 10 July – 10 August 2025 @ University of Bamenda Campus \_ UBaDEF Hall 3. 
+
+---
+
+## 2. What You’ll Learn
+
+**Heading:** What You’ll Learn
+**List Items:**
+
+* Foundational Computer Literacy (file management, office suite)
+* Programming Fundamentals with Python (syntax, data structures, automation)
+* Data Analysis in Excel (formulas, pivot tables, charts)
+* SPSS for Social Science Research (variable coding, descriptive stats, visualization)
+* Team-Based Project Work (group collaboration and presentation skills)
+* Computer Networking
+
+---
+
+## 3. Gallery
+
+**Heading:** Gallery
+**Body:** A selection of photos from past camps and hands-on workshops to showcase the energy and collaboration.
+**Images:**
+
+* Campus workshop session (assets/workshop.jpg)
+* Team collaboration group (assets/team.jpg)
+* Final project presentations (assets/presentation.jpg)
+
+---
+
+## 3. Our Track Record
+
+**Heading:** Our Impact
+**Body:** Over 100 participants trained from UBa Tech Camp, first edition
+
+---
+
+## 4. Learning Options
+
+**Heading:** Learning Paths
+
+**Courses Offered:**
+
+* **Data Analysis with Excel**: learn cleaning, pivot tables, charts, basic formulas
+* **SPSS for Social Science**: manage datasets, run descriptive & inferential tests, interpret outputs
+* **Intro to Python**: syntax, data structures, basic scripting & automation
+
+---
+
+## 5. Get Involved Get Involved
+
+**Heading:** Get Involved
+**Body:** We welcome partnerships with companies, NGOs, and individuals who share our mission. Whether you offer funding, guest lectures, equipment, or mentorship, your support helps shape Cameroon’s next generation of tech leaders.
+**Contact:** [info@ubatechcamp.org](mailto:info@ubatechcamp.org)
+
+---
+
+## 6. Project Highlights
+
+**Heading:** Capstone Projects
+**Projects:**
+
+1. **Market Analysis Dashboard** – Interactive Excel & Power BI report visualizing real sales data trends. 
+   built by a team of 3 student's from FHS, COLTECH, NAHPI. Lead by...
+2. **Community Survey Report** – SPSS-driven analysis of a local health survey with clear, actionable insights.
+3. **Automation Script** – Python script automating routine data entry and report generation tasks.
+
+---
+
+## 7. Alumni Feedback and Testimonials 
+
+**Heading:** Alumni Voices
+**Quotes:**
+
+* “UBa Tech Camp’s Excel workshops gave me the confidence to analyze company data at my internship.” – Amina, 2024 Cohort
+* “The SPSS training demystified statistics for my research project.” – Paul, 2024 Cohort
+* “Learning Python here saved me hours of manual work.” – Grace, 2024 Cohort
+
+---
+
+## 8. How to Register
+
+**Heading:** Register Now
+**Body:** Participation is free but space is limited. Please register before \[Application Deadline].
+**Form Fields:** Full Name, Email Address, University/Institution, Field of Study, Referral Code (optional)
+
+---
+
+## 9. Frequently Asked Questions
+
+**Heading:** FAQ
+**Questions & Answers:**
+
+1. **Who can join?** Any university student especially in the university of Bamenda.
+2. **Is it really free?** Absolutely—UBa Tech Camp is 100% free.
+3. **Do I need a laptop?** Yes, though a limited number of loaner laptops are available.
+4. **How do I apply?** Complete the registration form above; you’ll receive a confirmation email within 3 days.
+
+---
+
+## 10. Stay in Touch
+
+**Heading:** Stay Connected
+**Body:** Subscribe to our newsletter for camp updates, resources, and future event announcements.
+**Field:** Email Address + Subscribe Button
+
+---
+
+## 11. Contact Details
+
+**Heading:** Contact Us
+**Body:** Have questions? Reach out:
+
+* 📍 UBa Campus, University of Bamenda
+* ✉️ [info.ubatechcamp@gmail.com](mailto:info.ubatechcamp@gmail.com)
+* ☎️ +237 671 308 991
+
+---
+
+*End of content specification.*
