@@ -1,4 +1,14 @@
-import { type Registration, type InsertRegistration, type Newsletter, type InsertNewsletter, registrations, newsletters } from "@shared/schema";
+import { 
+  type Registration, 
+  type InsertRegistration, 
+  type Newsletter, 
+  type InsertNewsletter,
+  type Testimonial,
+  type InsertTestimonial,
+  registrations, 
+  newsletters,
+  testimonials
+} from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 
@@ -11,6 +21,12 @@ export interface IStorage {
   createNewsletterSubscription(newsletter: InsertNewsletter): Promise<Newsletter>;
   getNewsletterSubscriptions(): Promise<Newsletter[]>;
   getNewsletterByEmail(email: string): Promise<Newsletter | undefined>;
+  
+  // Testimonial methods
+  createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
+  getApprovedTestimonials(): Promise<Testimonial[]>;
+  getAllTestimonials(): Promise<Testimonial[]>;
+  approveTestimonial(id: string): Promise<Testimonial>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -41,6 +57,31 @@ export class DatabaseStorage implements IStorage {
   async getNewsletterByEmail(email: string): Promise<Newsletter | undefined> {
     const [newsletter] = await db.select().from(newsletters).where(eq(newsletters.email, email));
     return newsletter || undefined;
+  }
+
+  async createTestimonial(insertTestimonial: InsertTestimonial): Promise<Testimonial> {
+    const [testimonial] = await db
+      .insert(testimonials)
+      .values(insertTestimonial)
+      .returning();
+    return testimonial;
+  }
+
+  async getApprovedTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials).where(eq(testimonials.isApproved, true));
+  }
+
+  async getAllTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials);
+  }
+
+  async approveTestimonial(id: string): Promise<Testimonial> {
+    const [testimonial] = await db
+      .update(testimonials)
+      .set({ isApproved: true })
+      .where(eq(testimonials.id, id))
+      .returning();
+    return testimonial;
   }
 }
 
