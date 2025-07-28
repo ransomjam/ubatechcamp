@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
-import WhatYouLearn from "@/components/what-you-learn";
+import FloatingProgramsSection from "@/components/floating-programs-section";
 import TeamSection from "@/components/team-section";
 import GallerySection from "@/components/gallery-section";
 import ProjectsSection from "@/components/projects-section";
@@ -18,18 +18,11 @@ import impactImage from "@assets/PXL_20250719_102916588_1753673323501.jpg";
 
 const sectionsData = [
   {
-    id: "learn",
-    title: "What You'll Learn",
-    icon: BookOpen,
-    component: <WhatYouLearn />,
-    preview: "6 comprehensive technical courses including Python, Excel, SPSS, and more"
-  },
-  {
     id: "team", 
     title: "Meet Our Team",
     icon: Users,
     component: <TeamSection />,
-    preview: "Expert instructors, university collaborators, and student leaders"
+    preview: "Expert instructors, university collaborators, and student leaders with social media profiles"
   },
   {
     id: "gallery",
@@ -50,7 +43,7 @@ const sectionsData = [
     title: "Alumni Voices", 
     icon: MessageSquare,
     component: <TestimonialsSection />,
-    preview: "Success stories from our graduates"
+    preview: "Success stories from our graduates and submit your own experience"
   }
 ];
 
@@ -135,11 +128,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Collapsible Content Sections */}
+      {/* Interactive Floating Programs Section */}
+      <FloatingProgramsSection />
+
+      {/* Additional Content Sections */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore Our Program</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">More About UBa Tech Camp</h2>
             <p className="text-lg text-gray-600">Click on any section below to learn more</p>
           </div>
 
