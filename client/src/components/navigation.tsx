@@ -75,7 +75,7 @@ export default function Navigation() {
                 Contact
               </button>
               <Button 
-                onClick={() => scrollToSection('register')}
+                onClick={() => scrollToSection('registration')}
                 className="bg-primary text-white hover:bg-blue-700 ml-2"
                 size="sm"
               >
@@ -143,7 +143,7 @@ export default function Navigation() {
               </button>
               <div className="pt-2">
                 <Button 
-                  onClick={() => scrollToSection('register')}
+                  onClick={() => scrollToSection('registration')}
                   className="bg-primary text-white hover:bg-blue-700 w-full"
                   size="lg"
                 >
