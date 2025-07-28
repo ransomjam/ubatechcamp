@@ -20,9 +20,9 @@ export default function Navigation() {
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center space-x-3">
               <img 
-                src={`/attached_assets/uba-tech-camp-logo-new.png`}
+                src={`/attached_assets/uba-tech-camp-logo-final.png`}
                 alt="UBa Tech Camp Logo"
-                className="h-12 w-12"
+                className="h-14 w-14 rounded-full border-2 border-white shadow-lg"
               />
               <h1 className="text-xl font-bold text-primary">UBa Tech Camp</h1>
             </div>
