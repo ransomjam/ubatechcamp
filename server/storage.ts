@@ -1,5 +1,6 @@
-import { type Registration, type InsertRegistration, type Newsletter, type InsertNewsletter } from "@shared/schema";
-import { randomUUID } from "crypto";
+import { type Registration, type InsertRegistration, type Newsletter, type InsertNewsletter, registrations, newsletters } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // Registration methods
@@ -12,51 +13,35 @@ export interface IStorage {
   getNewsletterByEmail(email: string): Promise<Newsletter | undefined>;
 }
 
-export class MemStorage implements IStorage {
-  private registrations: Map<string, Registration>;
-  private newsletters: Map<string, Newsletter>;
-
-  constructor() {
-    this.registrations = new Map();
-    this.newsletters = new Map();
-  }
-
+export class DatabaseStorage implements IStorage {
   async createRegistration(insertRegistration: InsertRegistration): Promise<Registration> {
-    const id = randomUUID();
-    const registration: Registration = {
-      ...insertRegistration,
-      id,
-      referralCode: insertRegistration.referralCode || null,
-      createdAt: new Date(),
-    };
-    this.registrations.set(id, registration);
+    const [registration] = await db
+      .insert(registrations)
+      .values(insertRegistration)
+      .returning();
     return registration;
   }
 
   async getRegistrations(): Promise<Registration[]> {
-    return Array.from(this.registrations.values());
+    return await db.select().from(registrations);
   }
 
   async createNewsletterSubscription(insertNewsletter: InsertNewsletter): Promise<Newsletter> {
-    const id = randomUUID();
-    const newsletter: Newsletter = {
-      ...insertNewsletter,
-      id,
-      createdAt: new Date(),
-    };
-    this.newsletters.set(id, newsletter);
+    const [newsletter] = await db
+      .insert(newsletters)
+      .values(insertNewsletter)
+      .returning();
     return newsletter;
   }
 
   async getNewsletterSubscriptions(): Promise<Newsletter[]> {
-    return Array.from(this.newsletters.values());
+    return await db.select().from(newsletters);
   }
 
   async getNewsletterByEmail(email: string): Promise<Newsletter | undefined> {
-    return Array.from(this.newsletters.values()).find(
-      (newsletter) => newsletter.email === email,
-    );
+    const [newsletter] = await db.select().from(newsletters).where(eq(newsletters.email, email));
+    return newsletter || undefined;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

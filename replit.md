@@ -21,8 +21,8 @@ Preferred communication style: Simple, everyday language.
 
 ### Backend Architecture
 - **Express.js** server with TypeScript
-- **In-memory storage** for development (MemStorage class)
-- **Drizzle ORM** with PostgreSQL schema definitions
+- **PostgreSQL database** with Drizzle ORM (DatabaseStorage class)
+- **Drizzle ORM** with full database persistence
 - **Zod** for request validation
 - RESTful API design with proper error handling
 
