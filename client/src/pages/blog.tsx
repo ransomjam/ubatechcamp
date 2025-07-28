@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Calendar, Clock, User, ArrowRight, BookOpen } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Calendar, Clock, User, ArrowRight, BookOpen, Edit, Plus } from "lucide-react";
 import { format } from "date-fns";
+import BlogSubmissionForm from "@/components/blog-submission-form";
 
 interface BlogPost {
   id: string;
@@ -23,6 +26,8 @@ interface BlogPost {
 }
 
 export default function BlogPage() {
+  const [activeTab, setActiveTab] = useState("posts");
+  
   const { data: blogResponse, isLoading } = useQuery<{data: BlogPost[]}>({
     queryKey: ["/api/blog"],
   });
@@ -55,9 +60,22 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Blog Posts */}
+      {/* Blog Content */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+            <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
+              <TabsTrigger value="posts" className="flex items-center gap-2">
+                <BookOpen className="w-4 h-4" />
+                Blog Posts
+              </TabsTrigger>
+              <TabsTrigger value="submit" className="flex items-center gap-2">
+                <Plus className="w-4 h-4" />
+                Write a Post
+              </TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="posts" className="mt-0">
           {blogPosts.length === 0 ? (
             <div className="text-center py-12">
               <BookOpen className="w-24 h-24 text-gray-300 mx-auto mb-4" />
@@ -128,8 +146,14 @@ export default function BlogPage() {
                   </CardContent>
                 </Card>
               ))}
-            </div>
-          )}
+              </div>
+            )}
+            </TabsContent>
+
+            <TabsContent value="submit" className="mt-0">
+              <BlogSubmissionForm />
+            </TabsContent>
+          </Tabs>
         </div>
       </section>
     </div>

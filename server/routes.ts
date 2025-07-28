@@ -124,7 +124,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/blog", async (req, res) => {
     try {
       const validatedData = insertBlogPostSchema.parse(req.body);
-      const blogPost = await storage.createBlogPost(validatedData);
+      // All new blog posts start as unpublished (require approval)
+      const blogPost = await storage.createBlogPost({
+        ...validatedData,
+        isPublished: false,
+      });
       res.status(201).json({ success: true, data: blogPost });
     } catch (error) {
       if (error instanceof z.ZodError) {
@@ -132,6 +136,25 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else {
         res.status(500).json({ success: false, message: "Internal server error" });
       }
+    }
+  });
+
+  app.get("/api/blog/unapproved", async (req, res) => {
+    try {
+      const blogPosts = await storage.getUnapprovedBlogPosts();
+      res.json({ success: true, data: blogPosts });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Internal server error" });
+    }
+  });
+
+  app.post("/api/blog/:id/approve", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const blogPost = await storage.publishBlogPost(id);
+      res.json({ success: true, data: blogPost });
+    } catch (error) {
+      res.status(500).json({ success: false, message: "Internal server error" });
     }
   });
 

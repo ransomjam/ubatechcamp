@@ -38,11 +38,18 @@ Preferred communication style: Simple, everyday language.
 - **Registrations table**: Stores participant registration data (full name, email, institution, field of study, optional referral code)
 - **Newsletters table**: Stores email subscriptions for marketing
 - **Testimonials table**: Stores alumni testimonials with photos, professional info, and approval system
+- **Blog Posts table**: Stores blog submissions with approval workflow, categorization, and tagging system
 
 ### API Endpoints
 - `POST /api/registrations` - Create new registration
 - `GET /api/registrations` - Retrieve all registrations
 - `POST /api/newsletter` - Subscribe to newsletter
+- `POST /api/testimonials` - Submit testimonial for approval
+- `GET /api/testimonials` - Get approved testimonials
+- `POST /api/blog` - Submit blog post for approval
+- `GET /api/blog` - Get published blog posts
+- `GET /api/blog/unapproved` - Get pending blog posts (admin)
+- `POST /api/blog/:id/approve` - Approve blog post (admin)
 - Email validation and duplicate prevention
 
 ### Frontend Pages
@@ -55,6 +62,12 @@ Preferred communication style: Simple, everyday language.
   - Interactive Floating Testimonials section with user-generated content
   - Registration form with enhanced validation
   - Contact information
+- **Blog section**: Full-featured blog with user submissions and approval system
+  - Blog listing page with responsive card design
+  - Individual blog post pages with full content display
+  - User submission form with category selection and tagging
+  - Admin approval interface for managing blog submissions
+  - SEO-optimized blog post URLs with slugs
 
 ### Form Handling
 - **Registration form**: Validates and submits participant data
