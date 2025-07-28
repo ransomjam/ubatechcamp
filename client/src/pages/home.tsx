@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import WhatYouLearn from "@/components/what-you-learn";
@@ -8,24 +9,79 @@ import TestimonialsSection from "@/components/testimonials-section";
 import RegistrationForm from "@/components/registration-form";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
+import MobileFAB from "@/components/mobile-fab";
 import { Card } from "@/components/ui/card";
-import { Handshake, Tag, Users, Award } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
+import { Handshake, Tag, Users, Award, ChevronDown, ChevronUp, BookOpen, Trophy, MessageSquare } from "lucide-react";
 import impactImage from "@assets/PXL_20250719_102916588_1753673323501.jpg";
 
+const sectionsData = [
+  {
+    id: "learn",
+    title: "What You'll Learn",
+    icon: BookOpen,
+    component: <WhatYouLearn />,
+    preview: "6 comprehensive technical courses including Python, Excel, SPSS, and more"
+  },
+  {
+    id: "team", 
+    title: "Meet Our Team",
+    icon: Users,
+    component: <TeamSection />,
+    preview: "Expert instructors, university collaborators, and student leaders"
+  },
+  {
+    id: "gallery",
+    title: "Gallery",
+    icon: Trophy,
+    component: <GallerySection />,
+    preview: "Photos from hands-on workshops and collaborative learning sessions"
+  },
+  {
+    id: "projects",
+    title: "Student Projects",
+    icon: Trophy,
+    component: <ProjectsSection />,
+    preview: "Real-world applications and capstone projects by participants"
+  },
+  {
+    id: "testimonials",
+    title: "Alumni Voices", 
+    icon: MessageSquare,
+    component: <TestimonialsSection />,
+    preview: "Success stories from our graduates"
+  }
+];
+
 export default function Home() {
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const toggleSection = (sectionId: string) => {
+    setExpandedSection(expandedSection === sectionId ? null : sectionId);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
       <HeroSection />
-      
-
 
       {/* Partnership Section */}
       <section className="bg-gray-50 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Official Partnership</h2>
-            <Card className="p-8 max-w-2xl mx-auto">
+            <Card className="p-8 max-w-2xl mx-auto hover:shadow-lg transition-shadow duration-300">
               <Handshake className="text-primary text-4xl mb-4 mx-auto" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Directorate of Student Affairs</h3>
               <p className="text-gray-600">University of Bamenda</p>
@@ -36,9 +92,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <WhatYouLearn />
-      <TeamSection />
 
       {/* Impact Section */}
       <section className="bg-white py-16">
@@ -52,22 +105,22 @@ export default function Home() {
               <img 
                 src={impactImage}
                 alt="Students engaged in data analysis training"
-                className="w-full h-96 object-cover rounded-lg shadow-lg"
+                className="w-full h-96 object-cover rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
               />
             </div>
             
             <div className="order-1 lg:order-2 space-y-6">
-              <Card className="bg-primary text-white p-8">
+              <Card className="bg-primary text-white p-8 hover:bg-blue-700 transition-colors duration-300">
                 <div className="text-4xl font-bold mb-2">100+</div>
                 <p className="text-lg">Participants trained from UBa Tech Camp, first edition</p>
               </Card>
               
-              <Card className="bg-green-600 text-white p-8">
+              <Card className="bg-green-600 text-white p-8 hover:bg-green-700 transition-colors duration-300">
                 <div className="text-4xl font-bold mb-2">6</div>
                 <p className="text-lg">Core technical skills taught in each camp session</p>
               </Card>
               
-              <Card className="bg-yellow-600 text-white p-8">
+              <Card className="bg-yellow-600 text-white p-8 hover:bg-yellow-700 transition-colors duration-300">
                 <div className="text-4xl font-bold mb-2">5</div>
                 <p className="text-lg">University faculties represented in our participant base</p>
               </Card>
@@ -76,9 +129,64 @@ export default function Home() {
         </div>
       </section>
 
-      <GallerySection />
-      <ProjectsSection />
-      <TestimonialsSection />
+      {/* Collapsible Content Sections */}
+      <section className="bg-gray-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Explore Our Program</h2>
+            <p className="text-lg text-gray-600">Click on any section below to learn more</p>
+          </div>
+
+          <div className="space-y-4">
+            {sectionsData.map((section) => {
+              const IconComponent = section.icon;
+              const isExpanded = expandedSection === section.id;
+              
+              return (
+                <Card key={section.id} className="overflow-hidden">
+                  <button
+                    onClick={() => toggleSection(section.id)}
+                    className="w-full p-6 text-left hover:bg-gray-50 transition-colors duration-200"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-4">
+                        <div className="bg-primary/10 p-3 rounded-lg">
+                          <IconComponent className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold text-gray-900">{section.title}</h3>
+                          <p className="text-gray-600 text-sm mt-1">{section.preview}</p>
+                        </div>
+                      </div>
+                      {isExpanded ? (
+                        <ChevronUp className="h-5 w-5 text-gray-400" />
+                      ) : (
+                        <ChevronDown className="h-5 w-5 text-gray-400" />
+                      )}
+                    </div>
+                  </button>
+
+                  <AnimatePresence>
+                    {isExpanded && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="border-t border-gray-200 overflow-hidden"
+                      >
+                        <div className="bg-white">
+                          {section.component}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </Card>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Participant List */}
       <section className="bg-white py-16">
@@ -208,6 +316,9 @@ export default function Home() {
 
       <ContactSection />
       <Footer />
+      
+      {/* Mobile FAB for easy navigation */}
+      <MobileFAB />
     </div>
   );
 }

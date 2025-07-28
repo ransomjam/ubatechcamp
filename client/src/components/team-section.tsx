@@ -1,4 +1,8 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import founderImage from "@assets/Founder_1753708699510.jpg";
 
 const leadership = [
@@ -53,7 +57,39 @@ const studentLeaders = [
   }
 ];
 
+const teamCategories = [
+  { id: "leadership", name: "Leadership", members: leadership },
+  { id: "trainers", name: "Training Team", members: trainers },
+  { id: "students", name: "Student Leaders", members: studentLeaders }
+];
+
 export default function TeamSection() {
+  const [activeCategory, setActiveCategory] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const currentCategory = teamCategories[activeCategory];
+  const totalMembers = currentCategory.members.length;
+  const membersPerPage = 3;
+  const totalPages = Math.ceil(totalMembers / membersPerPage);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalPages);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+  };
+
+  const getCurrentMembers = () => {
+    const start = currentIndex * membersPerPage;
+    return currentCategory.members.slice(start, start + membersPerPage);
+  };
+
+  const switchCategory = (categoryIndex: number) => {
+    setActiveCategory(categoryIndex);
+    setCurrentIndex(0);
+  };
+
   return (
     <section id="team" className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -62,64 +98,95 @@ export default function TeamSection() {
           <p className="text-lg text-gray-600">Dedicated professionals committed to your success</p>
         </div>
 
-        {/* Leadership Team */}
-        <div className="mb-12">
-          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 text-center">Leadership</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto">
-            {leadership.map((member, index) => (
-              <Card key={index} className="p-6 text-center">
-                <img 
-                  src={member.image}
-                  alt={member.name}
-                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                />
-                <h4 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h4>
-                <p className="text-primary font-medium mb-2">{member.role}</p>
-                <p className="text-gray-600 text-sm">{member.description}</p>
-                {member.subtitle && (
-                  <p className="text-xs text-gray-500 mt-1">{member.subtitle}</p>
-                )}
-              </Card>
+        {/* Category Tabs */}
+        <div className="flex justify-center mb-8">
+          <div className="bg-white rounded-lg p-1 shadow-md">
+            {teamCategories.map((category, index) => (
+              <Button
+                key={category.id}
+                onClick={() => switchCategory(index)}
+                variant={activeCategory === index ? "default" : "ghost"}
+                size="sm"
+                className={`mx-1 transition-all duration-200 ${
+                  activeCategory === index 
+                    ? "bg-primary text-white shadow-sm" 
+                    : "text-gray-600 hover:text-primary"
+                }`}
+              >
+                {category.name}
+              </Button>
             ))}
           </div>
         </div>
 
-        {/* Trainers */}
-        <div className="mb-12">
-          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 text-center">Training Team</h3>
-          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
-            {trainers.map((trainer, index) => (
-              <Card key={index} className="p-6 text-center">
-                <img 
-                  src={trainer.image}
-                  alt={trainer.name}
-                  className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
-                />
-                <h4 className="text-lg font-semibold text-gray-900 mb-1">{trainer.name}</h4>
-                <p className="text-blue-700 font-medium mb-2">{trainer.role}</p>
-                <p className="text-gray-600 text-sm">{trainer.description}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
+        {/* Team Members Display */}
+        <div className="relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${activeCategory}-${currentIndex}`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -50 }}
+              transition={{ duration: 0.3 }}
+              className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-4xl mx-auto"
+            >
+              {getCurrentMembers().map((member, index) => (
+                <Card key={`${member.name}-${index}`} className="p-6 text-center hover:shadow-lg transition-shadow duration-300">
+                  <img 
+                    src={member.image}
+                    alt={member.name}
+                    className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-4 border-gray-100"
+                  />
+                  <h4 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h4>
+                  <p className={`font-medium mb-2 ${
+                    activeCategory === 0 ? "text-primary" : 
+                    activeCategory === 1 ? "text-blue-700" : "text-yellow-600"
+                  }`}>
+                    {member.role}
+                  </p>
+                  <p className="text-gray-600 text-sm">{member.description}</p>
+                  {"subtitle" in member && member.subtitle && (
+                    <p className="text-xs text-gray-500 mt-1">{member.subtitle}</p>
+                  )}
+                </Card>
+              ))}
+            </motion.div>
+          </AnimatePresence>
 
-        {/* Student Leaders */}
-        <div>
-          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-6 text-center">Student Leadership</h3>
-          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
-            {studentLeaders.map((leader, index) => (
-              <Card key={index} className="p-6 text-center">
-                <img 
-                  src={leader.image}
-                  alt={leader.name}
-                  className="w-20 h-20 rounded-full mx-auto mb-4 object-cover"
-                />
-                <h4 className="text-lg font-semibold text-gray-900 mb-1">{leader.name}</h4>
-                <p className="text-yellow-600 font-medium mb-2">{leader.role}</p>
-                <p className="text-gray-600 text-sm">{leader.description}</p>
-              </Card>
-            ))}
-          </div>
+          {/* Navigation Arrows for Mobile/Small screens */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center mt-6 space-x-4">
+              <Button
+                onClick={prevSlide}
+                variant="outline"
+                size="sm"
+                className="rounded-full p-2"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+              
+              <div className="flex space-x-2">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      currentIndex === index ? "bg-primary" : "bg-gray-300"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              <Button
+                onClick={nextSlide}
+                variant="outline"
+                size="sm"
+                className="rounded-full p-2"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </section>
