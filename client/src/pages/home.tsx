@@ -10,6 +10,7 @@ import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
 import { Card } from "@/components/ui/card";
 import { Handshake, Tag, Users, Award } from "lucide-react";
+import impactImage from "@assets/PXL_20250719_102916588_1753673323501.jpg";
 
 export default function Home() {
   return (
@@ -40,12 +41,35 @@ export default function Home() {
       {/* Impact Section */}
       <section className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+          <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Impact</h2>
-            <Card className="bg-primary text-white p-8 max-w-md mx-auto">
-              <div className="text-4xl font-bold mb-2">100+</div>
-              <p className="text-lg">Participants trained from UBa Tech Camp, first edition</p>
-            </Card>
+          </div>
+          
+          <div className="grid lg:grid-cols-2 gap-8 items-center">
+            <div className="order-2 lg:order-1">
+              <img 
+                src={impactImage}
+                alt="Students engaged in data analysis training"
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+              />
+            </div>
+            
+            <div className="order-1 lg:order-2 space-y-6">
+              <Card className="bg-primary text-white p-8">
+                <div className="text-4xl font-bold mb-2">100+</div>
+                <p className="text-lg">Participants trained from UBa Tech Camp, first edition</p>
+              </Card>
+              
+              <Card className="bg-green-600 text-white p-8">
+                <div className="text-4xl font-bold mb-2">6</div>
+                <p className="text-lg">Core technical skills taught in each camp session</p>
+              </Card>
+              
+              <Card className="bg-yellow-600 text-white p-8">
+                <div className="text-4xl font-bold mb-2">5</div>
+                <p className="text-lg">University faculties represented in our participant base</p>
+              </Card>
+            </div>
           </div>
         </div>
       </section>

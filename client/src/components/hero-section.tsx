@@ -2,13 +2,24 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, MapPin, ChevronDown, ChevronUp } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import heroImage from "@assets/use on hero_1753673323493.png";
 
 export default function HeroSection() {
   const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <section id="home" className="bg-gradient-to-br from-primary to-blue-800 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+    <section id="home" className="relative bg-gradient-to-br from-primary to-blue-800 text-white overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={heroImage}
+          alt="UBa Tech Camp Students Learning"
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-blue-800/90"></div>
+      </div>
+      
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         <div className="text-center">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}

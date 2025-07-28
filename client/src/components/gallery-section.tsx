@@ -1,20 +1,41 @@
 import { Card } from "@/components/ui/card";
+import teamLearning from "@assets/Team learning_1753673323494.jpg";
+import teamCollaboration from "@assets/Team collaboration_1753673323494.jpg";
+import spssTraining from "@assets/spss_1753673323495.jpg";
+import presentationSession from "@assets/PXL_20250718_130939838.PORTRAIT_1753673323502.jpg";
+import classroomLearning from "@assets/InShot_20250219_173005437_1753673323503.jpg";
+import dataAnalysis from "@assets/PXL_20250719_103316291.MP~2_1753673323499.jpg";
 
 const galleryItems = [
   {
-    title: "Workshop Session",
-    description: "Hands-on learning in our state-of-the-art computer lab",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+    title: "Hands-on SPSS Training",
+    description: "Students learning statistical analysis with SPSS software",
+    image: spssTraining
   },
   {
-    title: "Team Collaboration",
-    description: "Students working together on challenging projects",
-    image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+    title: "Team Learning Session",
+    description: "Collaborative learning in our computer lab environment",
+    image: teamLearning
   },
   {
-    title: "Project Presentations",
-    description: "Showcasing innovative solutions and technical skills",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+    title: "Small Group Collaboration",
+    description: "Students working together on programming challenges",
+    image: teamCollaboration
+  },
+  {
+    title: "Data Analysis Workshop",
+    description: "Practical sessions on data visualization and analysis",
+    image: dataAnalysis
+  },
+  {
+    title: "Presentation Skills",
+    description: "Students presenting their project findings and insights",
+    image: presentationSession
+  },
+  {
+    title: "Large Group Learning",
+    description: "Full classroom engagement in tech skills development",
+    image: classroomLearning
   }
 ];
 
@@ -29,11 +50,11 @@ export default function GallerySection() {
         
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {galleryItems.map((item, index) => (
-            <Card key={index} className="overflow-hidden">
+            <Card key={index} className="overflow-hidden hover:shadow-lg transition-shadow duration-300">
               <img 
                 src={item.image}
                 alt={item.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
               />
               <div className="p-4">
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.title}</h3>
