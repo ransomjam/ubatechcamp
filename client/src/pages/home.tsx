@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import FloatingProgramsSection from "@/components/floating-programs-section";
-import TeamSection from "@/components/team-section";
-import GallerySection from "@/components/gallery-section";
-import ProjectsSection from "@/components/projects-section";
-import TestimonialsSection from "@/components/testimonials-section";
+import FloatingTeamSection from "@/components/floating-team-section";
+import FloatingGallerySection from "@/components/floating-gallery-section";
+import FloatingProjectsSection from "@/components/floating-projects-section";
+import FloatingTestimonialsSection from "@/components/floating-testimonials-section";
 import RegistrationForm from "@/components/registration-form";
 import ContactSection from "@/components/contact-section";
 import Footer from "@/components/footer";
@@ -18,32 +18,22 @@ import impactImage from "@assets/PXL_20250719_102916588_1753673323501.jpg";
 
 const sectionsData = [
   {
-    id: "team", 
-    title: "Meet Our Team",
+    id: "registration-info",
+    title: "Registration Information",
     icon: Users,
-    component: <TeamSection />,
-    preview: "Expert instructors, university collaborators, and student leaders with social media profiles"
-  },
-  {
-    id: "gallery",
-    title: "Gallery",
-    icon: Trophy,
-    component: <GallerySection />,
-    preview: "Photos from hands-on workshops and collaborative learning sessions"
-  },
-  {
-    id: "projects",
-    title: "Student Projects",
-    icon: Trophy,
-    component: <ProjectsSection />,
-    preview: "Real-world applications and capstone projects by participants"
-  },
-  {
-    id: "testimonials",
-    title: "Alumni Voices", 
-    icon: MessageSquare,
-    component: <TestimonialsSection />,
-    preview: "Success stories from our graduates and submit your own experience"
+    component: (
+      <div className="text-center py-12">
+        <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Join UBa Tech Camp 2025?</h3>
+        <p className="text-gray-600 mb-6">All the interactive sections above showcase what awaits you. Register below to secure your spot!</p>
+        <Button 
+          onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
+          className="bg-gradient-to-r from-blue-500 to-blue-700 hover:opacity-90"
+        >
+          Register Now
+        </Button>
+      </div>
+    ),
+    preview: "Complete registration information and application process"
   }
 ];
 
@@ -131,62 +121,30 @@ export default function Home() {
       {/* Interactive Floating Programs Section */}
       <FloatingProgramsSection />
 
-      {/* Additional Content Sections */}
-      <section className="bg-gray-50 py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">More About UBa Tech Camp</h2>
-            <p className="text-lg text-gray-600">Click on any section below to learn more</p>
-          </div>
+      {/* Interactive Floating Team Section */}
+      <FloatingTeamSection />
 
-          <div className="space-y-4">
-            {sectionsData.map((section) => {
-              const IconComponent = section.icon;
-              const isExpanded = expandedSection === section.id;
-              
-              return (
-                <Card key={section.id} className="overflow-hidden">
-                  <button
-                    onClick={() => toggleSection(section.id)}
-                    className="w-full p-6 text-left hover:bg-gray-50 transition-colors duration-200"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="bg-primary/10 p-3 rounded-lg">
-                          <IconComponent className="h-6 w-6 text-primary" />
-                        </div>
-                        <div>
-                          <h3 className="text-xl font-semibold text-gray-900">{section.title}</h3>
-                          <p className="text-gray-600 text-sm mt-1">{section.preview}</p>
-                        </div>
-                      </div>
-                      {isExpanded ? (
-                        <ChevronUp className="h-5 w-5 text-gray-400" />
-                      ) : (
-                        <ChevronDown className="h-5 w-5 text-gray-400" />
-                      )}
-                    </div>
-                  </button>
+      {/* Interactive Floating Gallery Section */}
+      <FloatingGallerySection />
 
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="border-t border-gray-200 overflow-hidden"
-                      >
-                        <div className="bg-white">
-                          {section.component}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </Card>
-              );
-            })}
-          </div>
+      {/* Interactive Floating Projects Section */}
+      <FloatingProjectsSection />
+
+      {/* Interactive Floating Testimonials Section */}
+      <FloatingTestimonialsSection />
+
+      {/* Registration Call-to-Action */}
+      <section className="bg-gradient-to-r from-blue-500 to-blue-700 py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Ready to Join UBa Tech Camp 2025?</h2>
+          <p className="text-xl text-blue-100 mb-8">All the interactive sections above showcase what awaits you. Register below to secure your spot!</p>
+          <Button 
+            onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
+            size="lg"
+            className="bg-white text-blue-600 hover:bg-gray-50 font-semibold px-8 py-3"
+          >
+            Register Now
+          </Button>
         </div>
       </section>
 

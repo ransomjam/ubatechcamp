@@ -33,7 +33,11 @@ const facultyOptions = [
 
 const graduationYears = Array.from({ length: 10 }, (_, i) => (new Date().getFullYear() - i).toString());
 
-export function TestimonialForm() {
+interface TestimonialFormProps {
+  onSuccess?: () => void;
+}
+
+export function TestimonialForm({ onSuccess }: TestimonialFormProps = {}) {
   const [isOpen, setIsOpen] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
@@ -73,6 +77,7 @@ export function TestimonialForm() {
         title: "Thank you!",
         description: "Your testimonial has been submitted and is pending approval.",
       });
+      onSuccess?.();
     },
     onError: (error) => {
       toast({

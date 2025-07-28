@@ -1,7 +1,7 @@
 # UBa Tech Camp 2025 Website
 
 ## Overview
-This is a full-stack web application for the UBa Tech Camp 2025 registration and information website. The application features a modern React frontend with a Node.js/Express backend, built to showcase the tech camp program and handle participant registrations. Recent enhancements include interactive floating program cards with swipe functionality and comprehensive alumni testimonial system with database persistence.
+This is a full-stack web application for the UBa Tech Camp 2025 registration and information website. The application features a modern React frontend with a Node.js/Express backend, built to showcase the tech camp program and handle participant registrations. Recent enhancements include interactive floating program cards with swipe functionality across all major sections (programs, team, gallery, projects, alumni testimonials) and comprehensive alumni testimonial system with database persistence.
 
 ## User Preferences
 Preferred communication style: Simple, everyday language.
@@ -46,13 +46,14 @@ Preferred communication style: Simple, everyday language.
 - Email validation and duplicate prevention
 
 ### Frontend Pages
-- **Home page**: Single-page application with multiple sections
+- **Home page**: Single-page application with interactive floating card sections
   - Hero section with camp details
-  - What You'll Learn curriculum overview
-  - Team and leadership information
-  - Gallery showcase
-  - Projects and testimonials
-  - Registration form
+  - Interactive Floating Programs section with swipeable curriculum cards
+  - Interactive Floating Team section with social media integration
+  - Interactive Floating Gallery section with categorized photo displays
+  - Interactive Floating Projects section showcasing student work
+  - Interactive Floating Testimonials section with user-generated content
+  - Registration form with enhanced validation
   - Contact information
 
 ### Form Handling
