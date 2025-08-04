@@ -1,8 +1,17 @@
-import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import {
+  ArrowRight,
+  Monitor,
+  Network,
+  Code,
+  Database,
+  FileSpreadsheet,
+  BarChart,
+  Users,
+  Presentation
+} from "lucide-react";
 
 const programSections = [
   {
@@ -21,7 +30,8 @@ const programSections = [
           "Basic troubleshooting",
           "Software installation and maintenance"
         ],
-        level: "Beginner"
+        level: "Beginner",
+        icon: Monitor
       },
       {
         id: "networking",
@@ -33,7 +43,8 @@ const programSections = [
           "Network security basics",
           "WiFi and connectivity"
         ],
-        level: "Intermediate"
+        level: "Intermediate",
+        icon: Network
       }
     ]
   },
@@ -53,7 +64,8 @@ const programSections = [
           "Automation and scripting",
           "Web development basics"
         ],
-        level: "Beginner"
+        level: "Beginner",
+        icon: Code
       },
       {
         id: "databases",
@@ -65,7 +77,8 @@ const programSections = [
           "Data modeling",
           "Query optimization"
         ],
-        level: "Intermediate"
+        level: "Intermediate",
+        icon: Database
       }
     ]
   },
@@ -85,7 +98,8 @@ const programSections = [
           "Charts and visualization",
           "Automation with macros"
         ],
-        level: "Intermediate"
+        level: "Intermediate",
+        icon: FileSpreadsheet
       },
       {
         id: "spss",
@@ -97,7 +111,8 @@ const programSections = [
           "Research methodology",
           "Report generation"
         ],
-        level: "Advanced"
+        level: "Advanced",
+        icon: BarChart
       }
     ]
   },
@@ -117,7 +132,8 @@ const programSections = [
           "Conflict resolution",
           "Leadership development"
         ],
-        level: "All Levels"
+        level: "All Levels",
+        icon: Users
       },
       {
         id: "presentation",
@@ -129,14 +145,14 @@ const programSections = [
           "Storytelling with data",
           "Professional presentation tools"
         ],
-        level: "All Levels"
+        level: "All Levels",
+        icon: Presentation
       }
     ]
   }
 ];
 
 export default function FloatingProgramsSection() {
-  const [expandedCourse, setExpandedCourse] = useState<string>("");
   const allCourses = programSections.flatMap((section) =>
     section.courses.map((course) => ({ ...course, color: section.color }))
   );
@@ -152,98 +168,60 @@ export default function FloatingProgramsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {allCourses.map((course, index) => {
-            const isExpanded = expandedCourse === course.id;
-            return (
-              <motion.div
-                key={course.id}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  scale: isExpanded ? 1.05 : 1,
-                  zIndex: isExpanded ? 10 : 1
-                }}
-                transition={{
-                  duration: 0.3,
-                  delay: index * 0.1,
-                  scale: { duration: 0.2 }
-                }}
-                className={`relative ${isExpanded ? 'z-10' : 'z-0'}`}
-              >
-                <Card
-                  className={`cursor-pointer transition-all duration-300 overflow-hidden ${
-                    isExpanded
-                      ? 'shadow-2xl ring-4 ring-blue-200 transform'
-                      : 'shadow-lg hover:shadow-xl'
-                  }`}
-                  onClick={() => setExpandedCourse(isExpanded ? '' : course.id)}
-                >
-                  <CardContent className="p-0">
-                    <div className={`p-6 bg-gradient-to-r ${course.color} text-white`}>
-                      <div className="flex justify-end mb-3">
-                        <span className="text-xs font-medium bg-white/20 px-2 py-1 rounded-full">
-                          {course.level}
-                        </span>
-                      </div>
+          {allCourses.map((course, index) => (
+            <motion.div
+              key={course.id}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
+              <Card className="shadow-lg hover:shadow-xl overflow-hidden">
+                <CardContent className="p-0">
+                  <div className={`p-6 bg-gradient-to-r ${course.color} text-white`}>
+                    <div className="flex justify-end mb-3">
+                      <span className="text-xs font-medium bg-white/20 px-2 py-1 rounded-full">
+                        {course.level}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <course.icon className="w-6 h-6" />
                       <h4 className="text-xl font-bold">{course.title}</h4>
                     </div>
-
-                    <div className="p-6">
-                      <AnimatePresence>
-                        {isExpanded ? (
-                          <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="space-y-4"
+                  </div>
+                  <div className="p-6">
+                    <div className="space-y-4">
+                      <h5 className="font-semibold text-gray-900 mb-3">What you'll learn:</h5>
+                      <ul className="space-y-2">
+                        {course.details.map((detail, detailIndex) => (
+                          <motion.li
+                            key={detailIndex}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: detailIndex * 0.1 }}
+                            className="flex items-start text-gray-600"
                           >
-                            <h5 className="font-semibold text-gray-900 mb-3">What you'll learn:</h5>
-                            <ul className="space-y-2">
-                              {course.details.map((detail, detailIndex) => (
-                                <motion.li
-                                  key={detailIndex}
-                                  initial={{ opacity: 0, x: -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: detailIndex * 0.1 }}
-                                  className="flex items-start text-gray-600"
-                                >
-                                  <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0" />
-                                  {detail}
-                                </motion.li>
-                              ))}
-                            </ul>
-                            <div className="pt-4 border-t border-gray-200">
-                              <Button
-                                className={`w-full bg-gradient-to-r ${course.color} hover:opacity-90`}
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' });
-                                }}
-                              >
-                                Enroll in this course
-                                <ArrowRight className="w-4 h-4 ml-2" />
-                              </Button>
-                            </div>
-                          </motion.div>
-                        ) : (
-                          <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            className="text-center py-4"
-                          >
-                            <p className="text-gray-500 text-sm mb-4">Click to explore this course</p>
-                            <div className="text-2xl">👆</div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
+                            <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0" />
+                            {detail}
+                          </motion.li>
+                        ))}
+                      </ul>
+                      <div className="pt-4 border-t border-gray-200">
+                        <Button
+                          className={`w-full bg-gradient-to-r ${course.color} hover:opacity-90`}
+                          onClick={() => {
+                            document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' });
+                          }}
+                        >
+                          Enroll in this course
+                          <ArrowRight className="w-4 h-4 ml-2" />
+                        </Button>
+                      </div>
                     </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            );
-          })}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
