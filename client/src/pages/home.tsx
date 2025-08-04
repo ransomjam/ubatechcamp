@@ -22,7 +22,7 @@ const sectionsData = [
     title: "Registration Information",
     icon: Users,
     component: (
-      <div className="text-center py-12">
+      <div className="text-center py-8 md:py-12">
         <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Join UBa Tech Camp 2025?</h3>
         <p className="text-gray-600 mb-6">All the interactive sections above showcase what awaits you. Register below to secure your spot!</p>
         <Button 
@@ -60,9 +60,9 @@ export default function Home() {
       <HeroSection />
 
       {/* Impact Section - Moved Up */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Impact</h2>
           </div>
           
@@ -102,9 +102,9 @@ export default function Home() {
       </section>
 
       {/* Partnership Section */}
-      <section className="bg-gray-50 py-16">
+      <section className="bg-gray-50 py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Official Partnership</h2>
             <Card className="p-8 max-w-2xl mx-auto hover:shadow-lg transition-shadow duration-300">
               <Handshake className="text-primary text-4xl mb-4 mx-auto" />
@@ -134,10 +134,10 @@ export default function Home() {
       <FloatingTestimonialsSection />
 
       {/* Registration Call-to-Action */}
-      <section className="bg-gradient-to-r from-blue-500 to-blue-700 py-16">
+      <section className="bg-gradient-to-r from-blue-500 to-blue-700 py-8 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Join UBa Tech Camp 2025?</h2>
-          <p className="text-xl text-blue-100 mb-8">All the interactive sections above showcase what awaits you. Register below to secure your spot!</p>
+          <p className="text-xl text-blue-100 mb-6 md:mb-8">All the interactive sections above showcase what awaits you. Register below to secure your spot!</p>
           <Button 
             onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
             size="lg"
@@ -151,7 +151,7 @@ export default function Home() {
 
 
       {/* Certification */}
-      <section className="bg-primary text-white py-16">
+      <section className="bg-primary text-white py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Official Certification</h2>
           <p className="text-xl text-blue-100 mb-6">Receive certificates recognized by the University of Bamenda</p>
@@ -165,9 +165,9 @@ export default function Home() {
       <RegistrationForm />
 
       {/* Alumni Network */}
-      <section id="alumni-network" className="bg-white py-16">
+      <section id="alumni-network" className="bg-white py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Alumni Network</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Join our growing community of tech professionals. Our alumni work at leading companies worldwide and continue to support current students through mentorship and career guidance.
@@ -289,9 +289,9 @@ export default function Home() {
       </section>
 
       {/* Get Involved */}
-      <section id="get-involved" className="bg-gray-50 py-16">
+      <section id="get-involved" className="bg-gray-50 py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Get Involved</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               We welcome partnerships with companies, NGOs, and individuals who share our mission. Whether you offer funding, guest lectures, equipment, or mentorship, your support helps shape Cameroon's next generation of tech leaders.
@@ -309,9 +309,9 @@ export default function Home() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-8 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
           </div>
           
@@ -340,10 +340,10 @@ export default function Home() {
       </section>
 
       {/* Newsletter */}
-      <section className="bg-primary text-white py-16">
+      <section className="bg-primary text-white py-8 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Connected</h2>
-          <p className="text-xl text-blue-100 mb-8">Subscribe to our newsletter for camp updates, resources, and future event announcements.</p>
+          <p className="text-xl text-blue-100 mb-6 md:mb-8">Subscribe to our newsletter for camp updates, resources, and future event announcements.</p>
           
           <div className="max-w-md mx-auto">
             <div className="flex">

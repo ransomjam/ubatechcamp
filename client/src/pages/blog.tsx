@@ -36,7 +36,7 @@ export default function BlogPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-gray-50 py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
@@ -50,7 +50,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-to-r from-primary to-blue-700 text-white py-20">
+      <section className="bg-gradient-to-r from-primary to-blue-700 text-white py-10 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <BookOpen className="w-16 h-16 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">UBa Tech Camp Blog</h1>
@@ -61,7 +61,7 @@ export default function BlogPage() {
       </section>
 
       {/* Blog Content */}
-      <section className="py-16">
+      <section className="py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
             <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
@@ -77,7 +77,7 @@ export default function BlogPage() {
 
             <TabsContent value="posts" className="mt-0">
           {blogPosts.length === 0 ? (
-            <div className="text-center py-12">
+            <div className="text-center py-8 md:py-12">
               <BookOpen className="w-24 h-24 text-gray-300 mx-auto mb-4" />
               <h3 className="text-2xl font-semibold text-gray-900 mb-2">No Blog Posts Yet</h3>
               <p className="text-gray-600 max-w-md mx-auto">

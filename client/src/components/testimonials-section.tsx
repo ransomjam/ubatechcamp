@@ -27,9 +27,9 @@ const staticTestimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className="bg-gray-50 py-16">
+    <section id="testimonials" className="bg-gray-50 py-8 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Alumni Voices</h2>
           <p className="text-lg text-gray-600 mb-6">Hear from our successful graduates and share your own story</p>
           
@@ -40,13 +40,13 @@ export default function TestimonialsSection() {
         </div>
 
         {/* Dynamic Testimonials from Database */}
-        <div className="mb-12">
+        <div className="mb-8 md:mb-12">
           <TestimonialsDisplay showTitle={false} />
         </div>
 
         {/* Static Testimonials (will be replaced as more alumni submit) */}
-        <div className="border-t border-gray-200 pt-12">
-          <div className="text-center mb-8">
+        <div className="border-t border-gray-200 pt-8 md:pt-12">
+          <div className="text-center mb-6 md:mb-8">
             <h3 className="text-xl font-semibold text-gray-800 mb-2">Featured Stories</h3>
             <p className="text-gray-600">Highlights from our 2024 graduates</p>
           </div>
