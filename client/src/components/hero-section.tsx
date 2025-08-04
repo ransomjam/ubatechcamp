@@ -35,7 +35,7 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mb-6 sm:mb-8 text-base sm:text-lg"
         >
-          Tech for All
+          Empowering youths with digital skills
         </motion.p>
 
         <motion.div
@@ -46,8 +46,7 @@ export default function HeroSection() {
           <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
               <Button
-                className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-lg text-base sm:text-lg transition duration-300 transform hover:scale-105"
-                size="lg"
+                className="bg-primary hover:bg-primary/90 text-white font-semibold h-auto py-2 px-4 sm:py-3 sm:px-6 rounded-lg text-sm sm:text-base transition duration-300 transform hover:scale-105"
               >
                 Learn More
               </Button>
