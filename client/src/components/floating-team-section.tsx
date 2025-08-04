@@ -18,6 +18,7 @@ import {
 import founderImage from "@assets/Founder_1753708699510.jpg";
 import coFounderImage from "@assets/Co founder_1753673323506.jpg";
 import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
+import coFounderImage from "@assets/Co founder_1753673323506.jpg";
 
 const teamData = [
   {
