@@ -1,18 +1,22 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  Monitor, 
-  Code, 
-  BarChart, 
-  Users, 
-  Network, 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/ui/select";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Monitor,
+  Code,
+  BarChart,
+  Users,
+  Network,
   Database,
   ArrowRight,
-  ArrowLeft,
   Clock,
   Trophy,
   Target
@@ -167,31 +171,9 @@ const programSections = [
 
 export default function FloatingProgramsSection() {
   const [currentSection, setCurrentSection] = useState(0);
-  const [expandedCourse, setExpandedCourse] = useState<string>(programSections[0].courses[0].id);
-  const constraintsRef = useRef(null);
-
-  const nextSection = () => {
-    const newSection = (currentSection + 1) % programSections.length;
-    setCurrentSection(newSection);
-    setExpandedCourse(programSections[newSection].courses[0].id);
-  };
-
-  const prevSection = () => {
-    const newSection = (currentSection - 1 + programSections.length) % programSections.length;
-    setCurrentSection(newSection);
-    setExpandedCourse(programSections[newSection].courses[0].id);
-  };
-
-  const handleDragEnd = (event: any, info: PanInfo) => {
-    const { offset, velocity } = info;
-    
-    if (offset.x > 100 || velocity.x > 500) {
-      prevSection();
-    } else if (offset.x < -100 || velocity.x < -500) {
-      nextSection();
-    }
-  };
-
+  const [expandedCourse, setExpandedCourse] = useState<string>(
+    programSections[0].courses[0].id
+  );
   const currentProgram = programSections[currentSection];
 
   return (
@@ -204,33 +186,33 @@ export default function FloatingProgramsSection() {
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Training programs</h2>
         </div>
 
-        {/* Section Navigation */}
+        {/* Program Filter */}
         <div className="flex justify-center mb-8">
-          <div className="flex space-x-2 bg-white rounded-full p-1 shadow-lg">
-            {programSections.map((section, index) => (
-              <Button
-                key={section.id}
-                onClick={() => {
-                  setCurrentSection(index);
-                  setExpandedCourse(section.courses[0].id);
-                }}
-                variant={currentSection === index ? "default" : "ghost"}
-                size="sm"
-                className={`rounded-full transition-all duration-300 ${
-                  currentSection === index 
-                    ? `bg-gradient-to-r ${section.color} text-white shadow-md` 
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                <section.icon className="w-4 h-4 mr-2" />
-                {section.title}
-              </Button>
-            ))}
-          </div>
+          <Select
+            value={currentProgram.id}
+            onValueChange={(value) => {
+              const index = programSections.findIndex(
+                (section) => section.id === value
+              );
+              setCurrentSection(index);
+              setExpandedCourse(programSections[index].courses[0].id);
+            }}
+          >
+            <SelectTrigger className="w-64">
+              <SelectValue placeholder="Select program" />
+            </SelectTrigger>
+            <SelectContent>
+              {programSections.map((section) => (
+                <SelectItem key={section.id} value={section.id}>
+                  {section.title}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Main Content Area */}
-        <div className="relative" ref={constraintsRef}>
+        <div className="relative">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSection}
@@ -238,10 +220,6 @@ export default function FloatingProgramsSection() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -300 }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              drag="x"
-              dragConstraints={constraintsRef}
-              onDragEnd={handleDragEnd}
-              className="cursor-grab active:cursor-grabbing"
             >
               {/* Section Header */}
             <div className="text-center mb-8 md:mb-12">
@@ -365,51 +343,6 @@ export default function FloatingProgramsSection() {
               </div>
             </motion.div>
           </AnimatePresence>
-
-          {/* Navigation Arrows */}
-          <div className="flex justify-center items-center mt-12 space-x-6">
-            <Button
-              onClick={prevSection}
-              variant="outline"
-              size="lg"
-              className="rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <ArrowLeft className="w-6 h-6" />
-            </Button>
-            
-            <div className="flex space-x-2">
-              {programSections.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setCurrentSection(index);
-                    setExpandedCourse(programSections[index].courses[0].id);
-                  }}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentSection === index 
-                      ? 'bg-blue-500 scale-125' 
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <Button
-              onClick={nextSection}
-              variant="outline"
-              size="lg"
-              className="rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <ArrowRight className="w-6 h-6" />
-            </Button>
-          </div>
-
-          {/* Swipe Indicator */}
-          <div className="text-center mt-8">
-            <p className="text-sm text-gray-500">
-              Swipe left or right to explore different program tracks
-            </p>
-          </div>
         </div>
       </div>
     </section>
