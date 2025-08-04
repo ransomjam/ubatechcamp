@@ -8,7 +8,7 @@ export default function HeroSection() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <section id="home" className="relative text-white overflow-hidden">
+    <section id="home" className="relative text-white overflow-hidden mb-8 md:mb-16">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
