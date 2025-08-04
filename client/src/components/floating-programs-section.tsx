@@ -25,6 +25,7 @@ const programSections = [
         title: "Computer Literacy",
         description: "Essential digital skills everyone needs",
         details: [
+          "Microsoft office programs",
           "File management and organization",
           "Digital communication tools",
           "Basic troubleshooting",
@@ -153,9 +154,17 @@ const programSections = [
 ];
 
 export default function FloatingProgramsSection() {
-  const allCourses = programSections.flatMap((section) =>
+  const unorderedCourses = programSections.flatMap((section) =>
     section.courses.map((course) => ({ ...course, color: section.color }))
   );
+
+  const prioritized = ["computer-literacy", "spss"];
+  const allCourses = [
+    ...prioritized.map((id) =>
+      unorderedCourses.find((course) => course.id === id)!
+    ),
+    ...unorderedCourses.filter((course) => !prioritized.includes(course.id)),
+  ];
 
   return (
     <section
