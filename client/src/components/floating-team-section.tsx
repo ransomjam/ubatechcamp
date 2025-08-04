@@ -203,11 +203,28 @@ export default function FloatingTeamSection() {
             >
               {/* Team Header */}
               <div className="text-center mb-8 md:mb-12">
-                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r ${currentTeamData.color} text-white text-3xl mb-6 shadow-xl`}>
-                  <currentTeamData.icon />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-3">{currentTeamData.title}</h3>
-                <p className="text-lg text-gray-600">{currentTeamData.description}</p>
+                {currentTeamData.id === "leadership" ? (
+                  <div className="flex items-center justify-center mb-3">
+                    <h3 className="text-3xl font-bold text-blue-600 mr-2">
+                      {currentTeamData.title}
+                    </h3>
+                    <currentTeamData.icon className="w-8 h-8 text-blue-600" />
+                  </div>
+                ) : (
+                  <>
+                    <div
+                      className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r ${currentTeamData.color} text-white text-3xl mb-6 shadow-xl`}
+                    >
+                      <currentTeamData.icon />
+                    </div>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                      {currentTeamData.title}
+                    </h3>
+                  </>
+                )}
+                <p className="text-lg text-gray-600">
+                  {currentTeamData.description}
+                </p>
               </div>
 
               {/* Floating Cards Grid */}
@@ -242,14 +259,44 @@ export default function FloatingTeamSection() {
                       >
                         <CardContent className="p-0">
                           {/* Card Header */}
-                          <div className={`p-6 bg-gradient-to-r ${currentTeamData.color} text-white text-center`}>
-                            <img 
-                              src={member.image}
-                              alt={member.name}
-                              className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-white/20"
-                            />
-                            <h4 className="text-xl font-bold mb-1">{member.name}</h4>
-                            <p className="text-white/90 text-sm">{member.role}</p>
+                          <div
+                            className={`p-6 bg-gradient-to-r ${currentTeamData.color} text-white ${
+                              currentTeamData.id === "leadership"
+                                ? "flex items-center"
+                                : "text-center"
+                            }`}
+                          >
+                            {currentTeamData.id === "leadership" ? (
+                              <>
+                                <img
+                                  src={member.image}
+                                  alt={member.name}
+                                  className="w-1/2 aspect-square object-cover"
+                                />
+                                <div className="w-1/2 pl-4 text-left">
+                                  <h4 className="text-xl font-bold mb-1">
+                                    {member.name}
+                                  </h4>
+                                  <p className="text-white/90 text-sm">
+                                    {member.role}
+                                  </p>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <img
+                                  src={member.image}
+                                  alt={member.name}
+                                  className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-white/20"
+                                />
+                                <h4 className="text-xl font-bold mb-1">
+                                  {member.name}
+                                </h4>
+                                <p className="text-white/90 text-sm">
+                                  {member.role}
+                                </p>
+                              </>
+                            )}
                           </div>
 
                           {/* Card Content */}
