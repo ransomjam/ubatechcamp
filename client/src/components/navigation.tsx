@@ -102,6 +102,9 @@ export default function Navigation() {
               variant="ghost"
               size="sm"
               onClick={() => setIsOpen(!isOpen)}
+              className={`${
+                isOpen ? "bg-primary text-primary-foreground" : ""
+              } hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground`}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
