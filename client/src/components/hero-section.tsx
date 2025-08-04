@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Calendar, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import heroBg from "@assets/use on hero_1753673323493.png";
 
@@ -25,28 +24,19 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight whitespace-nowrap"
         >
-          Welcome to UBa Tech Camp 2025
+          Welcome to UBa Tech Camp
         </motion.h1>
 
-        <motion.div
+        <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-6 sm:mb-8 text-base sm:text-lg space-y-2 sm:space-y-0"
+          className="mb-6 sm:mb-8 text-base sm:text-lg"
         >
-          <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-8 space-y-2 sm:space-y-0">
-            <p className="flex items-center">
-              <Calendar className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="text-sm sm:text-base">10 July – 10 August 2025</span>
-            </p>
-            <p className="flex items-center">
-              <MapPin className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
-              <span className="text-sm sm:text-base">University of Bamenda Campus</span>
-            </p>
-          </div>
-        </motion.div>
+          Tech for All
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
