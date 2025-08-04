@@ -14,7 +14,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { Handshake, Tag, Users, Award, ChevronDown, ChevronUp, BookOpen, Trophy, MessageSquare, Star } from "lucide-react";
-import impactImage from "@assets/use on hero_1753673323493.png";
 
 const sectionsData = [
   {
@@ -58,44 +57,34 @@ export default function Home() {
       <Navigation />
       <HeroSection />
 
-      {/* Impact Section - Moved Up */}
+      {/* Impact Section - Image moved to hero */}
       <section className="bg-white py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Impact</h2>
           </div>
-          
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div className="order-2 lg:order-1">
-              <img 
-                src={impactImage}
-                alt="UBa Tech Camp students actively learning in computer lab with laptops and hands-on training"
-                className="w-full h-96 object-cover rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
-              />
-            </div>
-            
-            <div className="order-1 lg:order-2">
-              <Card className="bg-gradient-to-br from-primary to-blue-800 text-white p-8 hover:shadow-xl transition-all duration-300">
-                <div className="grid grid-cols-2 gap-6 text-center">
-                  <div className="border-r border-blue-300 pr-4">
-                    <div className="text-3xl md:text-4xl font-bold mb-2">200+</div>
-                    <p className="text-sm md:text-base text-blue-100">Participants trained from 1st and 2nd Edition</p>
-                  </div>
-                  <div className="pl-4">
-                    <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
-                    <p className="text-sm md:text-base text-blue-100">Core technical skills taught in each camp</p>
-                  </div>
-                  <div className="border-r border-blue-300 pr-4">
-                    <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
-                    <p className="text-sm md:text-base text-blue-100">Schools participating in the program</p>
-                  </div>
-                  <div className="pl-4">
-                    <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
-                    <p className="text-sm md:text-base text-blue-100">University faculties represented</p>
-                  </div>
+
+          <div className="flex justify-center">
+            <Card className="bg-gradient-to-br from-primary to-blue-800 text-white p-8 hover:shadow-xl transition-all duration-300">
+              <div className="grid grid-cols-2 gap-6 text-center">
+                <div className="border-r border-blue-300 pr-4">
+                  <div className="text-3xl md:text-4xl font-bold mb-2">200+</div>
+                  <p className="text-sm md:text-base text-blue-100">Participants trained from 1st and 2nd Edition</p>
                 </div>
-              </Card>
-            </div>
+                <div className="pl-4">
+                  <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
+                  <p className="text-sm md:text-base text-blue-100">Core technical skills taught in each camp</p>
+                </div>
+                <div className="border-r border-blue-300 pr-4">
+                  <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
+                  <p className="text-sm md:text-base text-blue-100">Schools participating in the program</p>
+                </div>
+                <div className="pl-4">
+                  <div className="text-3xl md:text-4xl font-bold mb-2">6</div>
+                  <p className="text-sm md:text-base text-blue-100">University faculties represented</p>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
