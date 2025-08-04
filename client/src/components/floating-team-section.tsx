@@ -128,19 +128,16 @@ const teamData = [
 
 export default function FloatingTeamSection() {
   const [currentTeam, setCurrentTeam] = useState(0);
-  const [expandedMember, setExpandedMember] = useState<string>(teamData[0].members[0].name);
   const constraintsRef = useRef(null);
 
   const nextTeam = () => {
     const newTeam = (currentTeam + 1) % teamData.length;
     setCurrentTeam(newTeam);
-    setExpandedMember(teamData[newTeam].members[0].name);
   };
 
   const prevTeam = () => {
     const newTeam = (currentTeam - 1 + teamData.length) % teamData.length;
     setCurrentTeam(newTeam);
-    setExpandedMember(teamData[newTeam].members[0].name);
   };
 
   const handleDragEnd = (event: any, info: PanInfo) => {
@@ -170,13 +167,12 @@ export default function FloatingTeamSection() {
                 key={team.id}
                 onClick={() => {
                   setCurrentTeam(index);
-                  setExpandedMember(team.members[0].name);
                 }}
                 variant={currentTeam === index ? "default" : "ghost"}
                 size="sm"
                 className={`rounded-full transition-all duration-300 ${
-                  currentTeam === index 
-                    ? `bg-gradient-to-r ${team.color} text-white shadow-md` 
+                  currentTeam === index
+                    ? `bg-gradient-to-r ${team.color} text-white shadow-md`
                     : "text-gray-600 hover:text-gray-900"
                 }`}
               >
@@ -229,164 +225,87 @@ export default function FloatingTeamSection() {
 
               {/* Floating Cards Grid */}
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {currentTeamData.members.map((member, index) => {
-                  const isExpanded = expandedMember === member.name;
-                  
-                  return (
-                    <motion.div
-                      key={member.name}
-                      initial={{ opacity: 0, y: 50 }}
-                      animate={{ 
-                        opacity: 1, 
-                        y: 0,
-                        scale: isExpanded ? 1.05 : 1,
-                        zIndex: isExpanded ? 10 : 1
-                      }}
-                      transition={{ 
-                        duration: 0.3,
-                        delay: index * 0.1,
-                        scale: { duration: 0.2 }
-                      }}
-                      className={`relative ${isExpanded ? 'z-10' : 'z-0'}`}
-                    >
-                      <Card 
-                        className={`cursor-pointer transition-all duration-300 overflow-hidden ${
-                          isExpanded 
-                            ? 'shadow-2xl ring-4 ring-blue-200 transform' 
-                            : 'shadow-lg hover:shadow-xl'
-                        }`}
-                        onClick={() => setExpandedMember(isExpanded ? '' : member.name)}
-                      >
-                        <CardContent className="p-0">
-                          {/* Card Header */}
-                          <div
-                            className={`p-6 bg-gradient-to-r ${currentTeamData.color} text-white ${
-                              currentTeamData.id === "leadership"
-                                ? "flex items-center"
-                                : "text-center"
-                            }`}
-                          >
-                            {currentTeamData.id === "leadership" ? (
-                              <>
-                                <img
-                                  src={member.image}
-                                  alt={member.name}
-                                  className="w-1/2 aspect-square object-cover"
-                                />
-                                <div className="w-1/2 pl-4 text-left">
-                                  <h4 className="text-xl font-bold mb-1">
-                                    {member.name}
-                                  </h4>
-                                  <p className="text-white/90 text-sm">
-                                    {member.role}
-                                  </p>
-                                </div>
-                              </>
-                            ) : (
-                              <>
-                                <img
-                                  src={member.image}
-                                  alt={member.name}
-                                  className="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-white/20"
-                                />
-                                <h4 className="text-xl font-bold mb-1">
-                                  {member.name}
-                                </h4>
-                                <p className="text-white/90 text-sm">
-                                  {member.role}
-                                </p>
-                              </>
+                {currentTeamData.members.map((member, index) => (
+                  <motion.div
+                    key={member.name}
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                  >
+                    <Card className="flex bg-white border border-blue-500 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-32 h-full object-cover flex-shrink-0"
+                      />
+                      <CardContent className="flex flex-col justify-between p-4 flex-1">
+                        <div>
+                          <h4 className="text-xl font-bold text-gray-900 mb-1">
+                            {member.name}
+                          </h4>
+                          <p className="text-blue-600 font-medium mb-2">{member.role}</p>
+                          <p className="text-gray-600 text-sm mb-2">{member.description}</p>
+                          {member.subtitle && (
+                            <p className="text-xs text-gray-500 mb-2">{member.subtitle}</p>
+                          )}
+                        </div>
+                        {member.social && (
+                          <div className="flex space-x-3 mt-4">
+                            {member.social.linkedin && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="p-2 hover:bg-blue-50 hover:text-blue-600"
+                                asChild
+                              >
+                                <a
+                                  href={member.social.linkedin}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`View ${member.name}'s LinkedIn profile`}
+                                >
+                                  <Linkedin className="h-5 w-5" />
+                                </a>
+                              </Button>
+                            )}
+                            {member.social.facebook && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="p-2 hover:bg-blue-50 hover:text-blue-600"
+                                asChild
+                              >
+                                <a
+                                  href={member.social.facebook}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  aria-label={`View ${member.name}'s Facebook profile`}
+                                >
+                                  <Facebook className="h-5 w-5" />
+                                </a>
+                              </Button>
+                            )}
+                            {member.social.email && (
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="p-2 hover:bg-gray-50 hover:text-gray-600"
+                                asChild
+                              >
+                                <a
+                                  href={`mailto:${member.social.email}`}
+                                  aria-label={`Send email to ${member.name}`}
+                                >
+                                  <Mail className="h-5 w-5" />
+                                </a>
+                              </Button>
                             )}
                           </div>
-
-                          {/* Card Content */}
-                          <div className="p-6">
-                            <p className="text-gray-600 text-sm mb-4">{member.description}</p>
-                            {member.subtitle && (
-                              <p className="text-xs text-gray-500 mb-4">{member.subtitle}</p>
-                            )}
-
-                            <AnimatePresence>
-                              {isExpanded ? (
-                                <motion.div
-                                  initial={{ opacity: 0, height: 0 }}
-                                  animate={{ opacity: 1, height: "auto" }}
-                                  exit={{ opacity: 0, height: 0 }}
-                                  transition={{ duration: 0.3 }}
-                                  className="space-y-4"
-                                >
-                                  <div className="border-t border-gray-200 pt-4">
-                                    <h5 className="font-semibold text-gray-900 mb-3 text-center">Connect with {member.name.split(' ')[0]}</h5>
-                                    <div className="flex justify-center space-x-3">
-                                      {member.social.linkedin && (
-                                        <Button
-                                          variant="ghost"
-                                          size="sm"
-                                          className="p-3 hover:bg-blue-50 hover:text-blue-600 rounded-full"
-                                          asChild
-                                        >
-                                          <a
-                                            href={member.social.linkedin}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label={`View ${member.name}'s LinkedIn profile`}
-                                          >
-                                            <Linkedin className="h-5 w-5" />
-                                          </a>
-                                        </Button>
-                                      )}
-                                      {member.social.facebook && (
-                                        <Button
-                                          variant="ghost"
-                                          size="sm"
-                                          className="p-3 hover:bg-blue-50 hover:text-blue-600 rounded-full"
-                                          asChild
-                                        >
-                                          <a
-                                            href={member.social.facebook}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            aria-label={`View ${member.name}'s Facebook profile`}
-                                          >
-                                            <Facebook className="h-5 w-5" />
-                                          </a>
-                                        </Button>
-                                      )}
-                                      {member.social.email && (
-                                        <Button
-                                          variant="ghost"
-                                          size="sm"
-                                          className="p-3 hover:bg-gray-50 hover:text-gray-600 rounded-full"
-                                          asChild
-                                        >
-                                          <a
-                                            href={`mailto:${member.social.email}`}
-                                            aria-label={`Send email to ${member.name}`}
-                                          >
-                                            <Mail className="h-5 w-5" />
-                                          </a>
-                                        </Button>
-                                      )}
-                                    </div>
-                                  </div>
-                                </motion.div>
-                              ) : (
-                                <motion.div
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  className="text-center py-4"
-                                >
-                                  <p className="text-gray-500 text-sm mb-4">Click to see contact info</p>
-                                  <div className="text-2xl">👆</div>
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </motion.div>
-                  );
-                })}
+                        )}
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -406,13 +325,10 @@ export default function FloatingTeamSection() {
               {teamData.map((_, index) => (
                 <button
                   key={index}
-                  onClick={() => {
-                    setCurrentTeam(index);
-                    setExpandedMember(teamData[index].members[0].name);
-                  }}
+                  onClick={() => setCurrentTeam(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentTeam === index 
-                      ? 'bg-blue-500 scale-125' 
+                    currentTeam === index
+                      ? 'bg-blue-500 scale-125'
                       : 'bg-gray-300 hover:bg-gray-400'
                   }`}
                 />
