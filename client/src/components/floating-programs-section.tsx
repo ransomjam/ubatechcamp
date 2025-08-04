@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -10,7 +11,9 @@ import {
   FileSpreadsheet,
   BarChart,
   Users,
-  Presentation
+  Presentation,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 
 const programSections = [
@@ -158,13 +161,27 @@ export default function FloatingProgramsSection() {
     section.courses.map((course) => ({ ...course, color: section.color }))
   );
 
-  const prioritized = ["computer-literacy", "spss"];
+  const prioritized = ["computer-literacy", "networking"];
   const allCourses = [
     ...prioritized.map((id) =>
       unorderedCourses.find((course) => course.id === id)!
     ),
     ...unorderedCourses.filter((course) => !prioritized.includes(course.id)),
   ];
+
+  const coursesPerPage = 2;
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = Math.ceil(allCourses.length / coursesPerPage);
+  const startIndex = currentPage * coursesPerPage;
+  const currentCourses = allCourses.slice(
+    startIndex,
+    startIndex + coursesPerPage
+  );
+
+  const nextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
+  const prevPage = () =>
+    setCurrentPage((prev) => Math.max(prev - 1, 0));
 
   return (
     <section
@@ -177,12 +194,12 @@ export default function FloatingProgramsSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {allCourses.map((course, index) => (
+          {currentCourses.map((course, index) => (
             <motion.div
               key={course.id}
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
+              transition={{ duration: 0.3, delay: (startIndex + index) * 0.1 }}
             >
               <Card className="shadow-lg hover:shadow-xl overflow-hidden">
                 <CardContent className="p-0">
@@ -218,7 +235,9 @@ export default function FloatingProgramsSection() {
                         <Button
                           className={`w-full bg-gradient-to-r ${course.color} hover:opacity-90`}
                           onClick={() => {
-                            document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' });
+                            document
+                              .getElementById("registration")
+                              ?.scrollIntoView({ behavior: "smooth" });
                           }}
                         >
                           Enroll in this course
@@ -231,6 +250,25 @@ export default function FloatingProgramsSection() {
               </Card>
             </motion.div>
           ))}
+        </div>
+
+        <div className="flex justify-center gap-4 mt-8">
+          <Button
+            onClick={prevPage}
+            disabled={currentPage === 0}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            <ChevronLeft className="w-4 h-4 mr-2" />
+            Prev
+          </Button>
+          <Button
+            onClick={nextPage}
+            disabled={currentPage === totalPages - 1}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            Next
+            <ChevronRight className="w-4 h-4 ml-2" />
+          </Button>
         </div>
       </div>
     </section>
