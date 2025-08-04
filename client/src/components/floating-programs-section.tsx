@@ -195,10 +195,13 @@ export default function FloatingProgramsSection() {
   const currentProgram = programSections[currentSection];
 
   return (
-    <section id="programs" className="bg-gradient-to-br from-gray-50 to-gray-100 py-10 md:py-20 overflow-hidden">
+    <section
+      id="programs"
+      className="bg-gradient-to-br from-gray-50 to-gray-100 -mt-6 md:-mt-12 pt-4 md:pt-8 pb-10 md:pb-20 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Explore Our Programs</h2>
+        <div className="text-center mb-8 md:mb-16">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Training programs</h2>
         </div>
 
         {/* Section Navigation */}

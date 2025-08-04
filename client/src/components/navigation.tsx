@@ -122,7 +122,7 @@ export default function Navigation() {
                 onClick={() => scrollToSection('programs')}
                 className="text-gray-600 hover:text-primary block px-3 py-3 rounded-md text-base font-medium w-full text-left border-b border-gray-100"
               >
-                Explore Our Programs
+                Training programs
               </button>
               <button 
                 onClick={() => scrollToSection('team')}
