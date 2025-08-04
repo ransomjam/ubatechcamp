@@ -178,9 +178,9 @@ export default function FloatingTestimonialsSection() {
   };
 
   return (
-    <section id="testimonials" className="bg-gradient-to-br from-gray-50 to-gray-100 py-20 overflow-hidden">
+    <section id="testimonials" className="bg-gradient-to-br from-gray-50 to-gray-100 py-10 md:py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Alumni Voices</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Success stories and experiences from our amazing community
@@ -236,7 +236,7 @@ export default function FloatingTestimonialsSection() {
               className="cursor-grab active:cursor-grabbing"
             >
               {/* Category Header */}
-              <div className="text-center mb-12">
+              <div className="text-center mb-8 md:mb-12">
                 <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r ${currentCategoryData.color} text-white text-3xl mb-6 shadow-xl`}>
                   <currentCategoryData.icon />
                 </div>
@@ -319,7 +319,7 @@ export default function FloatingTestimonialsSection() {
                       })()}
                     </motion.div>
                   ) : (
-                    <div className="text-center py-12">
+                    <div className="text-center py-8 md:py-12">
                       <div className="bg-white rounded-lg shadow-lg p-8 max-w-md mx-auto">
                         <MessageSquare className="w-16 h-16 text-gray-400 mx-auto mb-4" />
                         <h3 className="text-xl font-semibold text-gray-900 mb-2">No Stories Yet</h3>

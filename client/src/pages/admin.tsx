@@ -155,7 +155,7 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <section className="bg-gradient-to-r from-primary to-blue-700 text-white py-12">
+      <section className="bg-gradient-to-r from-primary to-blue-700 text-white py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Settings className="w-12 h-12 mx-auto mb-4" />
           <h1 className="text-3xl md:text-4xl font-bold mb-2">Blog Administration</h1>
@@ -166,7 +166,7 @@ export default function AdminPage() {
       </section>
 
       {/* Admin Content */}
-      <section className="py-12">
+      <section className="py-8 md:py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="pending" className="w-full">
             <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto mb-8">
@@ -182,12 +182,12 @@ export default function AdminPage() {
 
             <TabsContent value="pending">
               {loadingUnapproved ? (
-                <div className="text-center py-12">
+                <div className="text-center py-8 md:py-12">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
                   <p className="mt-4 text-gray-600">Loading pending posts...</p>
                 </div>
               ) : unapprovedPosts.length === 0 ? (
-                <div className="text-center py-12">
+                <div className="text-center py-8 md:py-12">
                   <Check className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">No Pending Posts</h3>
                   <p className="text-gray-600">
@@ -203,12 +203,12 @@ export default function AdminPage() {
 
             <TabsContent value="published">
               {loadingPublished ? (
-                <div className="text-center py-12">
+                <div className="text-center py-8 md:py-12">
                   <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
                   <p className="mt-4 text-gray-600">Loading published posts...</p>
                 </div>
               ) : publishedPosts.length === 0 ? (
-                <div className="text-center py-12">
+                <div className="text-center py-8 md:py-12">
                   <Settings className="w-16 h-16 text-gray-300 mx-auto mb-4" />
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">No Published Posts</h3>
                   <p className="text-gray-600">

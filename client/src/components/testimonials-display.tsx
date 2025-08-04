@@ -46,7 +46,7 @@ export function TestimonialsDisplay({ limit, showTitle = true }: TestimonialsDis
 
   if (testimonials.length === 0) {
     return (
-      <div className="text-center py-12">
+      <div className="text-center py-8 md:py-12">
         <Quote className="w-16 h-16 text-gray-300 mx-auto mb-4" />
         <h3 className="text-xl font-semibold text-gray-600 mb-2">No testimonials yet</h3>
         <p className="text-gray-500">Be the first alumni to share your experience!</p>
