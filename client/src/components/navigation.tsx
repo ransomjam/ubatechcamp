@@ -99,14 +99,11 @@ export default function Navigation() {
           
           <div className="lg:hidden">
             <Button
-              variant="ghost"
-              size="sm"
+              size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className={`${
-                isOpen ? "bg-primary text-primary-foreground" : ""
-              } hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground`}
+              className="bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground active:bg-primary active:text-primary-foreground"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
             </Button>
           </div>
         </div>
