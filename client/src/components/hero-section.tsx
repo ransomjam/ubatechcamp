@@ -17,10 +17,10 @@ export default function HeroSection() {
           alt="UBa Tech Camp students engaging in tech activities"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 via-blue-600/40 to-transparent"></div>
       </div>
 
-      <div className="relative z-10 flex flex-col justify-end items-center h-[80vh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 text-center">
+      <div className="relative z-10 flex flex-col justify-end items-center h-[40vh] max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
