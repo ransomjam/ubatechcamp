@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Linkedin, Facebook, Mail } from "lucide-react";
 import founderImage from "@assets/Founder_1753708699510.jpg";
+import coFounderImage from "@assets/Co founder_1753673323506.jpg";
 import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
 
 const leadership = [
