@@ -1,358 +1,57 @@
-import { useState, useRef } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  ArrowLeft,
-  ArrowRight,
-  Linkedin,
-  Facebook,
-  Mail,
-  Users,
-  GraduationCap,
-  Briefcase,
-  Award
-} from "lucide-react";
+import { Card } from "@/components/ui/card";
 import founderImage from "@assets/Founder_1753708699510.jpg";
 import coFounderImage from "@assets/Co founder_1753673323506.jpg";
 import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
 
-const teamData = [
+// Combined list of team members. Only image and name are needed for display.
+const teamMembers = [
+  { name: "Jam Ransom", image: founderImage },
+  { name: "Abongni Musu", image: coFounderImage },
+  { name: "Prof. Anong Damian", image: profAnongImage },
   {
-    id: "leadership",
-    title: "Leadership Team",
-    description: "Visionary leaders driving digital education innovation",
-    color: "from-blue-500 to-blue-700",
-    icon: Award,
-    members: [
-      {
-        name: "Jam Ransom",
-        role: "Founder",
-        description: "Visionary leader driving digital education innovation at University of Bamenda",
-        image: founderImage,
-        social: {
-          linkedin: "https://linkedin.com/in/jam-ransom",
-          facebook: "https://facebook.com/jam.ransom",
-          email: "jam.ransom@ubatechcamp.com"
-        }
-      },
-      {
-        name: "Abongni Musu",
-        role: "Co-Founder",
-        description: "Strategic partner in building comprehensive tech education programs",
-        image: coFounderImage,
-        social: {
-          linkedin: "https://linkedin.com/in/abongni-musu",
-          facebook: "https://facebook.com/abongni.musu",
-          email: "abongni.musu@ubatechcamp.com"
-        }
-      },
-      {
-        name: "Prof. Anong Damian",
-        role: "University Collaborator",
-        description: "Director of Student Affairs, University of Bamenda",
-        subtitle: "Department of Biological Sciences, Faculty of Science",
-        image: profAnongImage,
-        social: {
-          linkedin: "https://linkedin.com/in/prof-anong-damian",
-          email: "anong.damian@uniba.edu.cm"
-        }
-      }
-    ]
+    name: "Angu Princewill Fon",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
   },
   {
-    id: "trainers",
-    title: "Training Team",
-    description: "Expert instructors with industry experience",
-    color: "from-green-500 to-green-700",
-    icon: GraduationCap,
-    members: [
-      {
-        name: "Angu Princewill Fon",
-        role: "Data Analysis Trainer",
-        description: "Specialist in statistical analysis and data visualization techniques",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-        social: {
-          linkedin: "https://linkedin.com/in/angu-princewill",
-          facebook: "https://facebook.com/angu.princewill",
-          email: "angu.princewill@ubatechcamp.com"
-        }
-      },
-      {
-        name: "Yembi Desmond",
-        role: "Excel Trainer",
-        description: "Expert in advanced Excel functions and business analytics",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-        social: {
-          linkedin: "https://linkedin.com/in/yembi-desmond",
-          facebook: "https://facebook.com/yembi.desmond",
-          email: "yembi.desmond@ubatechcamp.com"
-        }
-      }
-    ]
+    name: "Yembi Desmond",
+    image:
+      "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
   },
   {
-    id: "students",
-    title: "Student Leaders",
-    description: "Dedicated student ambassadors and organizers",
-    color: "from-purple-500 to-purple-700",
-    icon: Users,
-    members: [
-      {
-        name: "Nanguat Blaise",
-        role: "Student Leader",
-        description: "SA President NAHPISA, 2023/2024",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-        social: {
-          linkedin: "https://linkedin.com/in/nanguat-blaise",
-          facebook: "https://facebook.com/nanguat.blaise",
-          email: "nanguat.blaise@students.uniba.edu.cm"
-        }
-      },
-      {
-        name: "Kadjo Yve",
-        role: "Student Leader",
-        description: "SA President, FEMSSA 2023/2024",
-        image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-        social: {
-          linkedin: "https://linkedin.com/in/kadjo-yve",
-          facebook: "https://facebook.com/kadjo.yve",
-          email: "kadjo.yve@students.uniba.edu.cm"
-        }
-      }
-    ]
-  }
+    name: "Nanguat Blaise",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+  },
+  {
+    name: "Kadjo Yve",
+    image:
+      "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+  },
 ];
 
 export default function FloatingTeamSection() {
-  const [currentTeam, setCurrentTeam] = useState(0);
-  const constraintsRef = useRef(null);
-
-  const nextTeam = () => {
-    const newTeam = (currentTeam + 1) % teamData.length;
-    setCurrentTeam(newTeam);
-  };
-
-  const prevTeam = () => {
-    const newTeam = (currentTeam - 1 + teamData.length) % teamData.length;
-    setCurrentTeam(newTeam);
-  };
-
-  const handleDragEnd = (event: any, info: PanInfo) => {
-    const { offset, velocity } = info;
-    
-    if (offset.x > 100 || velocity.x > 500) {
-      prevTeam();
-    } else if (offset.x < -100 || velocity.x < -500) {
-      nextTeam();
-    }
-  };
-
-  const currentTeamData = teamData[currentTeam];
-
   return (
-    <section id="team" className="bg-gradient-to-br from-gray-50 to-gray-100 py-10 md:py-20 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-16">
+    <section id="team" className="bg-gradient-to-br from-gray-50 to-gray-100 py-10 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-8 md:mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
         </div>
 
-        {/* Team Navigation */}
-        <div className="flex justify-center mb-8">
-          <div className="flex space-x-2 bg-white rounded-full p-1 shadow-lg">
-            {teamData.map((team, index) => (
-              <Button
-                key={team.id}
-                onClick={() => {
-                  setCurrentTeam(index);
-                }}
-                variant={currentTeam === index ? "default" : "ghost"}
-                size="sm"
-                className={`rounded-full transition-all duration-300 ${
-                  currentTeam === index
-                    ? `bg-gradient-to-r ${team.color} text-white shadow-md`
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                <team.icon className="w-4 h-4 mr-2" />
-                {team.title}
-              </Button>
-            ))}
-          </div>
-        </div>
-
-        {/* Main Content Area */}
-        <div className="relative" ref={constraintsRef}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentTeam}
-              initial={{ opacity: 0, x: 300 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -300 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              drag="x"
-              dragConstraints={constraintsRef}
-              onDragEnd={handleDragEnd}
-              className="cursor-grab active:cursor-grabbing"
-            >
-              {/* Team Header */}
-              <div className="text-center mb-8 md:mb-12">
-                {currentTeamData.id === "leadership" ? (
-                  <div className="flex items-center justify-center mb-3">
-                    <h3 className="text-3xl font-bold text-blue-600 mr-2">
-                      {currentTeamData.title}
-                    </h3>
-                    <currentTeamData.icon className="w-8 h-8 text-blue-600" />
-                  </div>
-                ) : (
-                  <>
-                    <div
-                      className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r ${currentTeamData.color} text-white text-3xl mb-6 shadow-xl`}
-                    >
-                      <currentTeamData.icon />
-                    </div>
-                    <h3 className="text-3xl font-bold text-gray-900 mb-3">
-                      {currentTeamData.title}
-                    </h3>
-                  </>
-                )}
-                <p className="text-lg text-gray-600">
-                  {currentTeamData.description}
-                </p>
-              </div>
-
-              {/* Floating Cards Grid */}
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                {currentTeamData.members.map((member, index) => (
-                  <motion.div
-                    key={member.name}
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                  >
-                    <Card className="flex bg-white border border-blue-500 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-32 h-full object-cover flex-shrink-0"
-                      />
-                      <CardContent className="flex flex-col justify-between p-4 flex-1">
-                        <div>
-                          <h4 className="text-xl font-bold text-gray-900 mb-1">
-                            {member.name}
-                          </h4>
-                          <p className="text-blue-600 font-medium mb-2">{member.role}</p>
-                          <p className="text-gray-600 text-sm mb-2">{member.description}</p>
-                          {member.subtitle && (
-                            <p className="text-xs text-gray-500 mb-2">{member.subtitle}</p>
-                          )}
-                        </div>
-                        {member.social && (
-                          <div className="flex space-x-3 mt-4">
-                            {member.social.linkedin && (
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="p-2 hover:bg-blue-50 hover:text-blue-600"
-                                asChild
-                              >
-                                <a
-                                  href={member.social.linkedin}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label={`View ${member.name}'s LinkedIn profile`}
-                                >
-                                  <Linkedin className="h-5 w-5" />
-                                </a>
-                              </Button>
-                            )}
-                            {member.social.facebook && (
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="p-2 hover:bg-blue-50 hover:text-blue-600"
-                                asChild
-                              >
-                                <a
-                                  href={member.social.facebook}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  aria-label={`View ${member.name}'s Facebook profile`}
-                                >
-                                  <Facebook className="h-5 w-5" />
-                                </a>
-                              </Button>
-                            )}
-                            {member.social.email && (
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="p-2 hover:bg-gray-50 hover:text-gray-600"
-                                asChild
-                              >
-                                <a
-                                  href={`mailto:${member.social.email}`}
-                                  aria-label={`Send email to ${member.name}`}
-                                >
-                                  <Mail className="h-5 w-5" />
-                                </a>
-                              </Button>
-                            )}
-                          </div>
-                        )}
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation Arrows */}
-          <div className="flex justify-center items-center mt-12 space-x-6">
-            <Button
-              onClick={prevTeam}
-              variant="outline"
-              size="lg"
-              className="rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <ArrowLeft className="w-6 h-6" />
-            </Button>
-            
-            <div className="flex space-x-2">
-              {teamData.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTeam(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentTeam === index
-                      ? 'bg-blue-500 scale-125'
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <Button
-              onClick={nextTeam}
-              variant="outline"
-              size="lg"
-              className="rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <ArrowRight className="w-6 h-6" />
-            </Button>
-          </div>
-
-          {/* Swipe Indicator */}
-          <div className="text-center mt-8">
-            <p className="text-sm text-gray-500">
-              Swipe left or right to explore different team categories
-            </p>
-          </div>
+        {/* Simple grid of team member cards with full-height images */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {teamMembers.map((member) => (
+            <Card key={member.name} className="overflow-hidden h-72">
+              <img
+                src={member.image}
+                alt={member.name}
+                className="w-full h-full object-cover"
+              />
+            </Card>
+          ))}
         </div>
       </div>
     </section>
   );
 }
+
