@@ -58,12 +58,8 @@ export default function Home() {
       <HeroSection />
 
       {/* Impact Section - Image moved to hero */}
-      <section className="bg-white py-8 md:py-16">
+      <section className="bg-white pb-8 md:pb-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Impact</h2>
-          </div>
-
           <div className="flex justify-center">
             <Card className="bg-gradient-to-br from-primary to-blue-800 text-white p-8 hover:shadow-xl transition-all duration-300">
               <div className="grid grid-cols-2 gap-6 text-center">
