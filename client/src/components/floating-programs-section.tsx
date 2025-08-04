@@ -57,9 +57,9 @@ const programSections = [
   },
   {
     id: "programming",
-    title: "Programming & Development", 
+    title: "Programming & Development",
     description: "Build real applications with modern programming languages",
-    color: "from-green-500 to-green-700",
+    color: "from-blue-500 to-blue-700",
     icon: Code,
     duration: "Week 3-4",
     courses: [
@@ -95,7 +95,7 @@ const programSections = [
     id: "data-analysis",
     title: "Data Analysis & Research",
     description: "Transform raw data into meaningful insights",
-    color: "from-purple-500 to-purple-700", 
+    color: "from-blue-500 to-blue-700",
     icon: BarChart,
     duration: "Week 5-6",
     courses: [
@@ -131,7 +131,7 @@ const programSections = [
     id: "collaboration",
     title: "Professional Skills",
     description: "Essential soft skills for the modern workplace",
-    color: "from-orange-500 to-orange-700",
+    color: "from-blue-500 to-blue-700",
     icon: Users,
     duration: "Week 7-8",
     courses: [
