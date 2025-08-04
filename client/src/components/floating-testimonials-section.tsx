@@ -182,9 +182,6 @@ export default function FloatingTestimonialsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8 md:mb-16">
           <h2 className="text-4xl font-bold text-gray-900 mb-4">Alumni Voices</h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Success stories and experiences from our amazing community
-          </p>
         </div>
 
         {/* Category Navigation */}

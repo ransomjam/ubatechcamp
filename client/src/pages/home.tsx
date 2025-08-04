@@ -24,8 +24,7 @@ const sectionsData = [
     component: (
       <div className="text-center py-8 md:py-12">
         <h3 className="text-2xl font-bold text-gray-900 mb-4">Ready to Join UBa Tech Camp 2025?</h3>
-        <p className="text-gray-600 mb-6">All the interactive sections above showcase what awaits you. Register below to secure your spot!</p>
-        <Button 
+        <Button
           onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
           className="bg-gradient-to-r from-blue-500 to-blue-700 hover:opacity-90"
         >
@@ -137,8 +136,7 @@ export default function Home() {
       <section className="bg-gradient-to-r from-blue-500 to-blue-700 py-8 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Ready to Join UBa Tech Camp 2025?</h2>
-          <p className="text-xl text-blue-100 mb-6 md:mb-8">All the interactive sections above showcase what awaits you. Register below to secure your spot!</p>
-          <Button 
+          <Button
             onClick={() => document.getElementById('registration')?.scrollIntoView({ behavior: 'smooth' })}
             size="lg"
             className="bg-white text-blue-600 hover:bg-gray-50 font-semibold px-8 py-3"
@@ -154,7 +152,6 @@ export default function Home() {
       <section className="bg-primary text-white py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Official Certification</h2>
-          <p className="text-xl text-blue-100 mb-6">Receive certificates recognized by the University of Bamenda</p>
           <Card className="bg-white bg-opacity-10 p-6 max-w-2xl mx-auto border-0">
             <Tag className="text-yellow-400 text-4xl mb-4 mx-auto" />
             <p className="text-lg">All participants receive official certificates from the University of Bamenda in partnership with the Directorate of Student Affairs, validating your new digital skills.</p>
@@ -169,9 +166,6 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Alumni Network</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Join our growing community of tech professionals. Our alumni work at leading companies worldwide and continue to support current students through mentorship and career guidance.
-            </p>
           </div>
           
           {/* Alumni by Faculty */}
@@ -293,12 +287,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Get Involved</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              We welcome partnerships with companies, NGOs, and individuals who share our mission. Whether you offer funding, guest lectures, equipment, or mentorship, your support helps shape Cameroon's next generation of tech leaders.
-            </p>
             <div className="mt-8">
-              <a 
-                href="mailto:info@ubatechcamp.org" 
+              <a
+                href="mailto:info@ubatechcamp.org"
                 className="bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition duration-300 inline-block"
               >
                 Partner With Us
@@ -343,8 +334,7 @@ export default function Home() {
       <section className="bg-primary text-white py-8 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-4">Stay Connected</h2>
-          <p className="text-xl text-blue-100 mb-6 md:mb-8">Subscribe to our newsletter for camp updates, resources, and future event announcements.</p>
-          
+
           <div className="max-w-md mx-auto">
             <div className="flex">
               <input 

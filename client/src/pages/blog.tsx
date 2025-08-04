@@ -54,9 +54,6 @@ export default function BlogPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <BookOpen className="w-16 h-16 mx-auto mb-6" />
           <h1 className="text-4xl md:text-5xl font-bold mb-4">UBa Tech Camp Blog</h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Insights, stories, and updates from our tech education community
-          </p>
         </div>
       </section>
 

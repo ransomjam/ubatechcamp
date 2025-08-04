@@ -32,14 +32,6 @@ export default function HeroSection() {
             Welcome to UBa Tech Camp 2025
           </motion.h1>
           
-          <motion.p 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-blue-100 px-2"
-          >
-            Empowering Youth with Digital Skills
-          </motion.p>
           
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
