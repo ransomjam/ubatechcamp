@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import FloatingProgramsSection from "@/components/floating-programs-section";
-import FloatingTeamSection from "@/components/floating-team-section";
+import TeamSection from "@/components/team-section";
 import FloatingGallerySection from "@/components/floating-gallery-section";
 import FloatingProjectsSection from "@/components/floating-projects-section";
 import FloatingTestimonialsSection from "@/components/floating-testimonials-section";
@@ -105,8 +105,8 @@ export default function Home() {
       {/* Interactive Floating Programs Section */}
       <FloatingProgramsSection />
 
-      {/* Interactive Floating Team Section */}
-      <FloatingTeamSection />
+      {/* Team Section */}
+      <TeamSection />
 
       {/* Interactive Floating Gallery Section */}
       <FloatingGallerySection />
