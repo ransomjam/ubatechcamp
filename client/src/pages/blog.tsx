@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Navigation from "@/components/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -49,6 +50,7 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <Navigation />
       {/* Header */}
       <section className="bg-gradient-to-r from-primary to-blue-700 text-white py-10 md:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
