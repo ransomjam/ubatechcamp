@@ -3,31 +3,15 @@ import founderImage from "@assets/Founder_1753708699510.jpg";
 import coFounderImage from "@assets/Co founder_1753673323506.jpg";
 import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
 
-// Combined list of team members. Only image and name are needed for display.
+// Combined list of team member images
 const teamMembers = [
-  { name: "Jam Ransom", image: founderImage },
-  { name: "Abongni Musu", image: coFounderImage },
-  { name: "Prof. Anong Damian", image: profAnongImage },
-  {
-    name: "Angu Princewill Fon",
-    image:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-  },
-  {
-    name: "Yembi Desmond",
-    image:
-      "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-  },
-  {
-    name: "Nanguat Blaise",
-    image:
-      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-  },
-  {
-    name: "Kadjo Yve",
-    image:
-      "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
-  },
+  founderImage,
+  coFounderImage,
+  profAnongImage,
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+  "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+  "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
 ];
 
 export default function FloatingTeamSection() {
@@ -40,11 +24,11 @@ export default function FloatingTeamSection() {
 
         {/* Simple grid of team member cards with full-height images */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {teamMembers.map((member) => (
-            <Card key={member.name} className="overflow-hidden h-72">
+          {teamMembers.map((image, idx) => (
+            <Card key={idx} className="overflow-hidden h-72">
               <img
-                src={member.image}
-                alt={member.name}
+                src={image}
+                alt={`Team member ${idx + 1}`}
                 className="w-full h-full object-cover"
               />
             </Card>
