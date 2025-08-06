@@ -30,7 +30,7 @@ const teamData = [
       {
         name: "Jam Ransom",
         role: "Founder",
-        description: "Visionary leader driving digital education innovation at University of Bamenda",
+        description: "Engineer | Data Analyst | Innovator",
         image: founderImage,
         social: {
           linkedin: "https://linkedin.com/in/jam-ransom",
