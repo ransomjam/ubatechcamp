@@ -2,7 +2,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import computerLiteracyImg from "@assets/computer literacy photo_1753673323506.png";
 import dataAnalysisImg from "@assets/Data Analysis session_1753673323505.jpg";
 import teamCollabImg from "@assets/Team collaboration_1753673323494.jpg";
-import teamLearningImg from "@assets/Team learning_1753673323494.jpg";
 import spssImg from "@assets/spss_1753673323495.jpg";
 
 const galleryImages = [
@@ -33,41 +32,6 @@ const galleryImages = [
     title: "Team Collaboration",
     description:
       "Students working together on group projects and problem-solving exercises"
-  },
-  {
-    id: "team-learning",
-    src: teamLearningImg,
-    title: "Collaborative Learning",
-    description:
-      "Peer-to-peer learning sessions fostering knowledge sharing and mutual support"
-  },
-  {
-    id: "presentation",
-    src: "https://images.unsplash.com/photo-1531545514256-b1400bc00f31?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    title: "Project Presentations",
-    description:
-      "Students presenting their final projects and demonstrating skills learned"
-  },
-  {
-    id: "graduation",
-    src: "https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    title: "Graduation Ceremony",
-    description:
-      "Celebrating the completion of UBa Tech Camp 2025 with certificates and recognition"
-  },
-  {
-    id: "project-showcase",
-    src: "https://images.unsplash.com/photo-1556761175-4b46a572b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    title: "Project Showcase",
-    description:
-      "Final project demonstrations showcasing technical skills and innovation"
-  },
-  {
-    id: "networking",
-    src: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600",
-    title: "Networking Events",
-    description:
-      "Professional networking opportunities with industry leaders and alumni"
   }
 ];
 
@@ -108,4 +72,3 @@ export default function FloatingGallerySection() {
     </section>
   );
 }
-
