@@ -1,22 +1,8 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
-import { 
-  ChevronLeft, 
-  ChevronRight, 
-  ArrowLeft,
-  ArrowRight,
-  Code,
-  BarChart,
-  Database,
-  Globe,
-  Lightbulb,
-  Award,
-  ExternalLink,
-  Github,
-  Play
-} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Code, BarChart, Globe, Github, Play } from "lucide-react";
 
 const projectsData = [
   {
@@ -144,34 +130,12 @@ const projectsData = [
   }
 ];
 
+const projects = projectsData.flatMap(category =>
+  category.projects.map(project => ({ ...project, color: category.color }))
+);
+
 export default function FloatingProjectsSection() {
-  const [currentCategory, setCurrentCategory] = useState(0);
-  const [expandedProject, setExpandedProject] = useState<string>(projectsData[0].projects[0].id);
-  const constraintsRef = useRef(null);
-
-  const nextCategory = () => {
-    const newCategory = (currentCategory + 1) % projectsData.length;
-    setCurrentCategory(newCategory);
-    setExpandedProject(projectsData[newCategory].projects[0].id);
-  };
-
-  const prevCategory = () => {
-    const newCategory = (currentCategory - 1 + projectsData.length) % projectsData.length;
-    setCurrentCategory(newCategory);
-    setExpandedProject(projectsData[newCategory].projects[0].id);
-  };
-
-  const handleDragEnd = (event: any, info: PanInfo) => {
-    const { offset, velocity } = info;
-    
-    if (offset.x > 100 || velocity.x > 500) {
-      prevCategory();
-    } else if (offset.x < -100 || velocity.x < -500) {
-      nextCategory();
-    }
-  };
-
-  const currentCategoryData = projectsData[currentCategory];
+  const [expandedProject, setExpandedProject] = useState<string>(projects[0].id);
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -186,61 +150,12 @@ export default function FloatingProjectsSection() {
       <section id="projects" className="bg-gradient-to-br from-gray-50 to-gray-100 py-10 md:py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-16">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">Student Projects</h2>
-        </div>
-
-        {/* Category Navigation */}
-        <div className="flex justify-center mb-8">
-          <div className="flex space-x-2 bg-white rounded-full p-1 shadow-lg">
-            {projectsData.map((category, index) => (
-              <Button
-                key={category.id}
-                onClick={() => {
-                  setCurrentCategory(index);
-                  setExpandedProject(category.projects[0].id);
-                }}
-                variant={currentCategory === index ? "default" : "ghost"}
-                size="sm"
-                className={`rounded-full transition-all duration-300 ${
-                  currentCategory === index 
-                    ? `bg-gradient-to-r ${category.color} text-white shadow-md` 
-                    : "text-gray-600 hover:text-gray-900"
-                }`}
-              >
-                <category.icon className="w-4 h-4 mr-2" />
-                {category.title}
-              </Button>
-            ))}
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Student Projects</h2>
           </div>
-        </div>
 
-        {/* Main Content Area */}
-        <div className="relative" ref={constraintsRef}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentCategory}
-              initial={{ opacity: 0, x: 300 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -300 }}
-              transition={{ duration: 0.5, ease: "easeInOut" }}
-              drag="x"
-              dragConstraints={constraintsRef}
-              onDragEnd={handleDragEnd}
-              className="cursor-grab active:cursor-grabbing"
-            >
-              {/* Category Header */}
-              <div className="text-center mb-8 md:mb-12">
-                <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-r ${currentCategoryData.color} text-white text-3xl mb-6 shadow-xl`}>
-                  <currentCategoryData.icon />
-                </div>
-                <h3 className="text-3xl font-bold text-gray-900 mb-3">{currentCategoryData.title}</h3>
-                <p className="text-lg text-gray-600">{currentCategoryData.description}</p>
-              </div>
-
-              {/* Floating Project Cards Grid */}
-              <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                {currentCategoryData.projects.map((project, index) => {
-                  const isExpanded = expandedProject === project.id;
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {projects.map((project, index) => {
+              const isExpanded = expandedProject === project.id;
                   
                   return (
                     <motion.div
@@ -269,7 +184,7 @@ export default function FloatingProjectsSection() {
                       >
                         <CardContent className="p-0">
                           {/* Card Header */}
-                          <div className={`p-6 bg-gradient-to-r ${currentCategoryData.color} text-white`}>
+                          <div className={`p-6 bg-gradient-to-r ${project.color} text-white`}>
                             <div className="flex items-center justify-between mb-3">
                               <span className={`text-xs font-medium px-2 py-1 rounded-full ${getDifficultyColor(project.difficulty)} text-gray-800`}>
                                 {project.difficulty}
@@ -329,7 +244,7 @@ export default function FloatingProjectsSection() {
                                     <div className="grid grid-cols-2 gap-2">
                                       <Button 
                                         size="sm"
-                                        className={`bg-gradient-to-r ${currentCategoryData.color} hover:opacity-90`}
+                                        className={`bg-gradient-to-r ${project.color} hover:opacity-90`}
                                         onClick={(e) => {
                                           e.stopPropagation();
                                           // Would link to actual demo
@@ -369,56 +284,8 @@ export default function FloatingProjectsSection() {
                     </motion.div>
                   );
                 })}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation Arrows */}
-          <div className="flex justify-center items-center mt-12 space-x-6">
-            <Button
-              onClick={prevCategory}
-              variant="outline"
-              size="lg"
-              className="rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <ArrowLeft className="w-6 h-6" />
-            </Button>
-            
-            <div className="flex space-x-2">
-              {projectsData.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => {
-                    setCurrentCategory(index);
-                    setExpandedProject(projectsData[index].projects[0].id);
-                  }}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentCategory === index 
-                      ? 'bg-blue-500 scale-125' 
-                      : 'bg-gray-300 hover:bg-gray-400'
-                  }`}
-                />
-              ))}
-            </div>
-            
-            <Button
-              onClick={nextCategory}
-              variant="outline"
-              size="lg"
-              className="rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-300"
-            >
-              <ArrowRight className="w-6 h-6" />
-            </Button>
-          </div>
-
-          {/* Swipe Indicator */}
-          <div className="text-center mt-8">
-            <p className="text-sm text-gray-500">
-              Swipe left or right to explore different project categories
-            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
   );
 }
