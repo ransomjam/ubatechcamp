@@ -108,12 +108,30 @@ export default function TeamSection() {
   const membersPerPage = 3;
   const totalPages = Math.ceil(totalMembers / membersPerPage);
 
+  const nextCategory = () => {
+    setActiveCategory((prev) => (prev + 1) % teamCategories.length);
+    setCurrentIndex(0);
+  };
+
+  const prevCategory = () => {
+    setActiveCategory((prev) => (prev - 1 + teamCategories.length) % teamCategories.length);
+    setCurrentIndex(0);
+  };
+
   const nextSlide = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, totalPages - 1));
+    if (currentIndex < totalPages - 1) {
+      setCurrentIndex((prev) => prev + 1);
+    } else {
+      nextCategory();
+    }
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+    if (currentIndex > 0) {
+      setCurrentIndex((prev) => prev - 1);
+    } else {
+      prevCategory();
+    }
   };
 
   const getCurrentMembers = () => {
@@ -243,26 +261,27 @@ export default function TeamSection() {
             </motion.div>
           </AnimatePresence>
 
-          {totalPages > 1 && (
-            <div className="flex justify-center gap-4 mt-8">
-              <Button
-                onClick={prevSlide}
-                disabled={currentIndex === 0}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                <ChevronLeft className="w-4 h-4 mr-2" />
-                Prev
-              </Button>
-              <Button
-                onClick={nextSlide}
-                disabled={currentIndex === totalPages - 1}
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                Next
-                <ChevronRight className="w-4 h-4 ml-2" />
-              </Button>
-            </div>
-          )}
+          <div className="flex justify-center gap-4 mt-8">
+            <Button
+              onClick={prevSlide}
+              disabled={activeCategory === 0 && currentIndex === 0}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              <ChevronLeft className="w-4 h-4 mr-2" />
+              Prev
+            </Button>
+            <Button
+              onClick={nextSlide}
+              disabled={
+                activeCategory === teamCategories.length - 1 &&
+                currentIndex === totalPages - 1
+              }
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Next
+              <ChevronRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
         </div>
       </div>
     </section>
