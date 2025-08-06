@@ -1,7 +1,16 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { Code, BarChart, Globe, Github, Play } from "lucide-react";
+import {
+  Code,
+  BarChart,
+  Globe,
+  Github,
+  Play,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
 const projectsData = [
   {
@@ -90,7 +99,7 @@ const projectsData = [
     id: "web-development",
     title: "Web Development Projects",
     description: "Modern web applications and websites",
-    color: "from-purple-500 to-purple-700",
+    color: "from-blue-500 to-blue-700",
     icon: Globe,
     projects: [
       {
@@ -134,6 +143,18 @@ const projects = projectsData.flatMap(category =>
 );
 
 export default function FloatingProjectsSection() {
+  const projectsPerPage = 2;
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const startIndex = currentPage * projectsPerPage;
+  const currentProjects = projects.slice(
+    startIndex,
+    startIndex + projectsPerPage
+  );
+  const nextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
+  const prevPage = () =>
+    setCurrentPage((prev) => Math.max(prev - 1, 0));
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
       case "Beginner": return "bg-blue-100 text-blue-800";
@@ -151,7 +172,7 @@ export default function FloatingProjectsSection() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {projects.map((project, index) => {
+            {currentProjects.map((project, index) => {
               return (
                     <motion.div
                       key={project.id}
@@ -164,7 +185,7 @@ export default function FloatingProjectsSection() {
                       }}
                       transition={{
                         duration: 0.3,
-                        delay: index * 0.1,
+                        delay: (startIndex + index) * 0.1,
                         scale: { duration: 0.2 }
                       }}
                       className="relative z-10"
@@ -260,6 +281,25 @@ export default function FloatingProjectsSection() {
                     </motion.div>
                   );
                 })}
+          </div>
+
+          <div className="flex justify-center gap-4 mt-8">
+            <Button
+              onClick={prevPage}
+              disabled={currentPage === 0}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              <ChevronLeft className="w-4 h-4 mr-2" />
+              Prev
+            </Button>
+            <Button
+              onClick={nextPage}
+              disabled={currentPage === totalPages - 1}
+              className="bg-blue-600 hover:bg-blue-700 text-white"
+            >
+              Next
+              <ChevronRight className="w-4 h-4 ml-2" />
+            </Button>
           </div>
         </div>
       </section>
