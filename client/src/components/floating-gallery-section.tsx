@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import computerLiteracyImg from "@assets/computer literacy photo_1753673323506.png";
 import dataAnalysisImg from "@assets/Data Analysis session_1753673323505.jpg";
 import teamCollabImg from "@assets/Team collaboration_1753673323494.jpg";
@@ -36,6 +39,21 @@ const galleryImages = [
 ];
 
 export default function FloatingGallerySection() {
+  const imagesPerPage = 3;
+  const [currentPage, setCurrentPage] = useState(0);
+  const totalPages = Math.ceil(galleryImages.length / imagesPerPage);
+
+  const startIndex = currentPage * imagesPerPage;
+  const currentImages = galleryImages.slice(
+    startIndex,
+    startIndex + imagesPerPage
+  );
+
+  const nextPage = () =>
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
+  const prevPage = () =>
+    setCurrentPage((prev) => Math.max(prev - 1, 0));
+
   return (
     <section
       id="gallery"
@@ -47,7 +65,7 @@ export default function FloatingGallerySection() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {galleryImages.map((image) => (
+          {currentImages.map((image) => (
             <Card
               key={image.id}
               className="overflow-hidden hover:shadow-lg transition-shadow duration-300"
@@ -67,6 +85,25 @@ export default function FloatingGallerySection() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="flex justify-center gap-4 mt-8">
+          <Button
+            onClick={prevPage}
+            disabled={currentPage === 0}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            <ChevronLeft className="w-4 h-4 mr-2" />
+            Prev
+          </Button>
+          <Button
+            onClick={nextPage}
+            disabled={currentPage === totalPages - 1}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            Next
+            <ChevronRight className="w-4 h-4 ml-2" />
+          </Button>
         </div>
       </div>
     </section>
