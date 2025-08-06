@@ -109,11 +109,11 @@ export default function TeamSection() {
   const totalPages = Math.ceil(totalMembers / membersPerPage);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalPages);
+    setCurrentIndex((prev) => Math.min(prev + 1, totalPages - 1));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalPages) % totalPages);
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
   };
 
   const getCurrentMembers = () => {
@@ -243,37 +243,23 @@ export default function TeamSection() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Arrows for Mobile/Small screens */}
           {totalPages > 1 && (
-            <div className="flex justify-center items-center mt-6 space-x-4">
+            <div className="flex justify-center gap-4 mt-8">
               <Button
                 onClick={prevSlide}
-                variant="outline"
-                size="sm"
-                className="rounded-full p-2"
+                disabled={currentIndex === 0}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
               >
-                <ChevronLeft className="h-4 w-4" />
+                <ChevronLeft className="w-4 h-4 mr-2" />
+                Prev
               </Button>
-              
-              <div className="flex space-x-2">
-                {Array.from({ length: totalPages }).map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentIndex(index)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
-                      currentIndex === index ? "bg-primary" : "bg-gray-300"
-                    }`}
-                  />
-                ))}
-              </div>
-
               <Button
                 onClick={nextSlide}
-                variant="outline"
-                size="sm"
-                className="rounded-full p-2"
+                disabled={currentIndex === totalPages - 1}
+                className="bg-blue-600 hover:bg-blue-700 text-white"
               >
-                <ChevronRight className="h-4 w-4" />
+                Next
+                <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
             </div>
           )}
