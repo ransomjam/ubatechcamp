@@ -15,7 +15,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use('/uploads', express.static('uploads'));
   
   // Registration endpoint
-  app.post("/api/registrations", async (req, res) => {
+  app.post("/api/registration", async (req, res) => {
     try {
       const validatedData = insertRegistrationSchema.parse(req.body);
       const registration = await storage.createRegistration(validatedData);
