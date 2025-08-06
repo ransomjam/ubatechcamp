@@ -66,7 +66,7 @@ const teamData = [
     id: "trainers",
     title: "Training Team",
     description: "Expert instructors with industry experience",
-    color: "from-green-500 to-green-700",
+    color: "from-blue-500 to-blue-700",
     icon: GraduationCap,
     members: [
       {
