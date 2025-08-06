@@ -41,7 +41,7 @@ Preferred communication style: Simple, everyday language.
 - **Blog Posts table**: Stores blog submissions with approval workflow, categorization, tagging system, and photo upload support (featured images and content images)
 
 ### API Endpoints
-- `POST /api/registrations` - Create new registration
+- `POST /api/registration` - Create new registration
 - `GET /api/registrations` - Retrieve all registrations
 - `POST /api/newsletter` - Subscribe to newsletter
 - `POST /api/testimonials` - Submit testimonial for approval
