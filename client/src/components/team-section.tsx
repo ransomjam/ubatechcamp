@@ -65,6 +65,12 @@ const trainers = [
       facebook: "https://facebook.com/yembi.desmond",
       email: "yembi.desmond@ubatechcamp.com"
     }
+  },
+  {
+    name: "Males Lambe Prosperous",
+    role: "Computer Networking Trainer",
+    description: "Electrical | Network Engineer",
+    image: ""
   }
 ];
 
