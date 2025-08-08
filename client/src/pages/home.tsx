@@ -89,7 +89,7 @@ export default function Home() {
       <section className="bg-gray-50 py-8 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Official Partnership</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">official Collaboration</h2>
             <Card className="p-8 max-w-2xl mx-auto hover:shadow-lg transition-shadow duration-300">
               <Handshake className="text-primary text-4xl mb-4 mx-auto" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">Directorate of Student Affairs</h3>
