@@ -139,7 +139,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4">Official Certification</h2>
           <Card className="bg-white bg-opacity-10 p-6 max-w-2xl mx-auto border-0">
             <Tag className="text-yellow-400 text-4xl mb-4 mx-auto" />
-            <p className="text-lg">All participants receive official certificates from the University of Bamenda in partnership with the Directorate of Student Affairs, validating your new digital skills.</p>
+            <p className="text-lg">All participants receive official certificates from the Directorate of students affairs, University of Bamenda. validating your new digital skills</p>
           </Card>
         </div>
       </section>
