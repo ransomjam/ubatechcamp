@@ -90,6 +90,12 @@ const teamData = [
           facebook: "https://facebook.com/yembi.desmond",
           email: "yembi.desmond@ubatechcamp.com"
         }
+      },
+      {
+        name: "Males Lambe Prosperous",
+        role: "Computer Networking Trainer",
+        description: "Electrical | Network Engineer",
+        image: ""
       }
     ]
   },
@@ -245,7 +251,7 @@ export default function FloatingTeamSection() {
                           </h4>
                           <p className="text-blue-600 font-medium mb-2">{member.role}</p>
                           <p className="text-gray-600 text-sm mb-2">{member.description}</p>
-                          {member.subtitle && (
+                          {"subtitle" in member && member.subtitle && (
                             <p className="text-xs text-gray-500 mb-2">{member.subtitle}</p>
                           )}
                         </div>
