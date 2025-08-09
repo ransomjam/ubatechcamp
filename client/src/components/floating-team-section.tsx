@@ -19,6 +19,8 @@ import founderImage from "@assets/Founder_1753708699510.jpg";
 import coFounderImage from "@assets/Co founder_1753673323506.jpg";
 import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
 
+const placeholderImage = "https://via.placeholder.com/300x300?text=Image+Coming+Soon";
+
 const teamData = [
   {
     id: "leadership",
@@ -73,7 +75,7 @@ const teamData = [
         name: "Angu Princewill Fon",
         role: "Data Analysis Trainer",
         description: "Specialist in statistical analysis and data visualization techniques",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        image: placeholderImage,
         social: {
           linkedin: "https://linkedin.com/in/angu-princewill",
           facebook: "https://facebook.com/angu.princewill",
@@ -84,7 +86,7 @@ const teamData = [
         name: "Yembi Desmond",
         role: "Excel Trainer",
         description: "Expert in advanced Excel functions and business analytics",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        image: placeholderImage,
         social: {
           linkedin: "https://linkedin.com/in/yembi-desmond",
           facebook: "https://facebook.com/yembi.desmond",
@@ -95,7 +97,7 @@ const teamData = [
         name: "Males Lambe Prosperous",
         role: "Computer Networking Trainer",
         description: "Electrical | Network Engineer",
-        image: ""
+        image: placeholderImage
       }
     ]
   },
@@ -110,7 +112,7 @@ const teamData = [
         name: "Nanguat Blaise",
         role: "Student Leader",
         description: "SA President NAHPISA, 2023/2024",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        image: placeholderImage,
         social: {
           linkedin: "https://linkedin.com/in/nanguat-blaise",
           facebook: "https://facebook.com/nanguat.blaise",
@@ -121,7 +123,7 @@ const teamData = [
         name: "Kadjo Yve",
         role: "Student Leader",
         description: "SA President, FEMSSA 2023/2024",
-        image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&h=300",
+        image: placeholderImage,
         social: {
           linkedin: "https://linkedin.com/in/kadjo-yve",
           facebook: "https://facebook.com/kadjo.yve",
