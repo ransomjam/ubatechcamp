@@ -18,6 +18,11 @@ import {
 import founderImage from "@assets/Founder_1753708699510.jpg";
 import coFounderImage from "@assets/Co founder_1753673323506.jpg";
 import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
+import princewillImage from "@assets/add_princewill.png";
+import desmondImage from "@assets/add_desmond.JPG";
+import malesImage from "@assets/add_Males.jpg";
+import blaiseImage from "@assets/add_blaise.jpg";
+import yveImage from "@assets/add_yve.jpg";
 
 const placeholderImage = "https://via.placeholder.com/300x300?text=Image+Coming+Soon";
 
@@ -75,7 +80,7 @@ const teamData = [
         name: "Angu Princewill Fon",
         role: "Data Analysis Trainer",
         description: "Specialist in statistical analysis and data visualization techniques",
-        image: placeholderImage,
+        image: princewillImage,
         social: {
           linkedin: "https://linkedin.com/in/angu-princewill",
           facebook: "https://facebook.com/angu.princewill",
@@ -86,7 +91,7 @@ const teamData = [
         name: "Yembi Desmond",
         role: "Excel Trainer",
         description: "Expert in advanced Excel functions and business analytics",
-        image: placeholderImage,
+        image: desmondImage,
         social: {
           linkedin: "https://linkedin.com/in/yembi-desmond",
           facebook: "https://facebook.com/yembi.desmond",
@@ -97,7 +102,7 @@ const teamData = [
         name: "Males Lambe Prosperous",
         role: "Computer Networking Trainer",
         description: "Electrical | Network Engineer",
-        image: placeholderImage
+        image: malesImage
       }
     ]
   },
@@ -112,7 +117,7 @@ const teamData = [
         name: "Nanguat Blaise",
         role: "Student Leader",
         description: "SA President NAHPISA, 2023/2024",
-        image: placeholderImage,
+        image: blaiseImage,
         social: {
           linkedin: "https://linkedin.com/in/nanguat-blaise",
           facebook: "https://facebook.com/nanguat.blaise",
@@ -123,7 +128,7 @@ const teamData = [
         name: "Kadjo Yve",
         role: "Student Leader",
         description: "SA President, FEMSSA 2023/2024",
-        image: placeholderImage,
+        image: yveImage,
         social: {
           linkedin: "https://linkedin.com/in/kadjo-yve",
           facebook: "https://facebook.com/kadjo.yve",
