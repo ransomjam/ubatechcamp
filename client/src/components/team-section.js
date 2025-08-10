@@ -5,7 +5,13 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Linkedin, Facebook, Mail } from "lucide-react";
 import founderImage from "@assets/Founder_1753708699510.jpg";
+import coFounderImage from "@assets/Co founder_1753673323506.jpg";
 import profAnongImage from "@assets/Prof Anong_1753743173746.jpg";
+import princewillImage from "@assets/add_princewill.png";
+import desmondImage from "@assets/add_desmond.JPG";
+import malesImage from "@assets/add_Males.jpg";
+import blaiseImage from "@assets/add_blaise.jpg";
+import yveImage from "@assets/add_yve.jpg";
 const leadership = [
     {
         name: "Jam Ransom",
@@ -46,7 +52,7 @@ const trainers = [
         name: "Angu Princewill Fon",
         role: "Data Analysis Trainer",
         description: "Specialist in statistical analysis and data visualization techniques",
-        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300",
+        image: princewillImage,
         social: {
             linkedin: "https://linkedin.com/in/angu-princewill",
             facebook: "https://facebook.com/angu.princewill",
@@ -57,12 +63,18 @@ const trainers = [
         name: "Yembi Desmond",
         role: "Excel Trainer",
         description: "Expert in advanced Excel functions and business analytics",
-        image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300",
+        image: desmondImage,
         social: {
             linkedin: "https://linkedin.com/in/yembi-desmond",
             facebook: "https://facebook.com/yembi.desmond",
             email: "yembi.desmond@ubatechcamp.com"
         }
+    },
+    {
+        name: "Males Lambe Prosperous",
+        role: "Computer Networking Trainer",
+        description: "Electrical | Network Engineer",
+        image: malesImage
     }
 ];
 const studentLeaders = [
@@ -70,7 +82,7 @@ const studentLeaders = [
         name: "Nanguat Blaise",
         role: "Student Leader",
         description: "SA President NAHPISA, 2023/2024",
-        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300",
+        image: blaiseImage,
         social: {
             linkedin: "https://linkedin.com/in/nanguat-blaise",
             facebook: "https://facebook.com/nanguat.blaise",
@@ -81,7 +93,7 @@ const studentLeaders = [
         name: "Kadjo Yve",
         role: "Student Leader",
         description: "SA President, FEMSSA 2023/2024",
-        image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&h=300",
+        image: yveImage,
         social: {
             linkedin: "https://linkedin.com/in/kadjo-yve",
             facebook: "https://facebook.com/kadjo.yve",
