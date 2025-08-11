@@ -46,7 +46,7 @@ const teamData = [
         }
       },
       {
-        name: "Abongni Musu",
+        name: "Abongni Musuh",
         role: "Co-Founder",
         description: "Strategic partner in building comprehensive tech education programs",
         image: coFounderImage,
