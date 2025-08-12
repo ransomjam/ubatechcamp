@@ -1,3 +1,10 @@
 node_modules
 dist
 server/dist
+# Git metadata
+COMMIT_EDITMSG
+ORIG_HEAD
+FETCH_HEAD
+HEAD
+MERGE_*
+REBASE_*
