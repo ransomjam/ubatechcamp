@@ -51,9 +51,9 @@ const teamData = [
         description: "Strategic partner in building comprehensive tech education programs",
         image: coFounderImage,
         social: {
-          linkedin: "https://linkedin.com/in/abongni-musu",
-          facebook: "https://facebook.com/abongni.musu",
-          email: "abongni.musu@ubatechcamp.com"
+          linkedin: "https://linkedin.com/in/abongni-musuh",
+          facebook: "https://facebook.com/abongni.musuh",
+          email: "abongni.musuh@ubatechcamp.com"
         }
       },
       {
